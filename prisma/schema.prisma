@@ -1,0 +1,225 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+// All money values are whole rupees (Int). Razorpay amounts are converted to paise at the edge.
+
+enum Role {
+  CUSTOMER
+  ADMIN
+}
+
+enum OrderStatus {
+  PENDING
+  CONFIRMED
+  PROCESSING
+  OUT_FOR_DELIVERY
+  DELIVERED
+  CANCELLED
+}
+
+enum PaymentMethod {
+  COD
+  RAZORPAY
+  UPI
+}
+
+enum PaymentStatus {
+  PENDING
+  PAID
+  FAILED
+  REFUNDED
+}
+
+enum DiscountType {
+  PERCENTAGE
+  FIXED
+}
+
+model Category {
+  id          String    @id @default(cuid())
+  name        String
+  slug        String    @unique
+  description String?
+  image       String?
+  sortOrder   Int       @default(0)
+  isActive    Boolean   @default(true)
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  products    Product[]
+}
+
+model Product {
+  id               String      @id @default(cuid())
+  name             String
+  slug             String      @unique
+  description      String
+  shortDescription String?
+  price            Int
+  compareAtPrice   Int?
+  sku              String?     @unique
+  images           String[]
+  categoryId       String
+  category         Category    @relation(fields: [categoryId], references: [id])
+  isFeatured       Boolean     @default(false)
+  isBestSeller     Boolean     @default(false)
+  isGiftBox        Boolean     @default(false)
+  isBoxEligible    Boolean     @default(true)
+  isActive         Boolean     @default(true)
+  isSample         Boolean     @default(false)
+  stock            Int         @default(0)
+  ingredients      String?
+  allergens        String?
+  storage          String?
+  deliveryInfo     String?
+  createdAt        DateTime    @default(now())
+  updatedAt        DateTime    @updatedAt
+  reviews          Review[]
+  orderItems       OrderItem[]
+
+  @@index([categoryId])
+  @@index([isActive, isBestSeller])
+}
+
+model Review {
+  id           String   @id @default(cuid())
+  productId    String
+  product      Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
+  customerName String
+  rating       Int
+  review       String
+  isApproved   Boolean  @default(false)
+  createdAt    DateTime @default(now())
+
+  @@index([productId, isApproved])
+}
+
+model Customer {
+  id           String    @id @default(cuid())
+  name         String
+  email        String?   @unique
+  phone        String?
+  passwordHash String?
+  role         Role      @default(CUSTOMER)
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+  addresses    Address[]
+  orders       Order[]
+
+  @@index([phone])
+}
+
+model Address {
+  id         String   @id @default(cuid())
+  customerId String?
+  customer   Customer? @relation(fields: [customerId], references: [id], onDelete: SetNull)
+  fullName   String
+  phone      String
+  line1      String
+  area       String
+  city       String
+  state      String
+  pincode    String
+  createdAt  DateTime @default(now())
+  orders     Order[]
+}
+
+model Coupon {
+  id            String       @id @default(cuid())
+  code          String       @unique
+  discountType  DiscountType
+  discountValue Int
+  minimumOrder  Int          @default(0)
+  maximumDiscount Int?
+  usageLimit    Int?
+  usedCount     Int          @default(0)
+  expiresAt     DateTime?
+  isActive      Boolean      @default(true)
+  createdAt     DateTime     @default(now())
+  orders        Order[]
+}
+
+model Order {
+  id                String      @id @default(cuid())
+  orderNumber       String      @unique
+  publicId          String      @unique @default(cuid())
+  status            OrderStatus @default(PENDING)
+  customerId        String?
+  customer          Customer?   @relation(fields: [customerId], references: [id], onDelete: SetNull)
+  customerName      String
+  customerEmail     String?
+  customerPhone     String
+  addressId         String
+  address           Address     @relation(fields: [addressId], references: [id])
+  subtotal          Int
+  deliveryFee       Int         @default(0)
+  discount          Int         @default(0)
+  total             Int
+  couponId          String?
+  coupon            Coupon?     @relation(fields: [couponId], references: [id], onDelete: SetNull)
+  deliveryInstructions String?
+  notes             String?
+  createdAt         DateTime    @default(now())
+  updatedAt         DateTime    @updatedAt
+  items             OrderItem[]
+  payment           Payment?
+
+  @@index([status, createdAt])
+  @@index([customerId])
+}
+
+model OrderItem {
+  id        String  @id @default(cuid())
+  orderId   String
+  order     Order   @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  productId String?
+  product   Product? @relation(fields: [productId], references: [id], onDelete: SetNull)
+  name      String
+  image     String?
+  unitPrice Int
+  quantity  Int
+
+  @@index([orderId])
+}
+
+model Payment {
+  id          String        @id @default(cuid())
+  orderId     String        @unique
+  order       Order         @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  method      PaymentMethod
+  status      PaymentStatus @default(PENDING)
+  amount      Int
+  provider    String?
+  providerOrderId   String?
+  providerPaymentId String?
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
+}
+
+model Setting {
+  key   String @id
+  value String
+}
+
+model Faq {
+  id        String  @id @default(cuid())
+  question  String
+  answer    String
+  sortOrder Int     @default(0)
+  isActive  Boolean @default(true)
+}
+
+model ContactMessage {
+  id        String   @id @default(cuid())
+  name      String
+  email     String?
+  phone     String?
+  message   String
+  isRead    Boolean  @default(false)
+  createdAt DateTime @default(now())
+}
