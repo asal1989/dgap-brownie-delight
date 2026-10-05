@@ -8,7 +8,7 @@
 <meta property="og:title" content="DGAP Brownie Delight | Premium Handcrafted Brownies">
 <meta property="og:description" content="Rich, fudgy brownies made for your sweetest moments.">
 <meta property="og:type" content="website">
-<meta property="og:image" content="golden-stack.jpg">
+<meta property="og:image" content="hero-fudgie.jpg">
 <meta name="theme-color" content="#120907">
 <link rel="icon" href="icon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -39,16 +39,16 @@ a{color:inherit}
 .btn.ghost:hover{background:var(--cream);color:var(--espresso)}
 .hero{position:relative;background:var(--espresso);overflow:hidden;isolation:isolate}
 .hero:before{content:"";position:absolute;inset:0;z-index:-1;background:radial-gradient(55% 60% at 78% 40%,rgb(200 148 82/.22),transparent 70%),radial-gradient(45% 55% at 0 100%,rgb(154 91 31/.18),transparent 70%)}
-.hero .wrap{display:grid;gap:2.5rem;align-items:center;padding-top:2rem;padding-bottom:4.5rem}
+.hgrid{display:grid;gap:2.2rem 4rem;align-items:center;padding-top:2rem;padding-bottom:4.5rem}
 .frame{position:relative;max-width:28rem;margin:auto;width:100%}
 .frame:before{content:"";position:absolute;inset:0;transform:translate(1rem,1rem);border:1px solid rgb(200 148 82/.5)}
-.frame .ph{position:relative;aspect-ratio:5/4;overflow:hidden;box-shadow:0 30px 60px -20px rgb(0 0 0/.6)}
+.frame .ph{position:relative;aspect-ratio:1/1;overflow:hidden;box-shadow:0 30px 60px -20px rgb(0 0 0/.6)}
 .frame img{width:100%;height:100%;object-fit:cover;display:block}
 .tag{position:absolute;font:700 .62rem Manrope;letter-spacing:.16em;text-transform:uppercase;padding:.55rem 1rem}
 .tag.a{left:-.4rem;top:12%;background:var(--cream);color:var(--espresso)}.tag.b{right:-.3rem;bottom:10%;background:var(--gold);color:var(--espresso)}
 .eyebrow{display:inline-flex;align-items:center;gap:.8rem;font:700 .7rem Manrope;letter-spacing:.3em;text-transform:uppercase;color:var(--gold)}
 .eyebrow:before{content:"";width:2.5rem;height:1px;background:var(--gold)}
-.hero h1{font-size:clamp(3.2rem,11vw,5.8rem);margin:1.6rem 0 1.4rem;line-height:.98}
+.hero h1{font-size:clamp(2.8rem,9.5vw,5rem);margin:1.4rem 0 1.2rem;line-height:1}
 .hero h1 em{color:var(--gold)}
 .lead{font-size:1.2rem;color:rgb(255 248 240/.75);max-width:27rem}
 .cta-row{display:flex;flex-direction:column;gap:.8rem;margin-top:2.4rem}
@@ -116,10 +116,12 @@ a{color:inherit}
 .cta p{margin:1.6rem auto 0;max-width:34rem;color:rgb(255 248 240/.85);font-size:1.2rem}
 .cta .cta-row{align-items:center;justify-content:center}
 footer{margin-top:5rem;background:var(--espresso);color:rgb(255 248 240/.7);font-size:.85rem;padding:2.2rem 0;text-align:center;border-top:1px solid rgb(200 148 82/.2)}
-@media(min-width:640px){.row>li{flex-basis:42%}.cta-row{flex-direction:row}.why{grid-template-columns:1fr 1fr}.frame .ph{aspect-ratio:4/5}}
+@media(min-width:640px){.row>li{flex-basis:42%}.cta-row{flex-direction:row}.why{grid-template-columns:1fr 1fr}}
 @media(min-width:1024px){
   .nav .wrap{height:5rem}.nav ul{display:flex}
-  .hero .wrap{grid-template-columns:1.05fr .95fr;gap:4rem;min-height:44rem;padding-bottom:6rem}
+  .hgrid{grid-template-columns:1.05fr .95fr;grid-template-rows:auto auto;align-content:center;min-height:44rem;padding-bottom:6rem}
+  .h-a{grid-column:1;grid-row:1;align-self:end}.h-b{grid-column:2;grid-row:1/3;align-self:center}.h-c{grid-column:1;grid-row:2;align-self:start}
+  .frame .ph{aspect-ratio:4/5}
   .frame{max-width:none;padding-left:1.5rem}.frame:before{transform:translate(1.5rem,1.5rem);inset:0 0 0 1.5rem}
   .section{padding:7rem 0}
   .row{display:grid;overflow:visible;margin:0;padding:0;gap:1.5rem}
@@ -144,30 +146,32 @@ footer{margin-top:5rem;background:var(--espresso);color:rgb(255 248 240/.7);font
 
 <main id="top">
 <section class="hero" aria-labelledby="t">
-  <div class="wrap">
-    <div>
+  <div class="wrap hgrid">
+    <div class="h-a">
       <p class="eyebrow">Freshly baked • Premium ingredients</p>
       <h1 id="t">Brownies Worth <em>Craving.</em></h1>
       <p class="lead">Rich, fudgy brownies made for your sweetest moments.</p>
-      <div class="cta-row"><a class="btn" href="#menu">Shop brownies</a><a class="btn ghost" href="#gifting">Explore gift boxes</a></div>
-      <ul class="ticks"><li>Freshly baked</li><li>Premium ingredients</li><li>Small batch</li></ul>
     </div>
-    <div class="frame">
-      <div class="ph"><img src="golden-stack.jpg" alt="A stack of rich, fudgy brownies" width="1400" height="1400" fetchpriority="high"></div>
+    <div class="frame h-b">
+      <div class="ph"><img src="hero-fudgie.jpg" alt="A stack of rich, fudgy brownies" width="1200" height="1500" fetchpriority="high"></div>
       <span class="tag a">Freshly baked</span><span class="tag b">Small batch</span>
+    </div>
+    <div class="h-c">
+      <div class="cta-row"><a class="btn" href="#menu">Shop brownies →</a><a class="btn ghost" href="#gifting">Explore gift boxes →</a></div>
+      <ul class="ticks"><li>Freshly baked</li><li>Premium ingredients</li><li>Small batch</li></ul>
     </div>
   </div>
 </section>
 
-<div class="strip"><ul class="wrap" aria-label="Our promise"><li>Handcrafted</li><li>Small batch</li><li>Premium chocolate</li><li>Secure packaging</li><li>Local delivery</li></ul></div>
+<div class="strip"><ul class="wrap" aria-label="Our promise"><li>Freshly baked</li><li>Premium ingredients</li><li>Small batch</li><li>Secure packaging</li><li>Local delivery</li></ul></div>
 
 <section class="section wrap" id="menu" aria-labelledby="m">
-  <div class="head"><small>Best sellers</small><h2 id="m">Meet Your New Favorite Brownies</h2><p>Rich, fudgy and baked fresh for every craving.</p></div>
+  <div class="head"><small>Best sellers</small><h2 id="m">Meet Your New Favorite Brownies</h2><p>Four flavours. One dangerously delicious decision.</p></div>
   <ul class="row p4" aria-label="Best selling brownies">
-    <li><a class="card" href="#menu"><div class="ph"><img src="plate-stack.jpg" alt="Classic Fudge Brownie" loading="lazy" width="800" height="1000"><span class="badge">Best seller</span></div><div class="b"><small>Fudge</small><h3>Classic Fudge Brownie</h3><p>Rich, fudgy and chocolatey. The one that started it all.</p><span class="t">SAMPLE PRODUCT · PRICES COMING SOON</span></div></a></li>
-    <li><a class="card" href="#menu"><div class="ph"><img src="swirl-rack.jpg" alt="Nutella Stuffed Brownie" loading="lazy" width="800" height="1000"><span class="badge">Best seller</span></div><div class="b"><small>Nutella</small><h3>Nutella Stuffed Brownie</h3><p>A soft brownie with a gooey Nutella centre.</p><span class="t">SAMPLE PRODUCT · PRICES COMING SOON</span></div></a></li>
-    <li><a class="card" href="#menu"><div class="ph"><img src="golden-stack.jpg" alt="Biscoff Brownie" loading="lazy" width="800" height="1000"><span class="badge">Best seller</span></div><div class="b"><small>Biscoff</small><h3>Biscoff Brownie</h3><p>Brownie topped with caramelised Biscoff crunch.</p><span class="t">SAMPLE PRODUCT · PRICES COMING SOON</span></div></a></li>
-    <li><a class="card" href="#menu"><div class="ph"><img src="gift-box.jpg" alt="Assorted Brownie Box" loading="lazy" width="800" height="1000"><span class="badge">Best seller</span></div><div class="b"><small>Assorted boxes</small><h3>Assorted Brownie Box</h3><p>A giftable box of assorted brownies.</p><span class="t">SAMPLE PRODUCT · PRICES COMING SOON</span></div></a></li>
+    <li><a class="card" href="#menu"><div class="ph"><img src="plate-stack.jpg" alt="Fudgie Brownie" loading="lazy" width="800" height="1000"><span class="badge">Best seller</span></div><div class="b"><small>Fudgie</small><h3>Fudgie Brownie</h3><p>Rich, gooey &amp; deeply chocolatey.</p><span class="t">SAMPLE PRODUCT · PRICES COMING SOON</span></div></a></li>
+    <li><a class="card" href="#menu"><div class="ph"><img src="hero-fudgie.jpg" alt="Double Chocolate Brownie" loading="lazy" width="800" height="1000"></div><div class="b"><small>Double Chocolate</small><h3>Double Chocolate Brownie</h3><p>Two kinds of chocolate for a deeper, darker bite.</p><span class="t">SAMPLE PRODUCT · PRICES COMING SOON</span></div></a></li>
+    <li><a class="card" href="#menu"><div class="ph"><img src="fudge-stack.jpg" alt="Nuts Brownie" loading="lazy" width="800" height="1000"></div><div class="b"><small>Nuts</small><h3>Nuts Brownie</h3><p>Fudgy brownie with a crunchy, nutty finish.</p><span class="t">SAMPLE PRODUCT · PRICES COMING SOON</span></div></a></li>
+    <li><a class="card" href="#menu"><div class="ph"><img src="swirl-rack.jpg" alt="Nutella Brownie" loading="lazy" width="800" height="1000"></div><div class="b"><small>Nutella</small><h3>Nutella Brownie</h3><p>A soft brownie with a gooey Nutella centre.</p><span class="t">SAMPLE PRODUCT · PRICES COMING SOON</span></div></a></li>
   </ul>
   <a class="link" href="#menu">View all brownies →</a>
 </section>
@@ -175,11 +179,11 @@ footer{margin-top:5rem;background:var(--espresso);color:rgb(255 248 240/.7);font
 <section class="section panel" aria-labelledby="c"><div class="wrap">
   <div class="head"><small>Shop by flavour</small><h2 id="c">Find Your Flavour</h2><p>From classic fudge to loaded favourites.</p></div>
   <ul class="row c6" aria-label="Brownie flavours">
-    <li style="flex-basis:44%"><a class="cat" href="#menu"><img src="plate-stack.jpg" alt="" loading="lazy" width="400" height="400"><div><h3>Fudge</h3><span>Explore ↗</span></div></a></li>
+    <li style="flex-basis:44%"><a class="cat" href="#menu"><img src="plate-stack.jpg" alt="" loading="lazy" width="400" height="400"><div><h3>Fudgie</h3><span>Explore ↗</span></div></a></li>
+    <li style="flex-basis:44%"><a class="cat" href="#menu"><img src="hero-fudgie.jpg" alt="" loading="lazy" width="400" height="400"><div><h3>Double Chocolate</h3><span>Explore ↗</span></div></a></li>
+    <li style="flex-basis:44%"><a class="cat" href="#menu"><img src="fudge-stack.jpg" alt="" loading="lazy" width="400" height="400"><div><h3>Nuts</h3><span>Explore ↗</span></div></a></li>
     <li style="flex-basis:44%"><a class="cat" href="#menu"><img src="swirl-rack.jpg" alt="" loading="lazy" width="400" height="400"><div><h3>Nutella</h3><span>Explore ↗</span></div></a></li>
     <li style="flex-basis:44%"><a class="cat" href="#menu"><img src="golden-stack.jpg" alt="" loading="lazy" width="400" height="400"><div><h3>Biscoff</h3><span>Explore ↗</span></div></a></li>
-    <li style="flex-basis:44%"><a class="cat" href="#menu"><img src="fudge-stack.jpg" alt="" loading="lazy" width="400" height="400"><div><h3>Choco Chip</h3><span>Explore ↗</span></div></a></li>
-    <li style="flex-basis:44%"><a class="cat" href="#menu"><img src="golden-stack.jpg" alt="" loading="lazy" width="400" height="400"><div><h3>Nuts</h3><span>Explore ↗</span></div></a></li>
     <li style="flex-basis:44%"><a class="cat" href="#menu"><img src="gift-box.jpg" alt="" loading="lazy" width="400" height="400"><div><h3>Assorted</h3><span>Explore ↗</span></div></a></li>
   </ul>
 </div></section>

@@ -48,6 +48,8 @@ const productSchema = z.object({
   allergens: z.string().max(2000).nullable(),
   storage: z.string().max(2000).nullable(),
   deliveryInfo: z.string().max(2000).nullable(),
+  badge: z.string().max(24).nullable(),
+  sortOrder: z.number().int().min(0).max(9999),
 });
 
 export async function saveProduct(_prev: State, fd: FormData): Promise<State> {
@@ -73,6 +75,8 @@ export async function saveProduct(_prev: State, fd: FormData): Promise<State> {
     allergens: optStr(fd, "allergens"),
     storage: optStr(fd, "storage"),
     deliveryInfo: optStr(fd, "deliveryInfo"),
+    badge: optStr(fd, "badge"),
+    sortOrder: intOr(str(fd, "sortOrder"), 0),
   });
   if (!parsed.success) return fail(parsed.error.issues[0]?.message ?? "Please check the form.");
   const d = parsed.data;

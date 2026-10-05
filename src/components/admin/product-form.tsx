@@ -48,6 +48,8 @@ export function ProductForm({ product, categories }: { product?: Product; catego
             <div className="space-y-4">
               <AField id="price" label="Selling price (₹)"><input id="price" name="price" type="number" min={1} step={1} required defaultValue={p?.price} className={adminInput} /></AField>
               <AField id="compareAtPrice" label="Original price (₹)" hint="Set higher than the selling price to show a discount."><input id="compareAtPrice" name="compareAtPrice" type="number" min={1} step={1} defaultValue={p?.compareAtPrice ?? ""} className={adminInput} /></AField>
+              <AField id="badge" label="Image badge" hint="e.g. Best seller. Shown on the product photo. Leave blank for none."><input id="badge" name="badge" maxLength={24} defaultValue={p?.badge ?? ""} className={adminInput} /></AField>
+              <AField id="sortOrder" label="Display order" hint="Lower numbers appear first."><input id="sortOrder" name="sortOrder" type="number" min={0} step={1} defaultValue={p?.sortOrder ?? 0} className={adminInput} /></AField>
               <AField id="stock" label="Stock"><input id="stock" name="stock" type="number" min={0} step={1} required defaultValue={p?.stock ?? 0} className={adminInput} /></AField>
             </div>
           </Panel>

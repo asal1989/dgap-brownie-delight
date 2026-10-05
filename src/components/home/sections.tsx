@@ -12,7 +12,7 @@ import type { SiteSettings } from "@/lib/config";
 
 /** Temporary stock photography (see public/images/photos/CREDITS.md). Replace via Admin → Settings. */
 export const PHOTO = {
-  hero: "/images/photos/golden-stack.jpg",
+  hero: "/images/photos/hero-fudgie.jpg",
   signature: "/images/photos/plate-stack.jpg",
   swirl: "/images/photos/swirl-rack.jpg",
   fudge: "/images/photos/fudge-stack.jpg",
@@ -22,50 +22,48 @@ export const PHOTO = {
 export function Hero({ s }: { s: SiteSettings }) {
   return (
     <section className="grain relative isolate overflow-hidden bg-espresso text-cream" aria-labelledby="hero-title">
-      <div className="absolute inset-0 -z-10" aria-hidden style={{ background: "radial-gradient(55% 60% at 78% 40%, rgba(200,148,82,.22), transparent 70%), radial-gradient(45% 55% at 0% 100%, rgba(154,91,31,.18), transparent 70%)" }} />
-      <div className="container-page grid items-center gap-10 pb-16 pt-8 lg:min-h-[46rem] lg:grid-cols-[1.05fr_0.95fr] lg:gap-16 lg:pb-24 lg:pt-12">
-        <div className="order-2 lg:order-1">
+      <div className="absolute inset-0 -z-10" aria-hidden style={{ background: "radial-gradient(55% 60% at 78% 40%, rgba(200,148,82,.18), transparent 70%), radial-gradient(45% 55% at 0% 100%, rgba(154,91,31,.16), transparent 70%)" }} />
+      {/* Mobile order: headline -> image -> buttons -> trust points. Desktop: copy left, image right. */}
+      <div className="container-page grid gap-x-16 gap-y-9 pb-16 pt-8 lg:min-h-[44rem] lg:grid-cols-[1.05fr_0.95fr] lg:grid-rows-[auto_auto] lg:content-center lg:items-center lg:pb-24 lg:pt-12">
+        <div className="lg:col-start-1 lg:row-start-1 lg:self-end">
           <p className="inline-flex items-center gap-3 text-[11px] font-bold uppercase tracking-[0.3em] text-gold sm:text-xs">
             <span className="h-px w-10 bg-gold" aria-hidden /> Freshly baked • Premium ingredients
           </p>
-          <h1 id="hero-title" className="mt-7 text-balance text-[3.2rem] font-semibold leading-[0.98] text-cream sm:text-7xl lg:text-[5.8rem]">
+          <h1 id="hero-title" className="mt-6 text-balance text-[2.8rem] font-semibold leading-[1] text-cream sm:text-6xl lg:text-[5rem]">
             Brownies Worth <span className="italic text-gold">Craving.</span>
           </h1>
-          <p className="mt-7 max-w-md text-pretty text-lg leading-relaxed text-cream/75 sm:text-xl">Rich, fudgy brownies made for your sweetest moments.</p>
-          <div className="mt-10 flex flex-col gap-3 sm:flex-row">
-            <ButtonLink href="/shop" size="lg">Shop brownies</ButtonLink>
-            {s.whatsappDigits ? (
-              <ButtonLink href={whatsappLink(s.whatsappDigits, buildEnquiryMessage(s.brandName, "I'd like to order brownies."))} external variant="outline-light" size="lg">
-                <MessageCircle className="size-4" aria-hidden /> Order on WhatsApp
-              </ButtonLink>
-            ) : (
-              <ButtonLink href="/contact" variant="outline-light" size="lg">Get in touch</ButtonLink>
-            )}
-          </div>
-          <ul className="mt-10 flex flex-wrap gap-x-7 gap-y-2 text-sm font-semibold text-cream/85">
-            {["Freshly baked", "Premium ingredients", "Small batch"].map((t) => (
-              <li key={t} className="flex items-center gap-2"><Check className="size-4 text-gold" aria-hidden />{t}</li>
-            ))}
-          </ul>
+          <p className="mt-6 max-w-md text-pretty text-lg leading-relaxed text-cream/75 sm:text-xl">Rich, fudgy brownies made for your sweetest moments.</p>
         </div>
 
-        <div className="relative order-1 mx-auto w-full max-w-md lg:order-2 lg:max-w-none lg:pl-6">
+        <div className="relative mx-auto w-full max-w-md lg:col-start-2 lg:row-span-2 lg:row-start-1 lg:max-w-none lg:self-center lg:pl-6">
           <div className="absolute -inset-0 translate-x-4 translate-y-4 border border-gold/50 lg:translate-x-6 lg:translate-y-6" aria-hidden />
-          <Parallax strength={22}>
-            <div className="relative aspect-[5/4] overflow-hidden bg-panel shadow-2xl shadow-black/50 lg:aspect-[4/5]">
+          <Parallax strength={20}>
+            <div className="relative aspect-square overflow-hidden bg-panel shadow-2xl shadow-black/50 lg:aspect-[4/5]">
               <SmartImage src={s.heroImage || PHOTO.hero} alt="A stack of rich, fudgy DGAP brownies" fill priority sizes="(min-width: 1024px) 42vw, 90vw" className="object-cover" />
-              <div className="absolute inset-0 bg-gradient-to-t from-espresso/55 via-transparent to-transparent" aria-hidden />
+              <div className="absolute inset-0 bg-gradient-to-t from-espresso/40 via-transparent to-transparent" aria-hidden />
             </div>
           </Parallax>
           <span className="absolute -left-2 top-[12%] bg-cream px-4 py-2 text-[11px] font-bold uppercase tracking-[0.16em] text-espresso shadow-card sm:-left-5">Freshly baked</span>
           <span className="absolute -right-1 bottom-[10%] bg-gold px-4 py-2 text-[11px] font-bold uppercase tracking-[0.16em] text-espresso shadow-card sm:-right-4">Small batch</span>
+        </div>
+
+        <div className="lg:col-start-1 lg:row-start-2 lg:self-start">
+          <div className="flex flex-col gap-3 sm:flex-row">
+            <ButtonLink href="/shop" size="lg">Shop brownies <ArrowRight className="size-4" aria-hidden /></ButtonLink>
+            <ButtonLink href="/shop?flag=gift" variant="outline-light" size="lg">Explore gift boxes <ArrowRight className="size-4" aria-hidden /></ButtonLink>
+          </div>
+          <ul className="mt-8 flex flex-wrap gap-x-7 gap-y-2 text-sm font-semibold text-cream/85">
+            {["Freshly baked", "Premium ingredients", "Small batch"].map((t) => (
+              <li key={t} className="flex items-center gap-2"><Check className="size-4 text-gold" aria-hidden />{t}</li>
+            ))}
+          </ul>
         </div>
       </div>
     </section>
   );
 }
 
-const STRIP = ["Handcrafted", "Small batch", "Premium chocolate", "Secure packaging", "Local delivery"];
+const STRIP = ["Freshly baked", "Premium ingredients", "Small batch", "Secure packaging", "Local delivery"];
 
 export function TrustBar() {
   return (
@@ -166,7 +164,7 @@ export function SignatureSection({
 const OCCASIONS = [
   { title: "Birthday", text: "A box of brownies makes any birthday sweeter.", img: "/images/photos/plate-stack.jpg" },
   { title: "Anniversary", text: "Share something indulgent for two.", img: PHOTO.swirl },
-  { title: "Thank You", text: "A tasty way to say thanks.", img: PHOTO.hero },
+  { title: "Thank You", text: "A tasty way to say thanks.", img: "/images/photos/golden-stack.jpg" },
   { title: "Celebration", text: "Treats for every occasion worth marking.", img: PHOTO.fudge },
   { title: "Corporate Gifts", text: "Impress clients and teams. Ask us about bulk orders.", img: PHOTO.box },
 ];

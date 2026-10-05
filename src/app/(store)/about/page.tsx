@@ -1,21 +1,14 @@
 import type { Metadata } from "next";
-import { ChefHat, Flame, Gem, Heart } from "lucide-react";
 import { getSettings } from "@/lib/config";
 import { PageHeader } from "@/components/layout/page-header";
 import { ButtonLink } from "@/components/ui/button";
+import { WhyDgap } from "@/components/home/sections";
 
 export const metadata: Metadata = {
   title: "About us",
   description: "Premium handcrafted brownies and dessert boxes, baked in small batches for chocolate lovers.",
   alternates: { canonical: "/about" },
 };
-
-const VALUES = [
-  { icon: Flame, title: "Freshly baked" },
-  { icon: Gem, title: "Premium ingredients" },
-  { icon: ChefHat, title: "Small batch" },
-  { icon: Heart, title: "Made with love" },
-];
 
 export default async function AboutPage() {
   const s = await getSettings();
@@ -30,16 +23,9 @@ export default async function AboutPage() {
             {s.brandName} bakes rich, fudgy brownies in small batches. Every box is made for your sweetest moments: birthdays, thank-yous, celebrations, or just because.
           </p>
         )}
-        <ul className="mt-12 grid grid-cols-2 gap-4 sm:grid-cols-4">
-          {VALUES.map(({ icon: Icon, title }) => (
-            <li key={title} className="rounded-lg border border-line bg-panel p-5 text-center">
-              <Icon className="mx-auto size-8 text-caramel" aria-hidden />
-              <p className="mt-3 text-sm font-semibold text-heading">{title}</p>
-            </li>
-          ))}
-        </ul>
-        <div className="mt-12 text-center"><ButtonLink href="/shop" size="lg">Shop brownies</ButtonLink></div>
       </div>
+      <WhyDgap />
+      <div className="container-page pb-4 text-center"><ButtonLink href="/shop" size="lg">Shop brownies</ButtonLink></div>
     </>
   );
 }

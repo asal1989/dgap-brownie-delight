@@ -72,6 +72,8 @@ model Product {
   isBoxEligible    Boolean     @default(true)
   isActive         Boolean     @default(true)
   isSample         Boolean     @default(false)
+  badge            String?
+  sortOrder        Int         @default(0)
   stock            Int         @default(0)
   ingredients      String?
   allergens        String?

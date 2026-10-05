@@ -11,11 +11,11 @@ const prisma = new PrismaClient({ adapter: new PrismaPg({ connectionString: proc
  * No reviews, contact details, or policies are seeded.
  */
 const categories = [
-  { name: "Fudge", slug: "fudge", description: "Dense, gooey and deeply chocolatey." },
+  { name: "Fudgie", slug: "fudgie", description: "Rich, gooey and deeply chocolatey." },
+  { name: "Double Chocolate", slug: "double-chocolate", description: "Two kinds of chocolate, one dark bite." },
+  { name: "Nuts", slug: "nuts", description: "Brownies with a satisfying crunch." },
   { name: "Nutella", slug: "nutella", description: "Hazelnut-chocolate indulgence." },
   { name: "Biscoff", slug: "biscoff", description: "Caramelised biscuit meets brownie." },
-  { name: "Chocolate Chip", slug: "chocolate-chip", description: "Classic with extra chocolate." },
-  { name: "Nuts", slug: "nuts", description: "Brownies with a satisfying crunch." },
   { name: "Assorted Boxes", slug: "assorted-boxes", description: "A little of everything, beautifully boxed." },
 ];
 
@@ -29,16 +29,17 @@ interface SampleProduct {
   isBestSeller?: boolean;
   isFeatured?: boolean;
   isGiftBox?: boolean;
+  badge?: string;
+  sortOrder?: number;
 }
 
 const products: SampleProduct[] = [
-  { name: "Classic Fudge Brownie", slug: "classic-fudge-brownie", category: "fudge", price: 99, compareAtPrice: 120, shortDescription: "Rich, fudgy and chocolatey. The one that started it all.", isBestSeller: true, isFeatured: true },
-  { name: "Double Chocolate Brownie", slug: "double-chocolate-brownie", category: "fudge", price: 119, shortDescription: "Two kinds of chocolate for a deeper, darker bite.", isBestSeller: true },
-  { name: "Nutella Stuffed Brownie", slug: "nutella-stuffed-brownie", category: "nutella", price: 139, compareAtPrice: 159, shortDescription: "A soft brownie with a gooey Nutella centre.", isBestSeller: true },
-  { name: "Biscoff Brownie", slug: "biscoff-brownie", category: "biscoff", price: 139, shortDescription: "Brownie topped with caramelised Biscoff crunch.", isBestSeller: true },
-  { name: "Chocolate Chip Brownie", slug: "chocolate-chip-brownie", category: "chocolate-chip", price: 109, shortDescription: "Studded with chocolate chips in every bite." },
-  { name: "Walnut Brownie", slug: "walnut-brownie", category: "nuts", price: 119, shortDescription: "Fudgy brownie with crunchy walnuts." },
-  { name: "Assorted Brownie Box (6)", slug: "assorted-brownie-box-6", category: "assorted-boxes", price: 649, compareAtPrice: 720, shortDescription: "A giftable box of six assorted brownies.", isGiftBox: true, isBestSeller: true },
+  { name: "Fudgie Brownie", slug: "fudgie-brownie", category: "fudgie", price: 99, compareAtPrice: 120, shortDescription: "Rich, gooey & deeply chocolatey.", isBestSeller: true, isFeatured: true, badge: "Best seller" },
+  { name: "Double Chocolate Brownie", slug: "double-chocolate-brownie", category: "double-chocolate", price: 119, shortDescription: "Two kinds of chocolate for a deeper, darker bite.", isBestSeller: true },
+  { name: "Nuts Brownie", slug: "nuts-brownie", category: "nuts", price: 119, shortDescription: "Fudgy brownie with a crunchy, nutty finish.", isBestSeller: true },
+  { name: "Nutella Brownie", slug: "nutella-brownie", category: "nutella", price: 139, compareAtPrice: 159, shortDescription: "A soft brownie with a gooey Nutella centre.", isBestSeller: true },
+  { name: "Biscoff Brownie", slug: "biscoff-brownie", category: "biscoff", price: 139, shortDescription: "Brownie topped with caramelised Biscoff crunch." },
+  { name: "Assorted Brownie Box (6)", slug: "assorted-brownie-box-6", category: "assorted-boxes", price: 649, compareAtPrice: 720, shortDescription: "A giftable box of six assorted brownies.", isGiftBox: true },
   { name: "Assorted Brownie Box (9)", slug: "assorted-brownie-box-9", category: "assorted-boxes", price: 949, shortDescription: "Nine brownies, beautifully boxed for sharing.", isGiftBox: true },
 ];
 
@@ -52,46 +53,68 @@ const faqQuestions = [
   "Can I place bulk orders?",
 ];
 
+/** Renames earlier sample rows in place (keeps ids, so existing orders stay linked). */
+async function migrateLegacySamples() {
+  const catExists = await prisma.category.findUnique({ where: { slug: "fudgie" } });
+  if (!catExists) {
+    await prisma.category.updateMany({ where: { slug: "fudge" }, data: { slug: "fudgie", name: "Fudgie", description: "Rich, gooey and deeply chocolatey." } });
+  }
+  const prodRename: Record<string, string> = {
+    "classic-fudge-brownie": "fudgie-brownie",
+    "nutella-stuffed-brownie": "nutella-brownie",
+    "walnut-brownie": "nuts-brownie",
+  };
+  for (const [old, slug] of Object.entries(prodRename)) {
+    const exists = await prisma.product.findUnique({ where: { slug } });
+    const row = await prisma.product.findUnique({ where: { slug: old } });
+    if (row && row.isSample && !exists) await prisma.product.update({ where: { slug: old }, data: { slug } });
+  }
+  // The old Chocolate Chip sample is not part of the current range.
+  await prisma.product.deleteMany({ where: { slug: "chocolate-chip-brownie", isSample: true } });
+  const chip = await prisma.category.findUnique({ where: { slug: "chocolate-chip" }, include: { _count: { select: { products: true } } } });
+  if (chip && chip._count.products === 0) await prisma.category.delete({ where: { id: chip.id } });
+}
+
 async function main() {
+  await migrateLegacySamples();
+
   const catIds = new Map<string, string>();
   for (const [i, c] of categories.entries()) {
-    const row = await prisma.category.upsert({
-      where: { slug: c.slug },
-      update: {},
-      create: { ...c, sortOrder: i },
-    });
+    const row = await prisma.category.upsert({ where: { slug: c.slug }, update: { sortOrder: i }, create: { ...c, sortOrder: i } });
     catIds.set(c.slug, row.id);
   }
 
   for (const p of products) {
     const categoryId = catIds.get(p.category);
     if (!categoryId) continue;
-    await prisma.product.upsert({
-      where: { slug: p.slug },
-      update: {},
-      create: {
-        name: p.name,
-        slug: p.slug,
-        sku: `SAMPLE-${p.slug.toUpperCase().slice(0, 24)}`,
-        description: `${p.shortDescription}\n\n(Sample product: replace this description in Admin → Products.)`,
-        shortDescription: p.shortDescription,
-        price: p.price,
-        compareAtPrice: p.compareAtPrice ?? null,
-        images: [],
-        categoryId,
-        isFeatured: p.isFeatured ?? false,
-        isBestSeller: p.isBestSeller ?? false,
-        isGiftBox: p.isGiftBox ?? false,
-        isBoxEligible: !p.isGiftBox,
-        isSample: true,
-        stock: 25,
-      },
+    const common = {
+      name: p.name,
+      shortDescription: p.shortDescription,
+      price: p.price,
+      compareAtPrice: p.compareAtPrice ?? null,
+      categoryId,
+      isFeatured: p.isFeatured ?? false,
+      isBestSeller: p.isBestSeller ?? false,
+      isGiftBox: p.isGiftBox ?? false,
+      isBoxEligible: !p.isGiftBox,
+      badge: p.badge ?? null,
+      sortOrder: products.indexOf(p),
+      description: `${p.shortDescription}\n\n(Sample product: replace this description in Admin → Products.)`,
+    };
+    const existing = await prisma.product.findUnique({ where: { slug: p.slug } });
+    if (existing) {
+      // Only refresh rows that are still untouched sample data.
+      if (existing.isSample) await prisma.product.update({ where: { id: existing.id }, data: common });
+      continue;
+    }
+    await prisma.product.create({
+      data: { ...common, slug: p.slug, sku: `SAMPLE-${p.slug.toUpperCase().slice(0, 24)}`, images: [], isSample: true, stock: 25 },
     });
   }
 
   // Temporary stock photos (public/images/photos, see CREDITS.md) for SAMPLE rows that are still on placeholder art.
   const art: Record<string, string> = {
-    fudge: "plate-stack", nutella: "swirl-rack", biscoff: "golden-stack", "chocolate-chip": "fudge-stack", nuts: "golden-stack", "assorted-boxes": "gift-box",
+    fudgie: "plate-stack", "double-chocolate": "hero-fudgie", nuts: "fudge-stack", nutella: "swirl-rack", biscoff: "golden-stack", "assorted-boxes": "gift-box",
   };
   const isPlaceholder = (u?: string) => !u || u.startsWith("/images/products/") || u.startsWith("/images/photos/");
   for (const [slug, file] of Object.entries(art)) {

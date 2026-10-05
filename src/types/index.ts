@@ -22,6 +22,7 @@ export interface ProductCardData {
   categoryName?: string;
   isBestSeller?: boolean;
   isSample?: boolean;
+  badge?: string | null;
 }
 
 export interface BoxProduct {

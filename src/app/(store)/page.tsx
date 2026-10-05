@@ -11,7 +11,7 @@ import {
   getSignatureProduct,
   searchProducts,
 } from "@/lib/db/queries";
-import { FinalCta, GiftingSection, Hero, InstagramSection, SignatureSection, TrustBar, WhyDgap } from "@/components/home/sections";
+import { FinalCta, GiftingSection, Hero, InstagramSection, SignatureSection, TrustBar } from "@/components/home/sections";
 import { BoxBuilder } from "@/components/home/box-builder";
 import { ProductCard } from "@/components/shop/product-card";
 import { CategoryCard } from "@/components/shop/category-card";
@@ -48,7 +48,7 @@ export default async function HomePage() {
           <SectionHeading
             eyebrow="Best sellers"
             title={<span id="best-title">Meet Your New Favorite Brownies</span>}
-            subtitle="Rich, fudgy and baked fresh for every craving."
+            subtitle="Four flavours. One dangerously delicious decision."
           />
         </Reveal>
         <div className="mt-12 lg:mt-16">
@@ -89,8 +89,6 @@ export default async function HomePage() {
       ) : null}
 
       {signature ? <SignatureSection s={s} product={signature} /> : null}
-
-      <WhyDgap />
 
       {boxProducts.length ? (
         <section className="section bg-panel2/40" aria-labelledby="box-title">

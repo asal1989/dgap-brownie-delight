@@ -34,6 +34,7 @@ export async function toCards(products: ProductWithCategory[]): Promise<ProductC
       categoryName: p.category.name,
       isBestSeller: p.isBestSeller,
       isSample: p.isSample,
+      badge: p.badge,
     };
   });
 }
@@ -50,7 +51,7 @@ export async function getBestSellers(limit = 6) {
   const items = await prisma.product.findMany({
     where: { isActive: true, isBestSeller: true },
     include: { category: true },
-    orderBy: { updatedAt: "desc" },
+    orderBy: [{ sortOrder: "asc" }, { createdAt: "asc" }],
     take: limit,
   });
   return toCards(items);
@@ -99,7 +100,7 @@ export async function searchProducts(f: ProductFilters) {
         ? [{ price: "desc" }]
         : f.sort === "newest"
           ? [{ createdAt: "desc" }]
-          : [{ isBestSeller: "desc" }, { isFeatured: "desc" }, { createdAt: "desc" }];
+          : [{ sortOrder: "asc" }, { createdAt: "asc" }];
   const [total, items] = await Promise.all([
     prisma.product.count({ where }),
     prisma.product.findMany({

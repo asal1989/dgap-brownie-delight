@@ -19,7 +19,7 @@ export function ProductCard({ product, priority = false }: { product: ProductCar
           className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.07]"
         />
         <div className="absolute left-3 top-3 flex flex-col items-start gap-1.5">
-          {product.isBestSeller ? <Badge tone="dark">Best seller</Badge> : null}
+          {product.badge ? <Badge tone="dark">{product.badge}</Badge> : null}
           {pct > 0 ? <Badge tone="gold">{pct}% off</Badge> : null}
           {product.stock <= 0 ? <Badge tone="light">Sold out</Badge> : null}
         </div>
