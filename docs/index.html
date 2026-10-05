@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="en-IN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DGAP Brownie Delight | Premium Handcrafted Brownies</title>
+<meta name="description" content="Rich, fudgy brownies baked in small batches. DGAP Brownie Delight: premium handcrafted brownies and dessert boxes. Online ordering coming soon.">
+<meta property="og:title" content="DGAP Brownie Delight | Premium Handcrafted Brownies">
+<meta property="og:description" content="Rich, fudgy brownies baked in small batches and made for your sweetest moments.">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#2b160f">
+<link rel="icon" href="brownie.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
+<style>
+:root{--choc:#2b160f;--espresso:#160b08;--cream:#fff8f0;--beige:#ead8c5;--caramel:#b87333;--gold:#c89452;--ink:#241815}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth}
+body{font-family:Manrope,system-ui,sans-serif;background:var(--cream);color:var(--ink);-webkit-font-smoothing:antialiased;line-height:1.55}
+h1,h2,h3{font-family:"Playfair Display",Georgia,serif;color:var(--choc);line-height:1.08;letter-spacing:-.01em}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--caramel);outline-offset:3px;border-radius:4px}
+.wrap{max-width:72rem;margin:auto;padding:0 1.25rem}
+header{display:flex;align-items:center;justify-content:space-between;height:4.5rem}
+.logo{display:flex;align-items:center;gap:.6rem;text-decoration:none}
+.logo b{display:grid;place-items:center;width:2.5rem;height:2.5rem;border-radius:50%;background:var(--choc);color:var(--gold);font:700 1.1rem "Playfair Display",serif}
+.logo span{display:flex;flex-direction:column;line-height:1;font:700 1.25rem "Playfair Display",serif;color:var(--choc)}
+.logo small{font:700 .6rem Manrope;letter-spacing:.28em;text-transform:uppercase;color:var(--caramel);margin-top:.2rem}
+.pill{display:inline-block;background:var(--choc);color:var(--cream);font:700 .7rem Manrope;letter-spacing:.14em;text-transform:uppercase;padding:.45rem .9rem;border-radius:99px}
+.hero{display:grid;gap:2rem;align-items:center;padding:1rem 0 3.5rem}
+.hero h1{font-size:clamp(2.8rem,8vw,5rem);margin:1.2rem 0 1rem}
+.hero h1 em{display:block;color:var(--caramel)}
+.hero p.lead{font-size:1.2rem;color:rgb(36 24 21/.75);max-width:30rem}
+.img{background:radial-gradient(circle at 50% 40%,#fff8f0,#ead8c5);border-radius:2.5rem;aspect-ratio:1;overflow:hidden;box-shadow:0 18px 36px -16px rgb(43 22 15/.28)}
+.img img{width:100%;height:100%;object-fit:cover;display:block}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:3.25rem;padding:0 2rem;border-radius:99px;background:var(--choc);color:var(--cream);font-weight:700;text-decoration:none;margin-top:1.8rem}
+.btn:hover{background:var(--espresso)}
+.trust{background:var(--choc);color:var(--cream)}
+.trust ul{list-style:none;padding:1.1rem 0;display:flex;flex-wrap:wrap;justify-content:center;gap:.6rem 2rem;font-weight:600;font-size:.9rem}
+.trust li:before{content:"";display:inline-block;width:.45rem;height:.45rem;border-radius:50%;background:var(--gold);margin-right:.6rem}
+section.block{padding:4.5rem 0}
+.head{text-align:center;max-width:40rem;margin:0 auto 2.5rem}
+.head small{display:block;font:700 .75rem Manrope;letter-spacing:.22em;text-transform:uppercase;color:var(--caramel);margin-bottom:.7rem}
+.head h2{font-size:clamp(2rem,5vw,3rem)}
+.head p{margin-top:.8rem;color:rgb(36 24 21/.7);font-size:1.1rem}
+.grid{display:grid;gap:1rem;grid-template-columns:repeat(auto-fill,minmax(15rem,1fr))}
+.card{background:#fff;border:1px solid rgb(234 216 197/.8);border-radius:1.5rem;overflow:hidden;transition:.3s}
+.card:hover{transform:translateY(-4px);box-shadow:0 18px 36px -16px rgb(43 22 15/.28)}
+.card .ph{aspect-ratio:4/5;background:linear-gradient(#fff8f0,#ead8c5);overflow:hidden}
+.card .ph img{width:100%;height:100%;object-fit:cover;transition:transform .7s}
+.card:hover .ph img{transform:scale(1.06)}
+.card div.b{padding:1.1rem 1.2rem 1.3rem}
+.card small{font:700 .65rem Manrope;letter-spacing:.18em;text-transform:uppercase;color:var(--caramel)}
+.card h3{font-size:1.25rem;margin:.3rem 0}
+.card p{font-size:.9rem;color:rgb(36 24 21/.7)}
+.tag{display:inline-block;margin-top:.7rem;font:700 .7rem Manrope;color:var(--choc);background:var(--beige);padding:.25rem .7rem;border-radius:99px}
+.sig{background:var(--espresso);color:var(--cream)}
+.sig .wrap{display:grid;gap:2.5rem;align-items:center}
+.sig h2{color:var(--cream);font-size:clamp(2.2rem,6vw,4rem)}
+.sig h2 em{color:var(--gold)}
+.sig small{font:700 .75rem Manrope;letter-spacing:.28em;text-transform:uppercase;color:var(--gold)}
+.sig p{color:rgb(255 248 240/.75);font-size:1.15rem;margin-top:1.2rem;max-width:30rem}
+.why{display:grid;gap:1rem;grid-template-columns:repeat(auto-fit,minmax(13rem,1fr))}
+.why div{background:#fff;border:1px solid var(--beige);border-radius:1.5rem;padding:1.8rem}
+.why h3{font-size:1.25rem;margin-bottom:.4rem}
+.gift{background:var(--beige);border-radius:2rem;text-align:center;padding:3.5rem 1.5rem}
+.gift h2{font-size:clamp(2rem,5vw,3.2rem);max-width:36rem;margin:0 auto 1.5rem}
+.gift ul{list-style:none;padding:0;display:flex;flex-wrap:wrap;gap:.7rem;justify-content:center}
+.gift li{background:var(--cream);padding:.7rem 1.4rem;border-radius:99px;font-weight:600;color:var(--choc)}
+.cta{background:var(--choc);color:var(--cream);text-align:center;border-radius:2rem;padding:4rem 1.5rem}
+.cta h2{color:var(--cream);font-size:clamp(2.2rem,6vw,3.8rem)}
+.cta p{margin:1rem auto 0;max-width:28rem;color:rgb(255 248 240/.8);font-size:1.15rem}
+footer{margin-top:4rem;background:var(--espresso);color:rgb(255 248 240/.7);font-size:.85rem;padding:2rem 0;text-align:center}
+@media(min-width:900px){.hero{grid-template-columns:1fr 1fr}.sig .wrap{grid-template-columns:1fr 1fr}}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header><a class="logo" href="#top" aria-label="DGAP Brownie Delight"><b aria-hidden="true">D</b><span>DGAP<small>Brownie Delight</small></span></a></header>
+  <main id="top">
+    <section class="hero" aria-labelledby="t">
+      <div>
+        <span class="pill">Freshly baked • Premium ingredients</span>
+        <h1 id="t">Brownies Worth <em>Craving.</em></h1>
+        <p class="lead">Rich, fudgy brownies baked in small batches and made for your sweetest moments.</p>
+        <a class="btn" href="#menu">See the menu</a>
+      </div>
+      <div class="img"><img src="brownie.svg" alt="Illustration of a rich, fudgy chocolate brownie" width="800" height="800"></div>
+    </section>
+  </main>
+</div>
+
+<div class="trust"><div class="wrap"><ul aria-label="Why customers trust us"><li>Premium Ingredients</li><li>Freshly Baked</li><li>Small Batch</li><li>Secure Packaging</li><li>Local Delivery</li></ul></div></div>
+
+<section class="block" id="menu"><div class="wrap">
+  <div class="head"><small>Sample menu</small><h2>Meet Your New Favorite Brownies</h2><p>Handpicked favorites for serious chocolate lovers.</p></div>
+  <div class="grid">
+    <article class="card"><div class="ph"><img src="brownie.svg" alt="" loading="lazy"></div><div class="b"><small>Fudge</small><h3>Classic Fudge Brownie</h3><p>Rich, fudgy and chocolatey. The one that started it all.</p><span class="tag">Sample product</span></div></article>
+    <article class="card"><div class="ph"><img src="brownie.svg" alt="" loading="lazy"></div><div class="b"><small>Fudge</small><h3>Double Chocolate Brownie</h3><p>Two kinds of chocolate for a deeper, darker bite.</p><span class="tag">Sample product</span></div></article>
+    <article class="card"><div class="ph"><img src="brownie.svg" alt="" loading="lazy"></div><div class="b"><small>Nutella</small><h3>Nutella Stuffed Brownie</h3><p>A soft brownie with a gooey Nutella centre.</p><span class="tag">Sample product</span></div></article>
+    <article class="card"><div class="ph"><img src="brownie.svg" alt="" loading="lazy"></div><div class="b"><small>Biscoff</small><h3>Biscoff Brownie</h3><p>Brownie topped with caramelised Biscoff crunch.</p><span class="tag">Sample product</span></div></article>
+  </div>
+</div></section>
+
+<section class="sig"><div class="wrap" style="padding-top:4.5rem;padding-bottom:4.5rem">
+  <div class="img" style="border-radius:2rem;aspect-ratio:5/4"><img src="brownie.svg" alt="The DGAP signature brownie"></div>
+  <div><small>The DGAP Signature</small><h2>Deep Chocolate. <em>Soft Centre.</em> Pure Indulgence.</h2><p>Made for chocolate lovers.</p></div>
+</div></section>
+
+<section class="block"><div class="wrap">
+  <div class="head"><small>Our promise</small><h2>Why DGAP?</h2></div>
+  <div class="why">
+    <div><h3>Freshly Baked</h3><p>Baked with care so every brownie reaches you at its best.</p></div>
+    <div><h3>Premium Ingredients</h3><p>Chocolate-first recipes, because the basics matter most.</p></div>
+    <div><h3>Small Batch</h3><p>Made in small batches to keep the quality high.</p></div>
+    <div><h3>Made With Love</h3><p>Every box is packed by hand for your sweetest moments.</p></div>
+  </div>
+</div></section>
+
+<section class="wrap"><div class="gift">
+  <h2>Make Someone's Day Extra Chocolatey.</h2>
+  <ul><li>Birthday</li><li>Anniversary</li><li>Thank You</li><li>Celebration</li></ul>
+</div></section>
+
+<section class="block"><div class="wrap"><div class="cta">
+  <h2>Your Brownie Is Waiting.</h2>
+  <p>Freshly baked. Deeply chocolatey. Online ordering is coming soon.</p>
+</div></div></section>
+
+<footer><div class="wrap">© DGAP Brownie Delight · Preview site: product details and imagery are samples.</div></footer>
+</body>
+</html>
