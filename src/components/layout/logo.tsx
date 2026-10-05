@@ -12,15 +12,15 @@ export function Logo({ logo, brandName, tone = "dark", className }: { logo?: str
           aria-hidden
           className={cn(
             "grid size-10 place-items-center rounded-full font-display text-lg font-bold",
-            tone === "light" ? "bg-gold text-espresso" : "bg-choc text-gold",
+            "bg-gold text-espresso",
           )}
         >
           D
         </span>
       )}
       <span className="flex flex-col leading-none">
-        <span className={cn("font-display text-xl font-bold tracking-wide", tone === "light" ? "text-cream" : "text-choc")}>DGAP</span>
-        <span className={cn("mt-0.5 text-[10px] font-bold uppercase tracking-[0.28em]", tone === "light" ? "text-gold" : "text-caramel")}>
+        <span className={cn("font-display text-xl font-bold tracking-wide", tone === "light" ? "text-cream" : "text-heading")}>DGAP</span>
+        <span className={cn("mt-0.5 text-[10px] font-bold uppercase tracking-[0.28em]", "text-gold")}>
           Brownie Delight
         </span>
       </span>

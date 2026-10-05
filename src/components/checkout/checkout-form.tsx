@@ -42,14 +42,14 @@ export interface CheckoutProps {
   brandName: string;
 }
 
-const inputCls = "h-12 w-full rounded-xl border bg-white px-4 text-base outline-none transition focus:border-caramel focus:ring-2 focus:ring-caramel/20";
+const inputCls = "h-12 w-full rounded-xl border bg-panel px-4 text-base outline-none transition focus:border-gold focus:ring-2 focus:ring-caramel/20";
 
 function Field({ id, label, error, hint, children }: { id: string; label: string; error?: string; hint?: string; children: React.ReactNode }) {
   return (
     <div>
-      <label htmlFor={id} className="mb-1.5 block text-sm font-semibold text-choc">{label}</label>
+      <label htmlFor={id} className="mb-1.5 block text-sm font-semibold text-heading">{label}</label>
       {children}
-      {hint && !error ? <p className="mt-1 text-xs text-ink/70">{hint}</p> : null}
+      {hint && !error ? <p className="mt-1 text-xs text-fg/70">{hint}</p> : null}
       {error ? <p id={`${id}-err`} className="mt-1 text-sm text-danger" role="alert">{error}</p> : null}
     </div>
   );
@@ -91,8 +91,8 @@ export function CheckoutForm({ methods, prefill, deliveryAreas, sameDay, expecte
   if (lines.length === 0) {
     return (
       <div className="mx-auto max-w-md py-16 text-center">
-        <h2 className="font-display text-3xl text-choc">Your brownie box is feeling lonely.</h2>
-        <p className="mt-2 text-ink/70">Add something delicious before checking out.</p>
+        <h2 className="font-display text-3xl text-heading">Your brownie box is feeling lonely.</h2>
+        <p className="mt-2 text-fg/70">Add something delicious before checking out.</p>
         <ButtonLink href="/shop" size="lg" className="mt-8">Explore brownies</ButtonLink>
       </div>
     );
@@ -100,7 +100,7 @@ export function CheckoutForm({ methods, prefill, deliveryAreas, sameDay, expecte
 
   if (methods.length === 0) {
     return (
-      <p className="rounded-2xl bg-danger/10 p-6 text-danger" role="alert">
+      <p className="rounded-md bg-danger/10 p-6 text-danger" role="alert">
         Online ordering isn&apos;t available right now because no payment method is enabled. Please contact us to place your order.
       </p>
     );
@@ -173,17 +173,17 @@ export function CheckoutForm({ methods, prefill, deliveryAreas, sameDay, expecte
   });
 
   const e = (k: keyof CheckoutInput) => errors[k]?.message as string | undefined;
-  const cls = (k: keyof CheckoutInput) => cn(inputCls, errors[k] ? "border-danger" : "border-beige");
+  const cls = (k: keyof CheckoutInput) => cn(inputCls, errors[k] ? "border-danger" : "border-line");
 
   return (
     <>
       {methods.some((m) => m.id === "RAZORPAY") ? <Script src="https://checkout.razorpay.com/v1/checkout.js" strategy="lazyOnload" /> : null}
       <form onSubmit={onSubmit} noValidate className="grid gap-8 lg:grid-cols-[1fr_26rem] lg:gap-12">
         <div className="space-y-8">
-          {formError ? <p className="rounded-2xl bg-danger/10 px-5 py-4 text-sm font-semibold text-danger" role="alert">{formError}</p> : null}
+          {formError ? <p className="rounded-md bg-danger/10 px-5 py-4 text-sm font-semibold text-danger" role="alert">{formError}</p> : null}
 
-          <section className="space-y-4 rounded-3xl border border-beige bg-white p-6">
-            <h2 className="font-display text-2xl text-choc">Contact</h2>
+          <section className="space-y-4 rounded-lg border border-line bg-panel p-6">
+            <h2 className="font-display text-2xl text-heading">Contact</h2>
             <div className="grid gap-4 sm:grid-cols-2">
               <Field id="fullName" label="Full name" error={e("fullName")}>
                 <input id="fullName" autoComplete="name" className={cls("fullName")} aria-invalid={!!errors.fullName} {...register("fullName")} />
@@ -197,9 +197,9 @@ export function CheckoutForm({ methods, prefill, deliveryAreas, sameDay, expecte
             </Field>
           </section>
 
-          <section className="space-y-4 rounded-3xl border border-beige bg-white p-6">
-            <h2 className="font-display text-2xl text-choc">Delivery address</h2>
-            {deliveryAreas ? <p className="rounded-xl bg-beige/50 px-4 py-3 text-sm text-choc">We deliver to: {deliveryAreas}</p> : null}
+          <section className="space-y-4 rounded-lg border border-line bg-panel p-6">
+            <h2 className="font-display text-2xl text-heading">Delivery address</h2>
+            {deliveryAreas ? <p className="rounded-xl bg-panel2/50 px-4 py-3 text-sm text-heading">We deliver to: {deliveryAreas}</p> : null}
             <Field id="address" label="Address" error={e("address")}>
               <input id="address" autoComplete="address-line1" placeholder="House / flat no., street" className={cls("address")} aria-invalid={!!errors.address} {...register("address")} />
             </Field>
@@ -225,26 +225,26 @@ export function CheckoutForm({ methods, prefill, deliveryAreas, sameDay, expecte
             </Field>
           </section>
 
-          <fieldset className="space-y-3 rounded-3xl border border-beige bg-white p-6">
-            <legend className="px-1 font-display text-2xl text-choc">Payment</legend>
+          <fieldset className="space-y-3 rounded-lg border border-line bg-panel p-6">
+            <legend className="px-1 font-display text-2xl text-heading">Payment</legend>
             {methods.map((m) => (
-              <label key={m.id} className="flex cursor-pointer items-start gap-3 rounded-2xl border-2 border-beige p-4 has-[:checked]:border-choc has-[:checked]:bg-cream">
-                <input type="radio" value={m.id} className="mt-1 size-4 accent-[var(--choc)]" {...register("paymentMethod")} />
+              <label key={m.id} className="flex cursor-pointer items-start gap-3 rounded-md border-2 border-line p-4 has-[:checked]:border-choc has-[:checked]:bg-page">
+                <input type="radio" value={m.id} className="mt-1 size-4 accent-[var(--gold)]" {...register("paymentMethod")} />
                 <span>
-                  <span className="block font-semibold text-choc">{m.label}</span>
-                  <span className="text-sm text-ink/65">{m.description}</span>
+                  <span className="block font-semibold text-heading">{m.label}</span>
+                  <span className="text-sm text-fg/65">{m.description}</span>
                 </span>
               </label>
             ))}
           </fieldset>
         </div>
 
-        <aside className="h-fit space-y-5 rounded-3xl border border-beige bg-white p-6 lg:sticky lg:top-28">
-          <h2 className="font-display text-2xl text-choc">Your order</h2>
+        <aside className="h-fit space-y-5 rounded-lg border border-line bg-panel p-6 lg:sticky lg:top-28">
+          <h2 className="font-display text-2xl text-heading">Your order</h2>
           <ul className="max-h-64 space-y-3 overflow-y-auto">
             {lines.map((l) => (
               <li key={l.productId} className="flex items-center gap-3">
-                <span className="relative size-14 shrink-0 overflow-hidden rounded-xl bg-beige">
+                <span className="relative size-14 shrink-0 overflow-hidden rounded-xl bg-panel2">
                   <SmartImage src={l.image} alt="" fill sizes="56px" className="object-cover" />
                   <span className="absolute -right-0 -top-0 grid min-w-5 place-items-center rounded-bl-lg bg-choc px-1 text-[11px] font-bold text-cream">{l.quantity}</span>
                 </span>
@@ -260,7 +260,7 @@ export function CheckoutForm({ methods, prefill, deliveryAreas, sameDay, expecte
             {submitting ? <Loader2 className="size-5 animate-spin" aria-hidden /> : <Lock className="size-4" aria-hidden />}
             {submitting ? "Placing order…" : quote ? `Place order · ${formatINR(quote.total)}` : "Place order"}
           </Button>
-          <p className="text-center text-xs text-ink/70">
+          <p className="text-center text-xs text-fg/70">
             By placing your order you agree to our <Link href="/terms" className="underline">Terms</Link> and <Link href="/refund-policy" className="underline">Refund policy</Link>.
           </p>
         </aside>

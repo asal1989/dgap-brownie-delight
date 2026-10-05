@@ -16,7 +16,7 @@ export default async function AdminFaqs({ searchParams }: { searchParams: Promis
   return (
     <>
       <AdminTitle title="FAQs" saved={!!saved} />
-      <p className="mb-4 text-sm text-ink/70">Only <strong>active</strong> questions appear on the site. Write answers that match your real policies, then switch them on.</p>
+      <p className="mb-4 text-sm text-fg/70">Only <strong>active</strong> questions appear on the site. Write answers that match your real policies, then switch them on.</p>
       <div className="grid gap-8 xl:grid-cols-[1fr_26rem]">
         <TableWrap>
           <thead><tr><th className={th}>Question</th><th className={th}>Status</th><th className={th}><span className="sr-only">Actions</span></th></tr></thead>
@@ -24,11 +24,11 @@ export default async function AdminFaqs({ searchParams }: { searchParams: Promis
             {faqs.length === 0 ? <EmptyRow cols={3} text="No FAQs yet." /> : null}
             {faqs.map((x) => (
               <tr key={x.id}>
-                <td className={td}><span className="font-semibold text-choc">{x.question}</span><p className="line-clamp-1 text-xs text-ink/70">{x.answer}</p></td>
-                <td className={td}>{x.isActive ? <span className="text-success">Live</span> : <span className="text-ink/70">Hidden</span>}</td>
+                <td className={td}><span className="font-semibold text-heading">{x.question}</span><p className="line-clamp-1 text-xs text-fg/70">{x.answer}</p></td>
+                <td className={td}>{x.isActive ? <span className="text-success">Live</span> : <span className="text-fg/70">Hidden</span>}</td>
                 <td className={`${td} whitespace-nowrap text-right`}>
-                  <a href={`/admin/faqs?edit=${x.id}`} className="rounded-full border border-beige px-3 py-1.5 text-xs font-semibold hover:bg-beige/60">Edit</a>{" "}
-                  <form action={deleteFaq} className="inline"><input type="hidden" name="id" value={x.id} /><ConfirmButton message="Delete this FAQ?" className="rounded-full border border-beige px-3 py-1.5 text-xs font-semibold text-danger hover:bg-beige/60">Delete</ConfirmButton></form>
+                  <a href={`/admin/faqs?edit=${x.id}`} className="rounded-full border border-line px-3 py-1.5 text-xs font-semibold hover:bg-panel2/60">Edit</a>{" "}
+                  <form action={deleteFaq} className="inline"><input type="hidden" name="id" value={x.id} /><ConfirmButton message="Delete this FAQ?" className="rounded-full border border-line px-3 py-1.5 text-xs font-semibold text-danger hover:bg-panel2/60">Delete</ConfirmButton></form>
                 </td>
               </tr>
             ))}

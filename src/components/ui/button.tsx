@@ -6,22 +6,22 @@ export type ButtonVariant = "primary" | "caramel" | "outline" | "outline-light" 
 export type ButtonSize = "sm" | "md" | "lg";
 
 const base =
-  "inline-flex items-center justify-center gap-2 rounded-full font-semibold tracking-wide transition-all duration-200 " +
+  "inline-flex items-center justify-center gap-2 rounded-sm font-bold uppercase tracking-[0.14em] transition-all duration-200 " +
   "active:scale-[0.98] disabled:pointer-events-none disabled:opacity-50 select-none whitespace-nowrap";
 
 const variants: Record<ButtonVariant, string> = {
-  primary: "bg-choc text-cream hover:bg-espresso hover:shadow-lift",
-  caramel: "bg-caramel text-white hover:bg-[#9e5f27] hover:shadow-lift",
-  outline: "border-2 border-choc text-choc hover:bg-choc hover:text-cream",
-  "outline-light": "border-2 border-cream/70 text-cream hover:bg-cream hover:text-choc",
-  ghost: "text-choc hover:bg-beige/60",
-  light: "bg-cream text-choc hover:bg-white hover:shadow-lift",
+  primary: "bg-gold text-espresso hover:bg-[#dcae6d] hover:shadow-lift",
+  caramel: "bg-gold text-espresso hover:bg-[#dcae6d] hover:shadow-lift",
+  outline: "border border-gold/60 text-heading hover:border-gold hover:bg-gold hover:text-espresso",
+  "outline-light": "border border-cream/50 text-cream hover:border-cream hover:bg-cream hover:text-espresso",
+  ghost: "text-heading hover:bg-panel2",
+  light: "bg-cream text-espresso hover:bg-white hover:shadow-lift",
 };
 
 const sizes: Record<ButtonSize, string> = {
-  sm: "min-h-10 px-4 text-xs",
-  md: "min-h-12 px-6 text-sm",
-  lg: "min-h-14 px-8 text-sm sm:text-base",
+  sm: "min-h-10 px-5 text-[11px]",
+  md: "min-h-12 px-7 text-xs",
+  lg: "min-h-14 px-9 text-xs sm:text-[13px]",
 };
 
 export function buttonClasses(variant: ButtonVariant = "primary", size: ButtonSize = "md", extra?: string) {

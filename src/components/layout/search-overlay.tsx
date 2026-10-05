@@ -64,10 +64,10 @@ export function SearchOverlay({ open, onClose }: { open: boolean; onClose: () =>
   return (
     <div className="fixed inset-0 z-[65]" role="dialog" aria-modal="true" aria-label="Search brownies">
       <div className="absolute inset-0 bg-espresso/60 backdrop-blur-sm" onClick={onClose} aria-hidden />
-      <div className="animate-fade-up relative mx-auto mt-0 max-h-[100dvh] overflow-y-auto bg-cream shadow-2xl sm:mt-16 sm:max-w-2xl sm:rounded-3xl">
+      <div className="animate-fade-up relative mx-auto mt-0 max-h-[100dvh] overflow-y-auto bg-page shadow-2xl sm:mt-16 sm:max-w-2xl sm:rounded-lg">
         <form
           role="search"
-          className="flex items-center gap-2 border-b border-beige px-4 py-3"
+          className="flex items-center gap-2 border-b border-line px-4 py-3"
           onSubmit={(e) => {
             e.preventDefault();
             if (q) {
@@ -84,41 +84,41 @@ export function SearchOverlay({ open, onClose }: { open: boolean; onClose: () =>
             onChange={(e) => setQuery(e.target.value)}
             placeholder="Search brownies, flavours, gift boxes…"
             aria-label="Search products"
-            className="h-12 min-w-0 flex-1 bg-transparent text-base outline-none placeholder:text-ink/40"
+            className="h-12 min-w-0 flex-1 bg-transparent text-base outline-none placeholder:text-fg/40"
             autoComplete="off"
             enterKeyHint="search"
           />
-          <button type="button" onClick={onClose} aria-label="Close search" className="grid size-11 place-items-center rounded-full hover:bg-beige/70">
+          <button type="button" onClick={onClose} aria-label="Close search" className="grid size-11 place-items-center rounded-full hover:bg-panel2/70">
             <X className="size-5" aria-hidden />
           </button>
         </form>
         <div className="min-h-32 p-4" aria-live="polite">
           {!showResults ? (
-            <p className="py-8 text-center text-sm text-ink/70">Type at least 2 letters to search.</p>
+            <p className="py-8 text-center text-sm text-fg/70">Type at least 2 letters to search.</p>
           ) : status === "error" ? (
             <p className="py-8 text-center text-sm text-danger">Search is unavailable right now. Please try again.</p>
           ) : status === "loading" && results.length === 0 ? (
-            <p className="py-8 text-center text-sm text-ink/70">Searching…</p>
+            <p className="py-8 text-center text-sm text-fg/70">Searching…</p>
           ) : results.length === 0 ? (
-            <p className="py-8 text-center text-sm text-ink/70">No brownies match &ldquo;{q}&rdquo;. Try another word.</p>
+            <p className="py-8 text-center text-sm text-fg/70">No brownies match &ldquo;{q}&rdquo;. Try another word.</p>
           ) : (
             <ul className="space-y-1">
               {results.map((r) => (
                 <li key={r.slug}>
-                  <Link href={`/shop/${r.slug}`} onClick={onClose} className="flex items-center gap-3 rounded-2xl p-2 hover:bg-beige/50">
-                    <span className="relative size-14 shrink-0 overflow-hidden rounded-xl bg-beige">
+                  <Link href={`/shop/${r.slug}`} onClick={onClose} className="flex items-center gap-3 rounded-md p-2 hover:bg-panel2/50">
+                    <span className="relative size-14 shrink-0 overflow-hidden rounded-xl bg-panel2">
                       <SmartImage src={r.image} alt="" fill sizes="56px" className="object-cover" />
                     </span>
                     <span className="min-w-0 flex-1">
-                      <span className="block truncate font-semibold text-choc">{r.name}</span>
-                      <span className="text-xs text-ink/70">{r.category}</span>
+                      <span className="block truncate font-semibold text-heading">{r.name}</span>
+                      <span className="text-xs text-fg/70">{r.category}</span>
                     </span>
-                    <span className="font-bold text-choc">{formatINR(r.price)}</span>
+                    <span className="font-bold text-heading">{formatINR(r.price)}</span>
                   </Link>
                 </li>
               ))}
               <li>
-                <Link href={`/shop?q=${encodeURIComponent(q)}`} onClick={onClose} className="mt-2 block rounded-2xl bg-choc py-3 text-center text-sm font-semibold text-cream">
+                <Link href={`/shop?q=${encodeURIComponent(q)}`} onClick={onClose} className="mt-2 block rounded-md bg-choc py-3 text-center text-sm font-semibold text-cream">
                   See all results
                 </Link>
               </li>

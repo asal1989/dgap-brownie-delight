@@ -6,9 +6,9 @@ export function CategoryCard({ name, slug, image, description }: { name: string;
   return (
     <Link
       href={`/categories/${slug}`}
-      className="group flex h-full flex-col overflow-hidden rounded-2xl bg-choc text-cream transition duration-300 hover:-translate-y-1 hover:shadow-lift"
+      className="group flex h-full flex-col overflow-hidden rounded-md bg-choc text-cream transition duration-300 hover:-translate-y-1 hover:shadow-lift"
     >
-      <span className="relative block aspect-square overflow-hidden bg-beige">
+      <span className="relative block aspect-square overflow-hidden bg-panel2">
         <SmartImage
           src={image}
           alt=""

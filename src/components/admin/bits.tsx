@@ -6,7 +6,7 @@ import { cn } from "@/lib/utils";
 export function AdminTitle({ title, action, saved }: { title: string; action?: ReactNode; saved?: boolean }) {
   return (
     <div className="mb-6 flex flex-wrap items-center justify-between gap-3">
-      <h1 className="font-display text-3xl text-choc">{title}</h1>
+      <h1 className="font-display text-3xl text-heading">{title}</h1>
       {action}
       {saved ? <p role="status" className="w-full rounded-xl bg-success/10 px-4 py-2 text-sm font-semibold text-success">Saved successfully.</p> : null}
     </div>
@@ -19,7 +19,7 @@ export function AdminLink({ href, children, variant = "primary" }: { href: strin
       href={href}
       className={cn(
         "inline-flex min-h-10 items-center gap-2 rounded-full px-5 text-sm font-semibold transition",
-        variant === "primary" ? "bg-choc text-cream hover:bg-espresso" : "border border-beige bg-white text-choc hover:bg-beige/50",
+        variant === "primary" ? "bg-choc text-cream hover:bg-espresso" : "border border-line bg-panel text-heading hover:bg-panel2/50",
       )}
     >
       {children}
@@ -33,31 +33,31 @@ export function StatusPill({ status }: { status: OrderStatusValue }) {
 
 export function DashboardCard({ label, value, hint, icon }: { label: string; value: string | number; hint?: string; icon?: ReactNode }) {
   return (
-    <div className="rounded-2xl border border-beige bg-white p-5">
-      <div className="flex items-center justify-between text-sm text-ink/70">
+    <div className="rounded-md border border-line bg-panel p-5">
+      <div className="flex items-center justify-between text-sm text-fg/70">
         <span>{label}</span>
         {icon}
       </div>
-      <p className="mt-2 font-display text-3xl font-bold text-choc">{value}</p>
-      {hint ? <p className="mt-1 text-xs text-ink/70">{hint}</p> : null}
+      <p className="mt-2 font-display text-3xl font-bold text-heading">{value}</p>
+      {hint ? <p className="mt-1 text-xs text-fg/70">{hint}</p> : null}
     </div>
   );
 }
 
 export function TableWrap({ children }: { children: ReactNode }) {
   return (
-    <div className="overflow-x-auto rounded-2xl border border-beige bg-white">
+    <div className="overflow-x-auto rounded-md border border-line bg-panel">
       <table className="w-full min-w-[40rem] text-left text-sm">{children}</table>
     </div>
   );
 }
-export const th = "whitespace-nowrap bg-cream px-4 py-3 text-xs font-bold uppercase tracking-wider text-ink/70";
-export const td = "border-t border-beige px-4 py-3 align-middle";
+export const th = "whitespace-nowrap bg-page px-4 py-3 text-xs font-bold uppercase tracking-wider text-fg/70";
+export const td = "border-t border-line px-4 py-3 align-middle";
 
 export function EmptyRow({ cols, text }: { cols: number; text: string }) {
   return (
     <tr>
-      <td colSpan={cols} className="px-4 py-12 text-center text-ink/70">{text}</td>
+      <td colSpan={cols} className="px-4 py-12 text-center text-fg/70">{text}</td>
     </tr>
   );
 }

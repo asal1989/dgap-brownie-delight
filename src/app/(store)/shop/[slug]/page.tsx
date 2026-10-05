@@ -103,31 +103,31 @@ export default async function ProductPage({ params }: { params: Params }) {
             {product.isBestSeller ? <Badge tone="gold">Best seller</Badge> : null}
             {product.isSample ? <Badge tone="light">Sample product</Badge> : null}
           </div>
-          <h1 className="mt-3 text-balance text-4xl font-semibold leading-tight text-choc sm:text-5xl">{product.name}</h1>
+          <h1 className="mt-3 text-balance text-4xl font-semibold leading-tight text-heading sm:text-5xl">{product.name}</h1>
           <div className="mt-3">
             <RatingStars rating={avg ? Math.round(avg * 10) / 10 : null} count={count} size="md" />
           </div>
           <div className="mt-5">
             <PriceDisplay price={product.price} compareAtPrice={product.compareAtPrice} size="lg" />
           </div>
-          <p className="mt-5 whitespace-pre-line text-pretty text-lg text-ink/75">{product.description}</p>
+          <p className="mt-5 whitespace-pre-line text-pretty text-lg text-fg/75">{product.description}</p>
           <ProductPurchase product={cartProduct} className="mt-8" />
           {waHref ? (
             <ButtonLink href={waHref} external variant="outline" size="lg" className="mt-3 w-full">
               <MessageCircle className="size-5" aria-hidden /> Order on WhatsApp
             </ButtonLink>
           ) : null}
-          {product.sku ? <p className="mt-6 text-xs text-ink/70">SKU: {product.sku}</p> : null}
+          {product.sku ? <p className="mt-6 text-xs text-fg/70">SKU: {product.sku}</p> : null}
 
           {details.length ? (
-            <div className="mt-8 divide-y divide-beige rounded-3xl border border-beige bg-white">
+            <div className="mt-8 divide-y divide-line rounded-lg border border-line bg-panel">
               {details.map((d, i) => (
                 <details key={d.title} className="group px-5" open={i === 0}>
-                  <summary className="flex min-h-14 cursor-pointer list-none items-center justify-between font-semibold text-choc [&::-webkit-details-marker]:hidden">
+                  <summary className="flex min-h-14 cursor-pointer list-none items-center justify-between font-semibold text-heading [&::-webkit-details-marker]:hidden">
                     {d.title}
                     <span className="text-caramel transition-transform group-open:rotate-45" aria-hidden>+</span>
                   </summary>
-                  <p className="whitespace-pre-line pb-4 text-ink/75">{d.body}</p>
+                  <p className="whitespace-pre-line pb-4 text-fg/75">{d.body}</p>
                 </details>
               ))}
             </div>
@@ -147,7 +147,7 @@ export default async function ProductPage({ params }: { params: Params }) {
               ))}
             </ul>
           ) : (
-            <p className="rounded-3xl border border-dashed border-beige p-8 text-ink/70">No reviews yet. Be the first to share how it tasted.</p>
+            <p className="rounded-lg border border-dashed border-line p-8 text-fg/70">No reviews yet. Be the first to share how it tasted.</p>
           )}
           <ReviewForm productId={product.id} />
         </div>

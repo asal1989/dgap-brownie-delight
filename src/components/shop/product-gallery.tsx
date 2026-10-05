@@ -9,7 +9,7 @@ export function ProductGallery({ images, name }: { images: string[]; name: strin
   const [active, setActive] = useState(0);
   return (
     <div className="space-y-3">
-      <div className="relative aspect-square overflow-hidden rounded-[2rem] bg-beige">
+      <div className="relative aspect-square overflow-hidden rounded-lg bg-panel2">
         <SmartImage src={list[active] || null} alt={`${name}${list.length > 1 ? `, photo ${active + 1} of ${list.length}` : ""}`} fill priority sizes="(min-width: 1024px) 50vw, 100vw" className="object-cover" />
       </div>
       {list.length > 1 ? (
@@ -21,7 +21,7 @@ export function ProductGallery({ images, name }: { images: string[]; name: strin
                 onClick={() => setActive(i)}
                 aria-label={`Show photo ${i + 1}`}
                 aria-current={i === active}
-                className={cn("relative block size-20 overflow-hidden rounded-2xl border-2 bg-beige transition", i === active ? "border-choc" : "border-transparent opacity-70 hover:opacity-100")}
+                className={cn("relative block size-20 overflow-hidden rounded-md border-2 bg-panel2 transition", i === active ? "border-choc" : "border-transparent opacity-70 hover:opacity-100")}
               >
                 <SmartImage src={src} alt="" fill sizes="80px" className="object-cover" />
               </button>

@@ -47,10 +47,10 @@ export function ScrollRow({
       </ul>
       {arrows ? (
         <div className={cn("mt-6 flex justify-center gap-3", grid && "lg:hidden")}>
-          <button type="button" onClick={() => scrollBy(-1)} aria-label={`Previous ${label}`} className="grid size-12 place-items-center rounded-full border border-choc/25 text-choc transition hover:bg-choc hover:text-cream">
+          <button type="button" onClick={() => scrollBy(-1)} aria-label={`Previous ${label}`} className="grid size-12 place-items-center rounded-full border border-choc/25 text-heading transition hover:bg-choc hover:text-cream">
             <ChevronLeft className="size-5" aria-hidden />
           </button>
-          <button type="button" onClick={() => scrollBy(1)} aria-label={`Next ${label}`} className="grid size-12 place-items-center rounded-full border border-choc/25 text-choc transition hover:bg-choc hover:text-cream">
+          <button type="button" onClick={() => scrollBy(1)} aria-label={`Next ${label}`} className="grid size-12 place-items-center rounded-full border border-choc/25 text-heading transition hover:bg-choc hover:text-cream">
             <ChevronRight className="size-5" aria-hidden />
           </button>
         </div>

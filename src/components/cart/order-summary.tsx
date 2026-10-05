@@ -6,7 +6,7 @@ export function OrderSummary({ quote, fallbackSubtotal, loading }: { quote: Quot
   return (
     <dl className="space-y-3" aria-busy={loading}>
       <div className={row}>
-        <dt className="text-ink/70">Subtotal</dt>
+        <dt className="text-fg/70">Subtotal</dt>
         <dd className="font-semibold">{formatINR(quote?.subtotal ?? fallbackSubtotal)}</dd>
       </div>
       {quote && quote.discount > 0 ? (
@@ -16,12 +16,12 @@ export function OrderSummary({ quote, fallbackSubtotal, loading }: { quote: Quot
         </div>
       ) : null}
       <div className={row}>
-        <dt className="text-ink/70">Delivery</dt>
+        <dt className="text-fg/70">Delivery</dt>
         <dd className="font-semibold">{quote ? (quote.deliveryFee === 0 ? "Free" : formatINR(quote.deliveryFee)) : "—"}</dd>
       </div>
-      <div className="flex items-center justify-between border-t border-beige pt-3 text-lg">
-        <dt className="font-bold text-choc">Total</dt>
-        <dd className="font-bold text-choc">{quote ? formatINR(quote.total) : formatINR(fallbackSubtotal)}</dd>
+      <div className="flex items-center justify-between border-t border-line pt-3 text-lg">
+        <dt className="font-bold text-heading">Total</dt>
+        <dd className="font-bold text-heading">{quote ? formatINR(quote.total) : formatINR(fallbackSubtotal)}</dd>
       </div>
     </dl>
   );

@@ -69,7 +69,7 @@ export function ProductPurchase({ product, className }: { product: CartProduct; 
 
   if (soldOut) {
     return (
-      <p className={cn("rounded-2xl bg-danger/10 px-4 py-3 text-sm font-semibold text-danger", className)} role="status">
+      <p className={cn("rounded-md bg-danger/10 px-4 py-3 text-sm font-semibold text-danger", className)} role="status">
         This brownie is sold out right now.
       </p>
     );
@@ -77,14 +77,14 @@ export function ProductPurchase({ product, className }: { product: CartProduct; 
   return (
     <div className={cn("flex flex-col gap-3", className)}>
       <div className="flex items-center gap-4">
-        <span className="text-sm font-semibold text-ink/70">Quantity</span>
+        <span className="text-sm font-semibold text-fg/70">Quantity</span>
         <QuantityStepper value={qty} onChange={(n) => setQty(Math.max(1, Math.min(max, n)))} min={1} max={max} label={product.name} />
         {product.stock <= 5 ? <span className="text-xs font-semibold text-caramel">Only {product.stock} left</span> : null}
       </div>
       <div className="grid gap-3 sm:grid-cols-2">
         <Button
           size="lg"
-          variant="primary"
+          variant="outline"
           onClick={() => {
             actions.add(toLine(product), qty);
             toast(`${qty} × ${product.name} added to cart`);

@@ -20,15 +20,15 @@ export function Breadcrumbs({ items }: { items: Crumb[] }) {
     })),
   };
   return (
-    <nav aria-label="Breadcrumb" className="text-sm text-ink/70">
+    <nav aria-label="Breadcrumb" className="text-sm text-fg/70">
       <JsonLd data={ld} />
       <ol className="flex flex-wrap items-center gap-1">
         {items.map((c, i) => (
           <li key={c.label} className="flex items-center gap-1">
             {c.href && i < items.length - 1 ? (
-              <Link href={c.href} className="hover:text-choc hover:underline">{c.label}</Link>
+              <Link href={c.href} className="hover:text-heading hover:underline">{c.label}</Link>
             ) : (
-              <span aria-current="page" className="font-semibold text-choc">{c.label}</span>
+              <span aria-current="page" className="font-semibold text-heading">{c.label}</span>
             )}
             {i < items.length - 1 ? <ChevronRight className="size-3.5" aria-hidden /> : null}
           </li>
@@ -40,11 +40,11 @@ export function Breadcrumbs({ items }: { items: Crumb[] }) {
 
 export function PageHeader({ title, subtitle, crumbs }: { title: string; subtitle?: string; crumbs?: Crumb[] }) {
   return (
-    <div className="border-b border-beige bg-beige/30">
+    <div className="border-b border-line bg-panel2/30">
       <div className="container-page py-10 lg:py-14">
         {crumbs ? <Breadcrumbs items={crumbs} /> : null}
-        <h1 className="mt-3 text-balance text-4xl font-semibold text-choc sm:text-5xl">{title}</h1>
-        {subtitle ? <p className="mt-3 max-w-2xl text-lg text-ink/70">{subtitle}</p> : null}
+        <h1 className="mt-3 text-balance text-4xl font-semibold text-heading sm:text-5xl">{title}</h1>
+        {subtitle ? <p className="mt-3 max-w-2xl text-lg text-fg/70">{subtitle}</p> : null}
       </div>
     </div>
   );

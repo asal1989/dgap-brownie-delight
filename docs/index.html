@@ -8,126 +8,127 @@
 <meta property="og:title" content="DGAP Brownie Delight | Premium Handcrafted Brownies">
 <meta property="og:description" content="Rich, fudgy brownies made for your sweetest moments.">
 <meta property="og:type" content="website">
-<meta name="theme-color" content="#2b160f">
-<link rel="icon" href="fudge.svg" type="image/svg+xml">
+<meta property="og:image" content="golden-stack.jpg">
+<meta name="theme-color" content="#120907">
+<link rel="icon" href="icon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
 <style>
-:root{--choc:#2b160f;--espresso:#160b08;--cream:#fff8f0;--beige:#ead8c5;--caramel:#9a5b1f;--gold:#c89452;--ink:#241815}
+:root{--page:#120907;--panel:#1b0f0b;--panel2:#26160f;--espresso:#0b0504;--cream:#fff8f0;--gold:#c89452;--fg:#e6d9c8;--line:#3a2619}
 *{box-sizing:border-box;margin:0}
 html{scroll-behavior:smooth}
-body{font-family:Manrope,system-ui,sans-serif;background:var(--cream);color:var(--ink);-webkit-font-smoothing:antialiased;line-height:1.55;overflow-x:hidden}
-h1,h2,h3{font-family:"Playfair Display",Georgia,serif;color:var(--choc);line-height:1.06;letter-spacing:-.01em}
+body{font-family:Manrope,system-ui,sans-serif;background:var(--page);color:var(--fg);-webkit-font-smoothing:antialiased;line-height:1.6;overflow-x:hidden}
+h1,h2,h3{font-family:"Playfair Display",Georgia,serif;color:var(--cream);line-height:1.04;letter-spacing:-.01em;font-weight:600}
 a{color:inherit}
-:focus-visible{outline:2px solid var(--caramel);outline-offset:3px;border-radius:4px}
+:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
 .wrap{max-width:76rem;margin:auto;padding:0 1.25rem}
-.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
-/* nav */
-.nav{position:sticky;top:0;z-index:20;background:rgb(255 248 240/.88);backdrop-filter:blur(10px);border-bottom:1px solid var(--beige)}
-.nav .wrap{display:flex;align-items:center;justify-content:space-between;height:4rem}
-.logo{display:flex;align-items:center;gap:.6rem;text-decoration:none}
-.logo b{display:grid;place-items:center;width:2.4rem;height:2.4rem;border-radius:50%;background:var(--choc);color:var(--gold);font:700 1.05rem "Playfair Display",serif}
-.logo span{display:flex;flex-direction:column;line-height:1;font:700 1.2rem "Playfair Display",serif;color:var(--choc)}
-.logo small{font:700 .55rem Manrope;letter-spacing:.2em;text-transform:uppercase;color:var(--caramel);margin-top:.2rem}
-.nav ul{display:none;list-style:none;padding:0;gap:.3rem}
-.nav ul a{display:block;padding:.5rem .9rem;border-radius:99px;font-weight:600;font-size:.9rem;text-decoration:none;color:var(--choc)}
-.nav ul a:hover{background:rgb(234 216 197/.6)}
-.btn{white-space:nowrap;display:inline-flex;align-items:center;justify-content:center;min-height:3.1rem;padding:0 1.8rem;border-radius:99px;background:var(--caramel);color:#fff;font-weight:700;text-decoration:none;border:2px solid transparent;transition:.2s}
-.btn:hover{background:#7e4a18}
-.btn.dark{background:var(--choc)}.btn.dark:hover{background:var(--espresso)}
-.btn.sm{min-height:2.5rem;padding:0 1.2rem;font-size:.85rem}
-.btn.ghost{background:transparent;border-color:rgb(255 248 240/.7);color:var(--cream)}
-.btn.ghost:hover{background:var(--cream);color:var(--choc)}
-/* hero */
-.hero{position:relative;background:var(--espresso);color:var(--cream);overflow:hidden;isolation:isolate}
-.hero:before{content:"";position:absolute;inset:0;z-index:-1;background:radial-gradient(60% 70% at 72% 45%,rgb(184 115 51/.28),transparent 70%)}
-.hero .wrap{display:grid;gap:1rem;align-items:center;padding-top:1.5rem;padding-bottom:4rem}
-.hero .art{position:relative;max-width:34rem;margin:auto;width:100%;order:-1}
-.hero .art:before{content:"";position:absolute;inset:-8%;background:radial-gradient(closest-side,rgb(184 115 51/.5),transparent 72%)}
-.hero .art img{position:relative;width:100%;display:block;filter:drop-shadow(0 30px 40px rgb(0 0 0/.45));animation:float 6s ease-in-out infinite}
-.chip{position:absolute;background:var(--cream);color:var(--choc);font:700 .75rem Manrope;padding:.5rem 1rem;border-radius:99px;box-shadow:0 8px 24px -10px rgb(0 0 0/.4)}
-.eyebrow{display:inline-flex;align-items:center;gap:.6rem;font:700 .72rem Manrope;letter-spacing:.24em;text-transform:uppercase;color:var(--gold)}
-.eyebrow:before{content:"";width:2rem;height:1px;background:var(--gold)}
-.hero h1{color:var(--cream);font-size:clamp(3rem,10vw,5.6rem);margin:1.4rem 0 1.2rem;line-height:.98}
+.nav{position:sticky;top:0;z-index:20;background:rgb(18 9 7/.88);backdrop-filter:blur(10px);border-bottom:1px solid rgb(200 148 82/.18)}
+.nav .wrap{display:flex;align-items:center;justify-content:space-between;height:4.2rem}
+.logo{display:flex;align-items:center;gap:.65rem;text-decoration:none}
+.logo b{display:grid;place-items:center;width:2.5rem;height:2.5rem;border-radius:50%;background:var(--gold);color:var(--espresso);font:700 1.1rem "Playfair Display",serif}
+.logo span{display:flex;flex-direction:column;line-height:1;font:700 1.2rem "Playfair Display",serif;color:var(--cream)}
+.logo small{font:700 .55rem Manrope;letter-spacing:.24em;text-transform:uppercase;color:var(--gold);margin-top:.25rem}
+.nav ul{display:none;list-style:none;padding:0;gap:.2rem}
+.nav ul a{display:block;padding:.5rem .9rem;font-weight:600;font-size:.9rem;text-decoration:none;color:var(--cream)}
+.nav ul a:hover{color:var(--gold)}
+.btn{white-space:nowrap;display:inline-flex;align-items:center;justify-content:center;min-height:3.4rem;padding:0 2.2rem;background:var(--gold);color:var(--espresso);font:700 .75rem Manrope;letter-spacing:.16em;text-transform:uppercase;text-decoration:none;border:1px solid var(--gold);border-radius:2px;transition:.2s}
+.btn:hover{background:#dcae6d}
+.btn.sm{min-height:2.6rem;padding:0 1.3rem;font-size:.68rem}
+.btn.ghost{background:transparent;color:var(--cream);border-color:rgb(255 248 240/.5)}
+.btn.ghost:hover{background:var(--cream);color:var(--espresso)}
+.hero{position:relative;background:var(--espresso);overflow:hidden;isolation:isolate}
+.hero:before{content:"";position:absolute;inset:0;z-index:-1;background:radial-gradient(55% 60% at 78% 40%,rgb(200 148 82/.22),transparent 70%),radial-gradient(45% 55% at 0 100%,rgb(154 91 31/.18),transparent 70%)}
+.hero .wrap{display:grid;gap:2.5rem;align-items:center;padding-top:2rem;padding-bottom:4.5rem}
+.frame{position:relative;max-width:28rem;margin:auto;width:100%}
+.frame:before{content:"";position:absolute;inset:0;transform:translate(1rem,1rem);border:1px solid rgb(200 148 82/.5)}
+.frame .ph{position:relative;aspect-ratio:5/4;overflow:hidden;box-shadow:0 30px 60px -20px rgb(0 0 0/.6)}
+.frame img{width:100%;height:100%;object-fit:cover;display:block}
+.tag{position:absolute;font:700 .62rem Manrope;letter-spacing:.16em;text-transform:uppercase;padding:.55rem 1rem}
+.tag.a{left:-.4rem;top:12%;background:var(--cream);color:var(--espresso)}.tag.b{right:-.3rem;bottom:10%;background:var(--gold);color:var(--espresso)}
+.eyebrow{display:inline-flex;align-items:center;gap:.8rem;font:700 .7rem Manrope;letter-spacing:.3em;text-transform:uppercase;color:var(--gold)}
+.eyebrow:before{content:"";width:2.5rem;height:1px;background:var(--gold)}
+.hero h1{font-size:clamp(3.2rem,11vw,5.8rem);margin:1.6rem 0 1.4rem;line-height:.98}
 .hero h1 em{color:var(--gold)}
-.hero p.lead{font-size:1.2rem;color:rgb(255 248 240/.75);max-width:28rem}
-.cta-row{display:flex;flex-direction:column;gap:.8rem;margin-top:2rem}
-.ticks{list-style:none;padding:0;margin-top:2rem;display:flex;flex-wrap:wrap;gap:.5rem 1.5rem;font-weight:600;font-size:.9rem;color:rgb(255 248 240/.85)}
+.lead{font-size:1.2rem;color:rgb(255 248 240/.75);max-width:27rem}
+.cta-row{display:flex;flex-direction:column;gap:.8rem;margin-top:2.4rem}
+.ticks{list-style:none;padding:0;margin-top:2.4rem;display:flex;flex-wrap:wrap;gap:.5rem 1.7rem;font-weight:600;font-size:.9rem;color:rgb(255 248 240/.85)}
 .ticks li:before{content:"✓";color:var(--gold);margin-right:.5rem}
-/* sections */
-.section{padding:4.5rem 0}
-.head{text-align:center;max-width:38rem;margin:0 auto 3rem}
-.head small{display:block;font:700 .72rem Manrope;letter-spacing:.22em;text-transform:uppercase;color:var(--caramel);margin-bottom:.8rem}
-.head h2{font-size:clamp(2rem,6vw,3.2rem)}
-.head p{margin-top:.9rem;color:rgb(36 24 21/.72);font-size:1.1rem}
-.row{display:flex;gap:.8rem;overflow-x:auto;scroll-snap-type:x mandatory;margin:0 -1.25rem;padding:0 1.25rem .8rem;list-style:none;scrollbar-width:none}
+.strip{border-top:1px solid rgb(200 148 82/.2);border-bottom:1px solid rgb(200 148 82/.2)}
+.strip ul{list-style:none;padding:1.2rem 0;display:flex;flex-wrap:wrap;justify-content:center;gap:.5rem 2.5rem;font:700 .66rem Manrope;letter-spacing:.26em;text-transform:uppercase;color:var(--gold)}
+.section{padding:5rem 0}
+.head{text-align:center;max-width:38rem;margin:0 auto 3.5rem}
+.head small{display:flex;align-items:center;justify-content:center;gap:.8rem;font:700 .7rem Manrope;letter-spacing:.3em;text-transform:uppercase;color:var(--gold);margin-bottom:1rem}
+.head small:before,.head small:after{content:"";width:2rem;height:1px;background:rgb(200 148 82/.7)}
+.head h2{font-size:clamp(2.1rem,6vw,3.3rem)}
+.head p{margin-top:1rem;color:rgb(230 217 200/.75);font-size:1.1rem}
+.row{display:flex;gap:.9rem;overflow-x:auto;scroll-snap-type:x mandatory;margin:0 -1.25rem;padding:0 1.25rem .8rem;list-style:none;scrollbar-width:none;position:relative}
 .row::-webkit-scrollbar{display:none}
-.row>li{flex:0 0 68%;scroll-snap-align:start}
-.card{display:flex;flex-direction:column;height:100%;background:#fff;border:1px solid rgb(234 216 197/.8);border-radius:1rem;overflow:hidden;text-decoration:none;transition:.3s}
-.card:hover{transform:translateY(-4px);box-shadow:0 18px 36px -16px rgb(43 22 15/.3);border-color:rgb(154 91 31/.4)}
-.card .ph{aspect-ratio:4/5;overflow:hidden;background:var(--beige);position:relative}
-.card .ph img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .7s}
+.row>li{flex:0 0 70%;scroll-snap-align:start}
+.card{display:flex;flex-direction:column;height:100%;background:var(--panel);border:1px solid var(--line);border-radius:6px;overflow:hidden;text-decoration:none;transition:.3s}
+.card:hover{transform:translateY(-4px);border-color:rgb(200 148 82/.5);box-shadow:0 22px 40px -18px rgb(0 0 0/.7)}
+.card .ph{aspect-ratio:4/5;overflow:hidden;position:relative}
+.card .ph img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .8s}
 .card:hover .ph img{transform:scale(1.07)}
-.badge{position:absolute;left:.75rem;top:.75rem;background:var(--choc);color:var(--cream);font:700 .62rem Manrope;letter-spacing:.14em;text-transform:uppercase;padding:.35rem .7rem;border-radius:99px}
-.card .b{padding:1.1rem 1.2rem 1.3rem;display:flex;flex-direction:column;flex:1}
-.card small{font:700 .62rem Manrope;letter-spacing:.2em;text-transform:uppercase;color:var(--caramel)}
-.card h3{font-size:1.25rem;margin:.3rem 0}
-.card p{font-size:.9rem;color:rgb(36 24 21/.7)}
-.tag{margin-top:auto;padding-top:.9rem;font:700 .7rem Manrope;color:rgb(36 24 21/.7)}
-.link{display:block;text-align:center;margin-top:1.8rem;font:700 .8rem Manrope;letter-spacing:.16em;text-transform:uppercase;color:var(--choc)}
-.cats{background:rgb(234 216 197/.4)}
-.cat{display:flex;flex-direction:column;height:100%;background:var(--choc);color:var(--cream);border-radius:1rem;overflow:hidden;text-decoration:none;transition:.3s}
-.cat:hover{transform:translateY(-4px);box-shadow:0 18px 36px -16px rgb(43 22 15/.4)}
+.badge{position:absolute;left:.75rem;top:.75rem;background:var(--gold);color:var(--espresso);font:700 .6rem Manrope;letter-spacing:.16em;text-transform:uppercase;padding:.35rem .65rem;border-radius:2px}
+.card .b{padding:1.2rem 1.3rem 1.4rem;display:flex;flex-direction:column;flex:1}
+.card small{font:700 .6rem Manrope;letter-spacing:.2em;text-transform:uppercase;color:var(--gold)}
+.card h3{font-size:1.3rem;margin:.35rem 0}
+.card p{font-size:.9rem;color:rgb(230 217 200/.72)}
+.card .t{margin-top:auto;padding-top:1rem;font:700 .68rem Manrope;color:rgb(230 217 200/.6);letter-spacing:.06em}
+.link{display:block;text-align:center;margin-top:2rem;font:700 .74rem Manrope;letter-spacing:.2em;text-transform:uppercase;color:var(--cream);text-decoration:none}
+.panel{background:var(--panel)}
+.cat{display:flex;flex-direction:column;height:100%;background:var(--panel2);border-radius:6px;overflow:hidden;text-decoration:none;transition:.3s}
+.cat:hover{transform:translateY(-4px);box-shadow:0 22px 40px -18px rgb(0 0 0/.7)}
 .cat img{width:100%;aspect-ratio:1;object-fit:cover;display:block}
 .cat div{padding:1rem}
-.cat h3{color:var(--cream);font-size:1.25rem}
-.cat span{display:block;margin-top:.6rem;font:700 .65rem Manrope;letter-spacing:.18em;text-transform:uppercase;color:var(--gold)}
-.sig{background:var(--espresso);color:var(--cream)}
-.sig .wrap{display:grid;gap:2.5rem;align-items:center;padding-top:4.5rem;padding-bottom:4.5rem}
-.sig .im{border-radius:1rem;overflow:hidden;aspect-ratio:5/4;background:var(--choc);box-shadow:0 0 0 1px rgb(255 255 255/.08)}
-.sig .im img{width:100%;height:100%;object-fit:cover;display:block}
-.sig small{font:700 .72rem Manrope;letter-spacing:.3em;text-transform:uppercase;color:var(--gold)}
-.sig h2{color:var(--cream);font-size:clamp(2.4rem,7vw,4rem);margin:1.2rem 0}
+.cat h3{font-size:1.2rem}
+.cat span{display:block;margin-top:.7rem;font:700 .62rem Manrope;letter-spacing:.2em;text-transform:uppercase;color:var(--gold)}
+.sig{position:relative;background:var(--espresso)}
+.sig .wrap{display:grid;gap:3rem;align-items:center;padding-top:4.5rem;padding-bottom:4.5rem}
+.sig h2{font-size:clamp(2.6rem,8vw,4.6rem);margin:1.4rem 0}
 .sig h2 em{display:block;color:var(--gold)}
-.sig p{color:rgb(255 248 240/.75);font-size:1.15rem;max-width:28rem;margin-bottom:2rem}
-.why{display:grid;gap:1rem;grid-template-columns:1fr}
-.why div{position:relative;overflow:hidden;background:var(--choc);color:var(--cream);border-radius:1rem;padding:1.8rem;transition:.3s}
-.why div:hover{transform:translateY(-4px);box-shadow:0 18px 36px -16px rgb(43 22 15/.4)}
-.why i{position:absolute;right:1.2rem;top:.6rem;font:700 3rem "Playfair Display",serif;color:rgb(255 255 255/.06);font-style:normal}
-.why b{display:grid;place-items:center;width:3.4rem;height:3.4rem;border-radius:.8rem;background:rgb(200 148 82/.15);box-shadow:inset 0 0 0 1px rgb(200 148 82/.3);color:var(--gold);font-size:1.4rem}
-.why h3{color:var(--cream);font-size:1.25rem;margin:1.4rem 0 .4rem}
-.why p{color:rgb(255 248 240/.7)}
-.gifts{background:rgb(234 216 197/.4)}
-.gift{display:flex;flex-direction:column;height:100%;background:#fff;border:1px solid var(--beige);border-radius:1rem;overflow:hidden;text-decoration:none;transition:.3s}
-.gift:hover{transform:translateY(-4px);box-shadow:0 18px 36px -16px rgb(43 22 15/.3)}
-.gift img{width:100%;aspect-ratio:4/3;object-fit:cover;display:block}
-.gift div{padding:1.2rem;display:flex;flex-direction:column;flex:1}
-.gift h3{font-size:1.25rem}
-.gift p{font-size:.9rem;margin-top:.4rem;color:rgb(36 24 21/.72)}
-.gift span{margin-top:auto;padding-top:1rem;font:700 .7rem Manrope;letter-spacing:.16em;text-transform:uppercase;color:var(--caramel)}
-.cta{position:relative;isolation:isolate;overflow:hidden;background:var(--espresso);color:var(--cream);text-align:center;border-radius:1.5rem;padding:5rem 1.5rem}
-.cta:before{content:"";position:absolute;inset:0;z-index:-1;background:radial-gradient(55% 70% at 50% 0%,rgb(184 115 51/.4),transparent 70%)}
-.cta img{position:absolute;z-index:-1;left:50%;bottom:-4rem;width:34rem;max-width:none;transform:translateX(-50%);opacity:.12}
-.cta h2{color:var(--cream);font-size:clamp(2.8rem,9vw,5rem);max-width:46rem;margin:0 auto}
+.sig p{color:rgb(255 248 240/.75);font-size:1.15rem;max-width:27rem;margin-bottom:2.2rem}
+.sig .frame{max-width:none}
+.sig .frame .ph{aspect-ratio:4/5}
+.why{display:grid;gap:1px;background:rgb(200 148 82/.2);border:1px solid rgb(200 148 82/.2)}
+.why div{background:var(--panel);padding:2.2rem 2rem;transition:.4s}
+.why div:hover{background:var(--panel2)}
+.why i{font:600 .85rem "Playfair Display",serif;font-style:normal;letter-spacing:.3em;color:rgb(200 148 82/.7)}
+.why b{display:grid;place-items:center;width:3.4rem;height:3.4rem;margin:1.4rem 0 1.6rem;border:1px solid rgb(200 148 82/.5);color:var(--gold);font-size:1.3rem;font-weight:400}
+.why h3{font-size:1.4rem;margin-bottom:.6rem}
+.why p{color:rgb(230 217 200/.75)}
+.gift{position:relative;isolation:isolate;display:flex;flex-direction:column;justify-content:flex-end;aspect-ratio:3/4;overflow:hidden;padding:1.3rem;text-decoration:none;background:var(--panel2)}
+.gift img{position:absolute;inset:0;z-index:-2;width:100%;height:100%;object-fit:cover;transition:transform 1s}
+.gift:hover img{transform:scale(1.05)}
+.gift:before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(to top,#0b0504,rgb(11 5 4/.4),transparent)}
+.gift:after{content:"";position:absolute;inset:.7rem;border:1px solid transparent;transition:.5s}
+.gift:hover:after{border-color:rgb(200 148 82/.6)}
+.gift h3{font-size:1.5rem}
+.gift p{font-size:.9rem;margin-top:.4rem;color:rgb(255 248 240/.8)}
+.gift span{margin-top:1rem;font:700 .64rem Manrope;letter-spacing:.2em;text-transform:uppercase;color:var(--gold)}
+.cta{position:relative;isolation:isolate;overflow:hidden;background:var(--espresso);text-align:center;padding:6rem 1.5rem}
+.cta>img{position:absolute;inset:0;z-index:-2;width:100%;height:100%;object-fit:cover;opacity:.6}
+.cta:before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(to bottom,rgb(11 5 4/.75),rgb(11 5 4/.45),rgb(11 5 4/.85))}
+.cta:after{content:"";position:absolute;inset:1rem;border:1px solid rgb(200 148 82/.4);pointer-events:none}
+.cta h2{font-size:clamp(2.8rem,9vw,5rem);max-width:56rem;margin:1.4rem auto 0}
 .cta h2 em{color:var(--gold)}
-.cta p{margin:1.4rem auto 0;max-width:26rem;color:rgb(255 248 240/.8);font-size:1.15rem}
-.cta .cta-row{align-items:center;justify-content:center;margin-top:2.4rem}
-footer{margin-top:4.5rem;background:var(--espresso);color:rgb(255 248 240/.75);font-size:.85rem;padding:2rem 0;text-align:center}
-@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
-@media(min-width:640px){.row>li{flex-basis:40%}.cta-row{flex-direction:row}.why{grid-template-columns:1fr 1fr}}
+.cta p{margin:1.6rem auto 0;max-width:34rem;color:rgb(255 248 240/.85);font-size:1.2rem}
+.cta .cta-row{align-items:center;justify-content:center}
+footer{margin-top:5rem;background:var(--espresso);color:rgb(255 248 240/.7);font-size:.85rem;padding:2.2rem 0;text-align:center;border-top:1px solid rgb(200 148 82/.2)}
+@media(min-width:640px){.row>li{flex-basis:42%}.cta-row{flex-direction:row}.why{grid-template-columns:1fr 1fr}.frame .ph{aspect-ratio:4/5}}
 @media(min-width:1024px){
   .nav .wrap{height:5rem}.nav ul{display:flex}
-  .hero .wrap{grid-template-columns:1.02fr 1fr;gap:2rem;min-height:42rem;padding-bottom:6rem}
-  .hero .copy{order:1}.hero .art{order:2;max-width:none}.logo small{letter-spacing:.28em;font-size:.58rem}
+  .hero .wrap{grid-template-columns:1.05fr .95fr;gap:4rem;min-height:44rem;padding-bottom:6rem}
+  .frame{max-width:none;padding-left:1.5rem}.frame:before{transform:translate(1.5rem,1.5rem);inset:0 0 0 1.5rem}
   .section{padding:7rem 0}
   .row{display:grid;overflow:visible;margin:0;padding:0;gap:1.5rem}
-  .row.p4{grid-template-columns:repeat(4,1fr)}.row.c6{grid-template-columns:repeat(6,1fr);gap:1.2rem}.row.g5{grid-template-columns:repeat(5,1fr)}
+  .row.p4{grid-template-columns:repeat(4,1fr)}.row.c6{grid-template-columns:repeat(6,1fr);gap:1.2rem}.row.g5{grid-template-columns:repeat(5,1fr);gap:1.1rem}
   .row>li{flex:none}
-  .sig .wrap{grid-template-columns:1.1fr 1fr;gap:5rem;padding-top:7rem;padding-bottom:7rem}
-  .why{grid-template-columns:repeat(4,1fr);gap:1.5rem}
+  .sig .wrap{grid-template-columns:1fr 1.05fr;gap:6rem;padding-top:7rem;padding-bottom:7rem}
+  .why{grid-template-columns:repeat(4,1fr)}
 }
-@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}html{scroll-behavior:auto}}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}html{scroll-behavior:auto}}
 </style>
 </head>
 <body>
@@ -137,87 +138,94 @@ footer{margin-top:4.5rem;background:var(--espresso);color:rgb(255 248 240/.75);f
     <nav aria-label="Main"><ul>
       <li><a href="#top">Home</a></li><li><a href="#menu">Shop</a></li><li><a href="#menu">Best Sellers</a></li><li><a href="#gifting">Gift Boxes</a></li><li><a href="#why">About</a></li>
     </ul></nav>
-    <a class="btn dark sm" href="#menu">Shop now</a>
+    <a class="btn sm" href="#menu">Shop now</a>
   </div>
 </header>
 
 <main id="top">
 <section class="hero" aria-labelledby="t">
   <div class="wrap">
-    <div class="copy">
+    <div>
       <p class="eyebrow">Freshly baked • Premium ingredients</p>
       <h1 id="t">Brownies Worth <em>Craving.</em></h1>
       <p class="lead">Rich, fudgy brownies made for your sweetest moments.</p>
       <div class="cta-row"><a class="btn" href="#menu">Shop brownies</a><a class="btn ghost" href="#gifting">Explore gift boxes</a></div>
       <ul class="ticks"><li>Freshly baked</li><li>Premium ingredients</li><li>Small batch</li></ul>
     </div>
-    <div class="art">
-      <img src="hero-brownie.svg" alt="A rich, fudgy DGAP brownie" width="660" height="440" fetchpriority="high">
-      <span class="chip" style="left:0;top:14%">Freshly Baked</span>
-      <span class="chip" style="right:0;bottom:12%">Small Batch</span>
+    <div class="frame">
+      <div class="ph"><img src="golden-stack.jpg" alt="A stack of rich, fudgy brownies" width="1400" height="1400" fetchpriority="high"></div>
+      <span class="tag a">Freshly baked</span><span class="tag b">Small batch</span>
     </div>
   </div>
 </section>
 
+<div class="strip"><ul class="wrap" aria-label="Our promise"><li>Handcrafted</li><li>Small batch</li><li>Premium chocolate</li><li>Secure packaging</li><li>Local delivery</li></ul></div>
+
 <section class="section wrap" id="menu" aria-labelledby="m">
   <div class="head"><small>Best sellers</small><h2 id="m">Meet Your New Favorite Brownies</h2><p>Rich, fudgy and baked fresh for every craving.</p></div>
   <ul class="row p4" aria-label="Best selling brownies">
-    <li><a class="card" href="#menu"><div class="ph"><img src="fudge.svg" alt="Classic Fudge Brownie" loading="lazy" width="800" height="800"><span class="badge">Best seller</span></div><div class="b"><small>Fudge</small><h3>Classic Fudge Brownie</h3><p>Rich, fudgy and chocolatey. The one that started it all.</p><span class="tag">Sample product · prices coming soon</span></div></a></li>
-    <li><a class="card" href="#menu"><div class="ph"><img src="nutella.svg" alt="Nutella Stuffed Brownie" loading="lazy" width="800" height="800"><span class="badge">Best seller</span></div><div class="b"><small>Nutella</small><h3>Nutella Stuffed Brownie</h3><p>A soft brownie with a gooey Nutella centre.</p><span class="tag">Sample product · prices coming soon</span></div></a></li>
-    <li><a class="card" href="#menu"><div class="ph"><img src="biscoff.svg" alt="Biscoff Brownie" loading="lazy" width="800" height="800"><span class="badge">Best seller</span></div><div class="b"><small>Biscoff</small><h3>Biscoff Brownie</h3><p>Brownie topped with caramelised Biscoff crunch.</p><span class="tag">Sample product · prices coming soon</span></div></a></li>
-    <li><a class="card" href="#menu"><div class="ph"><img src="assorted-box.svg" alt="Assorted Brownie Box" loading="lazy" width="800" height="800"><span class="badge">Best seller</span></div><div class="b"><small>Assorted boxes</small><h3>Assorted Brownie Box</h3><p>A giftable box of assorted brownies.</p><span class="tag">Sample product · prices coming soon</span></div></a></li>
+    <li><a class="card" href="#menu"><div class="ph"><img src="plate-stack.jpg" alt="Classic Fudge Brownie" loading="lazy" width="800" height="1000"><span class="badge">Best seller</span></div><div class="b"><small>Fudge</small><h3>Classic Fudge Brownie</h3><p>Rich, fudgy and chocolatey. The one that started it all.</p><span class="t">SAMPLE PRODUCT · PRICES COMING SOON</span></div></a></li>
+    <li><a class="card" href="#menu"><div class="ph"><img src="swirl-rack.jpg" alt="Nutella Stuffed Brownie" loading="lazy" width="800" height="1000"><span class="badge">Best seller</span></div><div class="b"><small>Nutella</small><h3>Nutella Stuffed Brownie</h3><p>A soft brownie with a gooey Nutella centre.</p><span class="t">SAMPLE PRODUCT · PRICES COMING SOON</span></div></a></li>
+    <li><a class="card" href="#menu"><div class="ph"><img src="golden-stack.jpg" alt="Biscoff Brownie" loading="lazy" width="800" height="1000"><span class="badge">Best seller</span></div><div class="b"><small>Biscoff</small><h3>Biscoff Brownie</h3><p>Brownie topped with caramelised Biscoff crunch.</p><span class="t">SAMPLE PRODUCT · PRICES COMING SOON</span></div></a></li>
+    <li><a class="card" href="#menu"><div class="ph"><img src="gift-box.jpg" alt="Assorted Brownie Box" loading="lazy" width="800" height="1000"><span class="badge">Best seller</span></div><div class="b"><small>Assorted boxes</small><h3>Assorted Brownie Box</h3><p>A giftable box of assorted brownies.</p><span class="t">SAMPLE PRODUCT · PRICES COMING SOON</span></div></a></li>
   </ul>
   <a class="link" href="#menu">View all brownies →</a>
 </section>
 
-<section class="section cats" aria-labelledby="c"><div class="wrap">
+<section class="section panel" aria-labelledby="c"><div class="wrap">
   <div class="head"><small>Shop by flavour</small><h2 id="c">Find Your Flavour</h2><p>From classic fudge to loaded favourites.</p></div>
-  <ul class="row c6" aria-label="Brownie flavours" style="--w:44%">
-    <li><a class="cat" href="#menu"><img src="fudge.svg" alt="" loading="lazy" width="400" height="400"><div><h3>Fudge</h3><span>Explore ↗</span></div></a></li>
-    <li><a class="cat" href="#menu"><img src="nutella.svg" alt="" loading="lazy" width="400" height="400"><div><h3>Nutella</h3><span>Explore ↗</span></div></a></li>
-    <li><a class="cat" href="#menu"><img src="biscoff.svg" alt="" loading="lazy" width="400" height="400"><div><h3>Biscoff</h3><span>Explore ↗</span></div></a></li>
-    <li><a class="cat" href="#menu"><img src="chocolate-chip.svg" alt="" loading="lazy" width="400" height="400"><div><h3>Choco Chip</h3><span>Explore ↗</span></div></a></li>
-    <li><a class="cat" href="#menu"><img src="nuts.svg" alt="" loading="lazy" width="400" height="400"><div><h3>Nuts</h3><span>Explore ↗</span></div></a></li>
-    <li><a class="cat" href="#menu"><img src="assorted-box.svg" alt="" loading="lazy" width="400" height="400"><div><h3>Assorted</h3><span>Explore ↗</span></div></a></li>
+  <ul class="row c6" aria-label="Brownie flavours">
+    <li style="flex-basis:44%"><a class="cat" href="#menu"><img src="plate-stack.jpg" alt="" loading="lazy" width="400" height="400"><div><h3>Fudge</h3><span>Explore ↗</span></div></a></li>
+    <li style="flex-basis:44%"><a class="cat" href="#menu"><img src="swirl-rack.jpg" alt="" loading="lazy" width="400" height="400"><div><h3>Nutella</h3><span>Explore ↗</span></div></a></li>
+    <li style="flex-basis:44%"><a class="cat" href="#menu"><img src="golden-stack.jpg" alt="" loading="lazy" width="400" height="400"><div><h3>Biscoff</h3><span>Explore ↗</span></div></a></li>
+    <li style="flex-basis:44%"><a class="cat" href="#menu"><img src="fudge-stack.jpg" alt="" loading="lazy" width="400" height="400"><div><h3>Choco Chip</h3><span>Explore ↗</span></div></a></li>
+    <li style="flex-basis:44%"><a class="cat" href="#menu"><img src="golden-stack.jpg" alt="" loading="lazy" width="400" height="400"><div><h3>Nuts</h3><span>Explore ↗</span></div></a></li>
+    <li style="flex-basis:44%"><a class="cat" href="#menu"><img src="gift-box.jpg" alt="" loading="lazy" width="400" height="400"><div><h3>Assorted</h3><span>Explore ↗</span></div></a></li>
   </ul>
 </div></section>
 
 <section class="sig" aria-labelledby="s"><div class="wrap">
-  <div class="im"><img src="fudge.svg" alt="The DGAP signature brownie" loading="lazy" width="800" height="640"></div>
-  <div><small>The DGAP Signature</small><h2 id="s">Deep Chocolate. <em>Soft Centre.</em> Pure Indulgence.</h2><p>Rich, fudgy and chocolatey. The one that started it all.</p><a class="btn" href="#menu">Try the signature</a></div>
+  <div>
+    <p class="eyebrow">The DGAP Signature</p>
+    <h2 id="s">Deep Chocolate. <em>Soft Centre.</em> Pure Indulgence.</h2>
+    <p>Rich, fudgy and chocolatey. The one that started it all.</p>
+    <a class="btn" href="#menu">Try the signature</a>
+  </div>
+  <div class="frame"><div class="ph"><img src="plate-stack.jpg" alt="The DGAP signature brownie" loading="lazy" width="1400" height="1400"></div></div>
 </div></section>
 
 <section class="section wrap" id="why" aria-labelledby="w">
   <div class="head"><small>Our promise</small><h2 id="w">Why DGAP?</h2><p>Made for chocolate lovers.</p></div>
   <div class="why">
-    <div><i aria-hidden="true">01</i><b aria-hidden="true">🔥</b><h3>Freshly baked</h3><p>Baked with care so every brownie reaches you at its best.</p></div>
+    <div><i aria-hidden="true">01</i><b aria-hidden="true">♨</b><h3>Freshly baked</h3><p>Baked with care so every brownie reaches you at its best.</p></div>
     <div><i aria-hidden="true">02</i><b aria-hidden="true">◆</b><h3>Premium ingredients</h3><p>Chocolate-first recipes, because the basics matter most.</p></div>
     <div><i aria-hidden="true">03</i><b aria-hidden="true">✦</b><h3>Small batch</h3><p>Made in small batches to keep the quality high.</p></div>
-    <div><i aria-hidden="true">04</i><b aria-hidden="true">♥</b><h3>Made with love</h3><p>Every box is packed by hand for your sweetest moments.</p></div>
+    <div><i aria-hidden="true">04</i><b aria-hidden="true">♡</b><h3>Made with love</h3><p>Every box is packed by hand for your sweetest moments.</p></div>
   </div>
 </section>
 
-<section class="section gifts" id="gifting" aria-labelledby="g"><div class="wrap">
+<section class="section panel" id="gifting" aria-labelledby="g"><div class="wrap">
   <div class="head"><small>Gifting</small><h2 id="g">Make Someone's Day Extra Chocolatey.</h2><p>Beautiful brownie boxes for every moment.</p></div>
   <ul class="row g5" aria-label="Gifting occasions">
-    <li><a class="gift" href="#gifting"><img src="fudge.svg" alt="" loading="lazy" width="400" height="300"><div><h3>Birthday</h3><p>A box of brownies makes any birthday sweeter.</p><span>Shop gift boxes →</span></div></a></li>
-    <li><a class="gift" href="#gifting"><img src="nutella.svg" alt="" loading="lazy" width="400" height="300"><div><h3>Anniversary</h3><p>Share something indulgent for two.</p><span>Shop gift boxes →</span></div></a></li>
-    <li><a class="gift" href="#gifting"><img src="biscoff.svg" alt="" loading="lazy" width="400" height="300"><div><h3>Thank You</h3><p>A tasty way to say thanks.</p><span>Shop gift boxes →</span></div></a></li>
-    <li><a class="gift" href="#gifting"><img src="chocolate-chip.svg" alt="" loading="lazy" width="400" height="300"><div><h3>Celebration</h3><p>Treats for every occasion worth marking.</p><span>Shop gift boxes →</span></div></a></li>
-    <li><a class="gift" href="#gifting"><img src="assorted-box.svg" alt="" loading="lazy" width="400" height="300"><div><h3>Corporate Gifts</h3><p>Impress clients and teams. Ask us about bulk orders.</p><span>Shop gift boxes →</span></div></a></li>
+    <li style="flex-basis:70%"><a class="gift" href="#gifting"><img src="plate-stack.jpg" alt="" loading="lazy" width="600" height="800"><h3>Birthday</h3><p>A box of brownies makes any birthday sweeter.</p><span>Shop gift boxes →</span></a></li>
+    <li style="flex-basis:70%"><a class="gift" href="#gifting"><img src="swirl-rack.jpg" alt="" loading="lazy" width="600" height="800"><h3>Anniversary</h3><p>Share something indulgent for two.</p><span>Shop gift boxes →</span></a></li>
+    <li style="flex-basis:70%"><a class="gift" href="#gifting"><img src="golden-stack.jpg" alt="" loading="lazy" width="600" height="800"><h3>Thank You</h3><p>A tasty way to say thanks.</p><span>Shop gift boxes →</span></a></li>
+    <li style="flex-basis:70%"><a class="gift" href="#gifting"><img src="fudge-stack.jpg" alt="" loading="lazy" width="600" height="800"><h3>Celebration</h3><p>Treats for every occasion worth marking.</p><span>Shop gift boxes →</span></a></li>
+    <li style="flex-basis:70%"><a class="gift" href="#gifting"><img src="gift-box.jpg" alt="" loading="lazy" width="600" height="800"><h3>Corporate Gifts</h3><p>Impress clients and teams. Ask us about bulk orders.</p><span>Shop gift boxes →</span></a></li>
   </ul>
 </div></section>
 
-<section class="section wrap" aria-labelledby="f" style="padding-top:0">
+<section class="section wrap" aria-labelledby="f" style="padding-top:5rem;padding-bottom:0">
   <div class="cta">
-    <img src="hero-brownie.svg" alt="" width="660" height="440">
+    <img src="gift-box.jpg" alt="" width="1400" height="1100" loading="lazy">
+    <p class="eyebrow" style="justify-content:center">Freshly baked • Small batch</p>
     <h2 id="f">Your Brownie Is <em>Waiting.</em></h2>
     <p>Freshly baked. Deeply chocolatey. Impossible to resist.</p>
-    <p style="font-size:.95rem;color:var(--gold)">Online ordering is coming soon.</p>
+    <p style="font-size:.95rem;color:var(--gold);margin-top:1rem">Online ordering is coming soon.</p>
   </div>
 </section>
 </main>
 
-<footer><div class="wrap">© DGAP Brownie Delight · Preview site: products, prices and imagery are samples.</div></footer>
+<footer><div class="wrap">© DGAP Brownie Delight · Preview site: products, prices and photos are samples. Photos: <a href="CREDITS.md">Unsplash credits</a>.</div></footer>
 </body>
 </html>

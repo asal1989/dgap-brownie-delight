@@ -19,23 +19,23 @@ export default async function AdminOrderDetail({ params }: { params: Promise<{ i
 
   return (
     <>
-      <AdminTitle title={`Order ${order.orderNumber}`} action={<div className="flex gap-2"><Link href="/admin/orders" className="no-print inline-flex min-h-10 items-center rounded-full border border-beige bg-white px-5 text-sm font-semibold hover:bg-beige/50">← All orders</Link><PrintButton /></div>} />
+      <AdminTitle title={`Order ${order.orderNumber}`} action={<div className="flex gap-2"><Link href="/admin/orders" className="no-print inline-flex min-h-10 items-center rounded-full border border-line bg-panel px-5 text-sm font-semibold hover:bg-panel2/50">← All orders</Link><PrintButton /></div>} />
       <div className="grid gap-6 lg:grid-cols-3">
         <div className="space-y-6 lg:col-span-2">
           <Panel title="Items">
-            <ul className="divide-y divide-beige">
+            <ul className="divide-y divide-line">
               {order.items.map((i) => (
                 <li key={i.id} className="flex justify-between gap-4 py-3 text-sm">
-                  <span>{i.quantity} × {i.name} <span className="text-ink/70">@ {formatINR(i.unitPrice)}</span></span>
+                  <span>{i.quantity} × {i.name} <span className="text-fg/70">@ {formatINR(i.unitPrice)}</span></span>
                   <span className="font-semibold">{formatINR(i.quantity * i.unitPrice)}</span>
                 </li>
               ))}
             </ul>
-            <dl className="mt-3 space-y-1.5 border-t border-beige pt-3 text-sm">
+            <dl className="mt-3 space-y-1.5 border-t border-line pt-3 text-sm">
               <div className="flex justify-between"><dt>Subtotal</dt><dd>{formatINR(order.subtotal)}</dd></div>
               {order.discount > 0 ? <div className="flex justify-between"><dt>Discount{order.coupon ? ` (${order.coupon.code})` : ""}</dt><dd>−{formatINR(order.discount)}</dd></div> : null}
               <div className="flex justify-between"><dt>Delivery</dt><dd>{formatINR(order.deliveryFee)}</dd></div>
-              <div className="flex justify-between text-base font-bold text-choc"><dt>Total</dt><dd>{formatINR(order.total)}</dd></div>
+              <div className="flex justify-between text-base font-bold text-heading"><dt>Total</dt><dd>{formatINR(order.total)}</dd></div>
             </dl>
           </Panel>
           <Panel title="Delivery">
@@ -54,7 +54,7 @@ export default async function AdminOrderDetail({ params }: { params: Promise<{ i
           <Panel title="Status">
             <p className="mb-3"><StatusPill status={order.status} /></p>
             {locked ? (
-              <p className="text-sm text-ink/70">Cancelled orders can&apos;t be changed (stock was restored).</p>
+              <p className="text-sm text-fg/70">Cancelled orders can&apos;t be changed (stock was restored).</p>
             ) : (
               <form key={order.status} action={updateOrderStatus} className="no-print space-y-3">
                 <input type="hidden" name="id" value={order.id} />
@@ -69,22 +69,22 @@ export default async function AdminOrderDetail({ params }: { params: Promise<{ i
             <p className="text-sm font-semibold">{order.customerName}</p>
             <p className="text-sm">{order.customerPhone}</p>
             {order.customerEmail ? <p className="break-all text-sm">{order.customerEmail}</p> : null}
-            <p className="mt-2 text-xs text-ink/70">Placed {order.createdAt.toLocaleString("en-IN")}</p>
+            <p className="mt-2 text-xs text-fg/70">Placed {order.createdAt.toLocaleString("en-IN")}</p>
           </Panel>
           <Panel title="Payment">
             {order.payment ? (
               <>
                 <p className="text-sm">{order.payment.method} · <strong>{order.payment.status}</strong></p>
                 <p className="text-sm">{formatINR(order.payment.amount)}</p>
-                {order.payment.providerPaymentId ? <p className="break-all text-xs text-ink/70">Ref: {order.payment.providerPaymentId}</p> : null}
+                {order.payment.providerPaymentId ? <p className="break-all text-xs text-fg/70">Ref: {order.payment.providerPaymentId}</p> : null}
                 {order.payment.method === "COD" && order.payment.status === "PENDING" && !locked ? (
                   <form action={markCodPaid} className="no-print mt-3">
                     <input type="hidden" name="id" value={order.id} />
-                    <button className="min-h-10 w-full rounded-full border border-choc text-sm font-semibold text-choc hover:bg-choc hover:text-cream">Mark cash as received</button>
+                    <button className="min-h-10 w-full rounded-full border border-choc text-sm font-semibold text-heading hover:bg-choc hover:text-cream">Mark cash as received</button>
                   </form>
                 ) : null}
               </>
-            ) : <p className="text-sm text-ink/70">No payment record.</p>}
+            ) : <p className="text-sm text-fg/70">No payment record.</p>}
           </Panel>
         </div>
       </div>

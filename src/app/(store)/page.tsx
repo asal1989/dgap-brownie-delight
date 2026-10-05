@@ -41,7 +41,7 @@ export default async function HomePage() {
   return (
     <>
       <Hero s={s} />
-      <TrustBar whatsapp={Boolean(s.whatsappDigits)} />
+      <TrustBar />
 
       <section className="section container-page" aria-labelledby="best-title">
         <Reveal>
@@ -64,7 +64,7 @@ export default async function HomePage() {
         </div>
         {best.length ? (
           <div className="mt-8 text-center">
-            <Link href="/shop" className="inline-flex min-h-12 items-center gap-2 text-sm font-bold uppercase tracking-[0.16em] text-choc underline-offset-8 hover:underline">
+            <Link href="/shop" className="inline-flex min-h-12 items-center gap-2 text-sm font-bold uppercase tracking-[0.16em] text-heading underline-offset-8 hover:underline">
               View all brownies <ArrowRight className="size-4" aria-hidden />
             </Link>
           </div>
@@ -72,7 +72,7 @@ export default async function HomePage() {
       </section>
 
       {categories.length ? (
-        <section className="section bg-beige/40" aria-labelledby="cat-title">
+        <section className="section bg-panel2/40" aria-labelledby="cat-title">
           <div className="container-page">
             <Reveal>
               <SectionHeading eyebrow="Shop by flavour" title={<span id="cat-title">Find Your Flavour</span>} subtitle="From classic fudge to loaded favourites." />
@@ -93,7 +93,7 @@ export default async function HomePage() {
       <WhyDgap />
 
       {boxProducts.length ? (
-        <section className="section bg-beige/40" aria-labelledby="box-title">
+        <section className="section bg-panel2/40" aria-labelledby="box-title">
           <div className="container-page">
             <Reveal>
               <SectionHeading

@@ -25,13 +25,13 @@ export default async function AdminCoupons({ searchParams }: { searchParams: Pro
             {coupons.map((x) => (
               <tr key={x.id}>
                 <td className={`${td} font-mono font-semibold`}>{x.code}</td>
-                <td className={td}>{x.discountType === "PERCENTAGE" ? `${x.discountValue}%` : formatINR(x.discountValue)}{x.minimumOrder ? <span className="block text-xs text-ink/70">min {formatINR(x.minimumOrder)}</span> : null}</td>
+                <td className={td}>{x.discountType === "PERCENTAGE" ? `${x.discountValue}%` : formatINR(x.discountValue)}{x.minimumOrder ? <span className="block text-xs text-fg/70">min {formatINR(x.minimumOrder)}</span> : null}</td>
                 <td className={td}>{x.usedCount}{x.usageLimit ? ` / ${x.usageLimit}` : ""}</td>
                 <td className={td}>{x.expiresAt ? x.expiresAt.toLocaleDateString("en-IN") : "Never"}</td>
                 <td className={td}>{x.isActive ? "Active" : "Off"}</td>
                 <td className={`${td} whitespace-nowrap text-right`}>
-                  <a href={`/admin/coupons?edit=${x.id}`} className="rounded-full border border-beige px-3 py-1.5 text-xs font-semibold hover:bg-beige/60">Edit</a>{" "}
-                  <form action={deleteCoupon} className="inline"><input type="hidden" name="id" value={x.id} /><ConfirmButton message={`Delete coupon ${x.code}?`} className="rounded-full border border-beige px-3 py-1.5 text-xs font-semibold text-danger hover:bg-beige/60">Delete</ConfirmButton></form>
+                  <a href={`/admin/coupons?edit=${x.id}`} className="rounded-full border border-line px-3 py-1.5 text-xs font-semibold hover:bg-panel2/60">Edit</a>{" "}
+                  <form action={deleteCoupon} className="inline"><input type="hidden" name="id" value={x.id} /><ConfirmButton message={`Delete coupon ${x.code}?`} className="rounded-full border border-line px-3 py-1.5 text-xs font-semibold text-danger hover:bg-panel2/60">Delete</ConfirmButton></form>
                 </td>
               </tr>
             ))}

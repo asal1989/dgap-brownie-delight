@@ -38,7 +38,7 @@ export default async function AdminDashboard() {
 
       <div className="mt-8 grid gap-8 xl:grid-cols-[1fr_22rem]">
         <section aria-labelledby="recent-h">
-          <h2 id="recent-h" className="mb-3 font-display text-xl text-choc">Recent orders</h2>
+          <h2 id="recent-h" className="mb-3 font-display text-xl text-heading">Recent orders</h2>
           <OrderTable
             orders={recent.map((o) => ({
               id: o.id,
@@ -52,7 +52,7 @@ export default async function AdminDashboard() {
           />
         </section>
         <section aria-labelledby="top-h">
-          <h2 id="top-h" className="mb-3 font-display text-xl text-choc">Top products</h2>
+          <h2 id="top-h" className="mb-3 font-display text-xl text-heading">Top products</h2>
           <TableWrap>
             <thead><tr><th className={th}>Product</th><th className={`${th} text-right`}>Sold</th></tr></thead>
             <tbody>

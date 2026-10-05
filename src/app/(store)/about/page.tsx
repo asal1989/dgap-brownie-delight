@@ -24,17 +24,17 @@ export default async function AboutPage() {
       <PageHeader title="Made for chocolate lovers" subtitle={s.tagline} crumbs={[{ label: "Home", href: "/" }, { label: "About" }]} />
       <div className="container-page max-w-3xl py-12 lg:py-16">
         {s.aboutStory ? (
-          <div className="space-y-5 whitespace-pre-line text-lg leading-relaxed text-ink/80">{s.aboutStory}</div>
+          <div className="space-y-5 whitespace-pre-line text-lg leading-relaxed text-fg/80">{s.aboutStory}</div>
         ) : (
-          <p className="text-lg leading-relaxed text-ink/80">
+          <p className="text-lg leading-relaxed text-fg/80">
             {s.brandName} bakes rich, fudgy brownies in small batches. Every box is made for your sweetest moments: birthdays, thank-yous, celebrations, or just because.
           </p>
         )}
         <ul className="mt-12 grid grid-cols-2 gap-4 sm:grid-cols-4">
           {VALUES.map(({ icon: Icon, title }) => (
-            <li key={title} className="rounded-3xl border border-beige bg-white p-5 text-center">
+            <li key={title} className="rounded-lg border border-line bg-panel p-5 text-center">
               <Icon className="mx-auto size-8 text-caramel" aria-hidden />
-              <p className="mt-3 text-sm font-semibold text-choc">{title}</p>
+              <p className="mt-3 text-sm font-semibold text-heading">{title}</p>
             </li>
           ))}
         </ul>

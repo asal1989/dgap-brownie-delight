@@ -5,14 +5,14 @@ import { Button } from "@/components/ui/button";
 import { sendContactMessage } from "@/actions/contact";
 import { cn } from "@/lib/utils";
 
-const input = "w-full rounded-xl border border-beige bg-white px-4 py-3 text-base outline-none focus:border-caramel focus:ring-2 focus:ring-caramel/20";
+const input = "w-full rounded-xl border border-line bg-panel px-4 py-3 text-base outline-none focus:border-gold focus:ring-2 focus:ring-caramel/20";
 
 export function ContactForm() {
   const [msg, setMsg] = useState<{ ok: boolean; text: string } | null>(null);
   const [pending, start] = useTransition();
   return (
     <form
-      className="space-y-4 rounded-3xl border border-beige bg-white p-6 sm:p-8"
+      className="space-y-4 rounded-lg border border-line bg-panel p-6 sm:p-8"
       onSubmit={(e) => {
         e.preventDefault();
         const form = e.currentTarget;
@@ -28,7 +28,7 @@ export function ContactForm() {
         });
       }}
     >
-      <h2 className="font-display text-2xl text-choc">Send us a message</h2>
+      <h2 className="font-display text-2xl text-heading">Send us a message</h2>
       <div>
         <label htmlFor="c-name" className="mb-1 block text-sm font-semibold">Name</label>
         <input id="c-name" name="name" required autoComplete="name" className={input} />

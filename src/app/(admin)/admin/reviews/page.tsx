@@ -8,11 +8,11 @@ export const metadata: Metadata = { title: "Reviews" };
 
 export default async function AdminReviews() {
   const reviews = await prisma.review.findMany({ include: { product: { select: { name: true } } }, orderBy: [{ isApproved: "asc" }, { createdAt: "desc" }], take: 200 });
-  const btn = "rounded-full border border-beige px-3 py-1.5 text-xs font-semibold hover:bg-beige/60";
+  const btn = "rounded-full border border-line px-3 py-1.5 text-xs font-semibold hover:bg-panel2/60";
   return (
     <>
       <AdminTitle title="Reviews" />
-      <p className="mb-4 text-sm text-ink/70">Customer reviews appear on the site only after you approve them.</p>
+      <p className="mb-4 text-sm text-fg/70">Customer reviews appear on the site only after you approve them.</p>
       <TableWrap>
         <thead><tr><th className={th}>Customer</th><th className={th}>Product</th><th className={th}>Rating</th><th className={th}>Review</th><th className={th}>Status</th><th className={th}><span className="sr-only">Actions</span></th></tr></thead>
         <tbody>

@@ -29,8 +29,8 @@ export function OrderTable({ orders }: { orders: OrderRow[] }) {
       <tbody>
         {orders.length === 0 ? <EmptyRow cols={6} text="No orders found." /> : null}
         {orders.map((o) => (
-          <tr key={o.id} className="hover:bg-cream/60">
-            <td className={td}><Link href={`/admin/orders/${o.id}`} className="font-semibold text-choc underline-offset-2 hover:underline">{o.orderNumber}</Link></td>
+          <tr key={o.id} className="hover:bg-page/60">
+            <td className={td}><Link href={`/admin/orders/${o.id}`} className="font-semibold text-heading underline-offset-2 hover:underline">{o.orderNumber}</Link></td>
             <td className={td}>{o.customerName}</td>
             <td className={`${td} whitespace-nowrap`}>{o.createdAt.toLocaleString("en-IN", { dateStyle: "medium", timeStyle: "short" })}</td>
             <td className={td}>{o.paymentLabel}</td>

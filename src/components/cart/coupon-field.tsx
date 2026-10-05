@@ -8,7 +8,7 @@ export function CouponField({ applied, message, onApply }: { applied: string | n
   const [value, setValue] = useState("");
   return (
     <div>
-      <label htmlFor="coupon" className="mb-2 flex items-center gap-1.5 text-sm font-semibold text-choc">
+      <label htmlFor="coupon" className="mb-2 flex items-center gap-1.5 text-sm font-semibold text-heading">
         <Tag className="size-4" aria-hidden /> Coupon code
       </label>
       {applied ? (
@@ -24,7 +24,7 @@ export function CouponField({ applied, message, onApply }: { applied: string | n
             onChange={(e) => setValue(e.target.value.toUpperCase())}
             maxLength={40}
             autoCapitalize="characters"
-            className="h-12 min-w-0 flex-1 rounded-xl border border-beige bg-white px-4 text-sm uppercase outline-none focus:border-caramel"
+            className="h-12 min-w-0 flex-1 rounded-xl border border-line bg-panel px-4 text-sm uppercase outline-none focus:border-gold"
             placeholder="Enter code"
           />
           <Button variant="outline" onClick={() => value.trim() && onApply(value.trim())}>Apply</Button>

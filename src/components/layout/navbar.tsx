@@ -49,7 +49,7 @@ export function Navbar({ brandName, logo }: { brandName: string; logo: string })
     <header
       className={cn(
         "no-print sticky top-0 z-50 transition-all duration-300",
-        scrolled ? "bg-cream/85 shadow-[0_1px_0_var(--beige)] backdrop-blur-md" : "bg-cream",
+        scrolled ? "bg-page/85 shadow-[0_1px_0_var(--beige)] backdrop-blur-md" : "bg-page",
       )}
     >
       <div className={cn("container-page flex items-center justify-between gap-4 transition-all duration-300", scrolled ? "h-14 lg:h-16" : "h-16 lg:h-20")}>
@@ -64,8 +64,8 @@ export function Navbar({ brandName, logo }: { brandName: string; logo: string })
                 href={l.href}
                 aria-current={active ? "page" : undefined}
                 className={cn(
-                  "whitespace-nowrap rounded-full px-3 py-2 text-sm font-semibold transition hover:bg-beige/60 xl:px-4",
-                  active ? "text-caramel" : "text-choc",
+                  "whitespace-nowrap rounded-full px-3 py-2 text-sm font-semibold transition hover:bg-panel2/60 xl:px-4",
+                  active ? "text-caramel" : "text-heading",
                 )}
               >
                 {l.label}
@@ -79,11 +79,11 @@ export function Navbar({ brandName, logo }: { brandName: string; logo: string })
             type="button"
             onClick={() => setSearchOpen(true)}
             aria-label="Search"
-            className="grid size-11 place-items-center rounded-full text-choc hover:bg-beige/50"
+            className="grid size-11 place-items-center rounded-full text-heading hover:bg-panel2/50"
           >
             <Search className="size-6" aria-hidden />
           </button>
-          <Link href="/account" aria-label="Account" className="hidden size-11 place-items-center rounded-full text-choc hover:bg-beige/50 lg:grid">
+          <Link href="/account" aria-label="Account" className="hidden size-11 place-items-center rounded-full text-heading hover:bg-panel2/50 lg:grid">
             <User className="size-6" aria-hidden />
           </Link>
           <CartButton />
@@ -95,7 +95,7 @@ export function Navbar({ brandName, logo }: { brandName: string; logo: string })
             onClick={() => setMenuOpen(true)}
             aria-label="Open menu"
             aria-expanded={menuOpen}
-            className="grid size-11 place-items-center rounded-full text-choc hover:bg-beige/50 lg:hidden"
+            className="grid size-11 place-items-center rounded-full text-heading hover:bg-panel2/50 lg:hidden"
           >
             <Menu className="size-6" aria-hidden />
           </button>

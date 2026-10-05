@@ -40,13 +40,13 @@ export default async function AdminCategories({ searchParams }: { searchParams: 
             {categories.length === 0 ? <EmptyRow cols={4} text="No categories yet." /> : null}
             {categories.map((c) => (
               <tr key={c.id}>
-                <td className={td}><span className="font-semibold text-choc">{c.name}</span><p className="text-xs text-ink/70">/{c.slug}</p></td>
+                <td className={td}><span className="font-semibold text-heading">{c.name}</span><p className="text-xs text-fg/70">/{c.slug}</p></td>
                 <td className={td}>{c._count.products}</td>
                 <td className={td}>{c.isActive ? "Active" : "Hidden"}</td>
                 <td className={`${td} whitespace-nowrap text-right`}>
-                  <a href={`/admin/categories?edit=${c.id}`} className="rounded-full border border-beige px-3 py-1.5 text-xs font-semibold hover:bg-beige/60">Edit</a>{" "}
+                  <a href={`/admin/categories?edit=${c.id}`} className="rounded-full border border-line px-3 py-1.5 text-xs font-semibold hover:bg-panel2/60">Edit</a>{" "}
                   {c._count.products === 0 ? (
-                    <form action={deleteCategory} className="inline"><input type="hidden" name="id" value={c.id} /><ConfirmButton message={`Delete "${c.name}"?`} className="rounded-full border border-beige px-3 py-1.5 text-xs font-semibold text-danger hover:bg-beige/60">Delete</ConfirmButton></form>
+                    <form action={deleteCategory} className="inline"><input type="hidden" name="id" value={c.id} /><ConfirmButton message={`Delete "${c.name}"?`} className="rounded-full border border-line px-3 py-1.5 text-xs font-semibold text-danger hover:bg-panel2/60">Delete</ConfirmButton></form>
                   ) : null}
                 </td>
               </tr>

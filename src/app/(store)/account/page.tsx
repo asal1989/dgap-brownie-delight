@@ -13,9 +13,9 @@ export default async function AccountPage() {
     <>
       <PageHeader title={`Hello, ${user.name}`} crumbs={[{ label: "Home", href: "/" }, { label: "Account" }]} />
       <div className="container-page max-w-2xl space-y-4 py-12">
-        <div className="rounded-3xl border border-beige bg-white p-6">
-          <p className="text-sm text-ink/70">Signed in as</p>
-          <p className="font-semibold text-choc">{user.email}</p>
+        <div className="rounded-lg border border-line bg-panel p-6">
+          <p className="text-sm text-fg/70">Signed in as</p>
+          <p className="font-semibold text-heading">{user.email}</p>
         </div>
         <div className="flex flex-wrap gap-3">
           <ButtonLink href="/account/orders">My orders</ButtonLink>

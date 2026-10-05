@@ -14,7 +14,7 @@ export interface FilterState {
   flag: string;
 }
 
-const field = "h-12 w-full rounded-xl border border-beige bg-white px-4 text-sm outline-none focus:border-caramel";
+const field = "h-12 w-full rounded-xl border border-line bg-panel px-4 text-sm outline-none focus:border-gold";
 
 /** One GET form: works without JS, renders as a sidebar on desktop and a drawer on mobile. */
 export function ShopFilters({
@@ -48,15 +48,15 @@ export function ShopFilters({
         aria-label="Filter and sort products"
         aria-modal={open || undefined}
         className={cn(
-          "space-y-6 bg-cream",
+          "space-y-6 bg-page",
           open
             ? "fixed inset-y-0 left-0 z-[56] w-[88%] max-w-sm overflow-y-auto p-5 shadow-2xl lg:static lg:w-auto lg:max-w-none lg:overflow-visible lg:p-0 lg:shadow-none"
             : "hidden lg:block",
         )}
       >
         <div className="flex items-center justify-between lg:hidden">
-          <h2 className="font-display text-2xl text-choc">Filters</h2>
-          <button type="button" onClick={() => setOpen(false)} aria-label="Close filters" className="grid size-11 place-items-center rounded-full hover:bg-beige/70">
+          <h2 className="font-display text-2xl text-heading">Filters</h2>
+          <button type="button" onClick={() => setOpen(false)} aria-label="Close filters" className="grid size-11 place-items-center rounded-full hover:bg-panel2/70">
             <X className="size-5" aria-hidden />
           </button>
         </div>
@@ -71,8 +71,8 @@ export function ShopFilters({
             <legend className="mb-2 text-xs font-bold uppercase tracking-[0.16em] text-caramel">Category</legend>
             <div className="space-y-1">
               {[{ slug: "", name: "All" }, ...categories].map((c) => (
-                <label key={c.slug} className="flex min-h-11 cursor-pointer items-center gap-3 rounded-xl px-2 text-sm hover:bg-beige/50">
-                  <input type="radio" name="category" value={c.slug} defaultChecked={state.category === c.slug} className="size-4 accent-[var(--choc)]" />
+                <label key={c.slug} className="flex min-h-11 cursor-pointer items-center gap-3 rounded-xl px-2 text-sm hover:bg-panel2/50">
+                  <input type="radio" name="category" value={c.slug} defaultChecked={state.category === c.slug} className="size-4 accent-[var(--gold)]" />
                   {c.name}
                 </label>
               ))}
@@ -98,8 +98,8 @@ export function ShopFilters({
               { v: "featured", l: "Featured" },
               { v: "gift", l: "Gift boxes" },
             ].map((o) => (
-              <label key={o.v} className="flex min-h-11 cursor-pointer items-center gap-3 rounded-xl px-2 text-sm hover:bg-beige/50">
-                <input type="radio" name="flag" value={o.v} defaultChecked={state.flag === o.v} className="size-4 accent-[var(--choc)]" />
+              <label key={o.v} className="flex min-h-11 cursor-pointer items-center gap-3 rounded-xl px-2 text-sm hover:bg-panel2/50">
+                <input type="radio" name="flag" value={o.v} defaultChecked={state.flag === o.v} className="size-4 accent-[var(--gold)]" />
                 {o.l}
               </label>
             ))}
@@ -118,7 +118,7 @@ export function ShopFilters({
 
         <div className="flex gap-2">
           <Button type="submit" className="flex-1" onClick={() => setOpen(false)}>Apply</Button>
-          <a href={action} className="inline-flex min-h-12 items-center rounded-full px-5 text-sm font-semibold text-choc hover:bg-beige/60">Reset</a>
+          <a href={action} className="inline-flex min-h-12 items-center rounded-full px-5 text-sm font-semibold text-heading hover:bg-panel2/60">Reset</a>
         </div>
       </form>
     </>

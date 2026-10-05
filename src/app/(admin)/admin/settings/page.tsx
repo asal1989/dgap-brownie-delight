@@ -62,7 +62,7 @@ export default async function AdminSettings() {
               {text("expectedDelivery", "Expected delivery message", { hint: "e.g. what customers should expect after ordering. Shown only if filled." })}
               <ACheck name="sameDayDelivery" label="Same-day delivery available" defaultChecked={s.sameDayDeliveryBool} />
               <ACheck name="codEnabled" label="Accept Cash on Delivery" defaultChecked={s.codEnabledBool} />
-              <p className="rounded-xl bg-cream px-4 py-3 text-sm">
+              <p className="rounded-xl bg-page px-4 py-3 text-sm">
                 Online payment (Razorpay): <strong>{rzp ? "enabled" : "not configured"}</strong>
                 {rzp ? "" : ". Add RAZORPAY_KEY_ID and RAZORPAY_KEY_SECRET to the environment to enable it."}
               </p>
@@ -77,7 +77,7 @@ export default async function AdminSettings() {
           </Panel>
 
           <Panel title="Pages & policies" className="xl:col-span-2">
-            <p className="mb-4 text-sm text-ink/70">Write these yourself. Empty policies show a neutral &ldquo;being finalised&rdquo; message instead of made-up terms.</p>
+            <p className="mb-4 text-sm text-fg/70">Write these yourself. Empty policies show a neutral &ldquo;being finalised&rdquo; message instead of made-up terms.</p>
             <div className="grid gap-4 lg:grid-cols-2">
               {area("aboutStory", "About / brand story", 6)}
               {area("policyShipping", "Shipping policy", 6)}

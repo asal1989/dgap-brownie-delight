@@ -28,7 +28,7 @@ export function ProductForm({ product, categories }: { product?: Product; catego
           </Panel>
 
           <Panel title="Product information">
-            <p className="mb-4 text-sm text-ink/70">Only filled-in sections appear on the product page. Write only what is true for this product.</p>
+            <p className="mb-4 text-sm text-fg/70">Only filled-in sections appear on the product page. Write only what is true for this product.</p>
             <div className="grid gap-4 sm:grid-cols-2">
               <AField id="ingredients" label="Ingredients"><textarea id="ingredients" name="ingredients" rows={3} defaultValue={p?.ingredients ?? ""} className={adminInput} /></AField>
               <AField id="allergens" label="Allergen information"><textarea id="allergens" name="allergens" rows={3} defaultValue={p?.allergens ?? ""} className={adminInput} /></AField>
@@ -39,7 +39,7 @@ export function ProductForm({ product, categories }: { product?: Product; catego
 
           <Panel title="Photos">
             <ImageField name="images" label="Product images" defaultValue={(p?.images ?? []).join("\n")} />
-            <p className="mt-2 text-xs text-ink/70">First image is the main photo. Use real DGAP photography. Square or 4:5 crops look best.</p>
+            <p className="mt-2 text-xs text-fg/70">First image is the main photo. Use real DGAP photography. Square or 4:5 crops look best.</p>
           </Panel>
         </div>
 

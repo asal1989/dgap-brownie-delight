@@ -56,7 +56,7 @@ export async function Catalog({ sp, basePath, fixedCategory }: { sp: SP; basePat
         <ShopFilters categories={categories.map((c) => ({ slug: c.slug, name: c.name }))} state={state} lockedCategory={!!fixedCategory} action={basePath} />
       </aside>
       <div>
-        <p className="mb-5 text-sm text-ink/70" role="status">
+        <p className="mb-5 text-sm text-fg/70" role="status">
           {result.total === 0 ? "No products found" : `${result.total} ${result.total === 1 ? "brownie" : "brownies"}`}
           {state.q ? ` for “${state.q}”` : ""}
         </p>
@@ -75,11 +75,11 @@ export async function Catalog({ sp, basePath, fixedCategory }: { sp: SP; basePat
         {result.pages > 1 ? (
           <nav aria-label="Pagination" className="mt-12 flex items-center justify-center gap-2">
             {result.page > 1 ? (
-              <Link href={hrefFor(result.page - 1)} className="inline-flex min-h-11 items-center gap-1 rounded-full border border-beige px-4 text-sm font-semibold hover:bg-beige/60" rel="prev">
+              <Link href={hrefFor(result.page - 1)} className="inline-flex min-h-11 items-center gap-1 rounded-full border border-line px-4 text-sm font-semibold hover:bg-panel2/60" rel="prev">
                 <ChevronLeft className="size-4" aria-hidden /> Previous
               </Link>
             ) : null}
-            <span className="px-3 text-sm text-ink/70">Page {result.page} of {result.pages}</span>
+            <span className="px-3 text-sm text-fg/70">Page {result.page} of {result.pages}</span>
             {result.page < result.pages ? (
               <Link href={hrefFor(result.page + 1)} className="inline-flex min-h-11 items-center gap-1 rounded-full bg-choc px-5 text-sm font-semibold text-cream hover:bg-espresso" rel="next">
                 Next <ChevronRight className="size-4" aria-hidden />

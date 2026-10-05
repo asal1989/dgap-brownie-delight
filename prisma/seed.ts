@@ -89,15 +89,19 @@ async function main() {
     });
   }
 
-  // Placeholder illustrations (public/images/products) for sample rows that have no image yet.
+  // Temporary stock photos (public/images/photos, see CREDITS.md) for SAMPLE rows that are still on placeholder art.
   const art: Record<string, string> = {
-    fudge: "fudge", nutella: "nutella", biscoff: "biscoff", "chocolate-chip": "chocolate-chip", nuts: "nuts", "assorted-boxes": "assorted-box",
+    fudge: "plate-stack", nutella: "swirl-rack", biscoff: "golden-stack", "chocolate-chip": "fudge-stack", nuts: "golden-stack", "assorted-boxes": "gift-box",
   };
+  const isPlaceholder = (u?: string) => !u || u.startsWith("/images/products/") || u.startsWith("/images/photos/");
   for (const [slug, file] of Object.entries(art)) {
     const categoryId = catIds.get(slug);
     if (!categoryId) continue;
-    await prisma.category.updateMany({ where: { id: categoryId, image: null }, data: { image: `/images/products/${file}.svg` } });
-    await prisma.product.updateMany({ where: { categoryId, isSample: true, images: { isEmpty: true } }, data: { images: [`/images/products/${file}.svg`] } });
+    const target = `/images/photos/${file}.jpg`;
+    const cat = await prisma.category.findUnique({ where: { id: categoryId } });
+    if (cat && isPlaceholder(cat.image ?? undefined)) await prisma.category.update({ where: { id: categoryId }, data: { image: target } });
+    const rows = await prisma.product.findMany({ where: { categoryId, isSample: true } });
+    for (const r of rows) if (isPlaceholder(r.images[0])) await prisma.product.update({ where: { id: r.id }, data: { images: [target] } });
   }
 
   // FAQs are seeded INACTIVE with empty answers: they never show until you write real answers and activate them.

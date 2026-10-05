@@ -17,12 +17,12 @@ export default async function AdminProducts({ searchParams }: { searchParams: Pr
     include: { category: true },
     orderBy: { createdAt: "desc" },
   });
-  const btn = "rounded-full border border-beige px-3 py-1.5 text-xs font-semibold hover:bg-beige/60";
+  const btn = "rounded-full border border-line px-3 py-1.5 text-xs font-semibold hover:bg-panel2/60";
   return (
     <>
       <AdminTitle title="Products" saved={!!saved} action={<AdminLink href="/admin/products/new"><Plus className="size-4" aria-hidden />New product</AdminLink>} />
       <form className="mb-4" role="search">
-        <input name="q" defaultValue={q} placeholder="Search name or SKU…" aria-label="Search products" className="h-11 w-full max-w-sm rounded-full border border-beige bg-white px-5 text-sm outline-none focus:border-caramel" />
+        <input name="q" defaultValue={q} placeholder="Search name or SKU…" aria-label="Search products" className="h-11 w-full max-w-sm rounded-full border border-line bg-panel px-5 text-sm outline-none focus:border-gold" />
       </form>
       <TableWrap>
         <thead>
@@ -34,18 +34,18 @@ export default async function AdminProducts({ searchParams }: { searchParams: Pr
             <tr key={p.id}>
               <td className={td}>
                 <div className="flex items-center gap-3">
-                  <span className="relative size-12 shrink-0 overflow-hidden rounded-lg bg-beige"><SmartImage src={p.images[0]} alt="" fill sizes="48px" className="object-cover" /></span>
+                  <span className="relative size-12 shrink-0 overflow-hidden rounded-lg bg-panel2"><SmartImage src={p.images[0]} alt="" fill sizes="48px" className="object-cover" /></span>
                   <div>
-                    <Link href={`/admin/products/${p.id}`} className="font-semibold text-choc hover:underline">{p.name}</Link>
-                    <p className="text-xs text-ink/70">{p.sku ?? "no SKU"}{p.isSample ? " · sample" : ""}</p>
+                    <Link href={`/admin/products/${p.id}`} className="font-semibold text-heading hover:underline">{p.name}</Link>
+                    <p className="text-xs text-fg/70">{p.sku ?? "no SKU"}{p.isSample ? " · sample" : ""}</p>
                   </div>
                 </div>
               </td>
               <td className={td}>{p.category.name}</td>
-              <td className={td}>{formatINR(p.price)}{p.compareAtPrice ? <span className="ml-1 text-xs text-ink/40 line-through">{formatINR(p.compareAtPrice)}</span> : null}</td>
+              <td className={td}>{formatINR(p.price)}{p.compareAtPrice ? <span className="ml-1 text-xs text-fg/40 line-through">{formatINR(p.compareAtPrice)}</span> : null}</td>
               <td className={td}><span className={p.stock === 0 ? "font-bold text-danger" : ""}>{p.stock}</span></td>
               <td className={td}>
-                <span className={p.isActive ? "text-success" : "text-ink/70"}>{p.isActive ? "Active" : "Hidden"}</span>
+                <span className={p.isActive ? "text-success" : "text-fg/70"}>{p.isActive ? "Active" : "Hidden"}</span>
                 {p.isBestSeller ? <span className="ml-2 text-xs text-caramel">★ best</span> : null}
               </td>
               <td className={`${td} whitespace-nowrap text-right`}>

@@ -15,7 +15,7 @@ export function FAQ({ items }: { items: FaqEntry[] }) {
   const [open, setOpen] = useState<string | null>(null);
   const base = useId();
   return (
-    <div className="mx-auto max-w-3xl divide-y divide-beige overflow-hidden rounded-2xl border border-beige bg-white">
+    <div className="mx-auto max-w-3xl divide-y divide-line overflow-hidden rounded-md border border-line bg-panel">
       {items.map((f) => {
         const isOpen = open === f.id;
         const panelId = `${base}-${f.id}`;
@@ -27,7 +27,7 @@ export function FAQ({ items }: { items: FaqEntry[] }) {
                 aria-expanded={isOpen}
                 aria-controls={panelId}
                 onClick={() => setOpen(isOpen ? null : f.id)}
-                className="flex min-h-16 w-full items-center justify-between gap-4 px-5 py-4 text-left font-sans text-base font-semibold tracking-normal text-choc transition hover:bg-cream sm:px-7 sm:text-lg"
+                className="flex min-h-16 w-full items-center justify-between gap-4 px-5 py-4 text-left font-sans text-base font-semibold tracking-normal text-heading transition hover:bg-page sm:px-7 sm:text-lg"
               >
                 <span>{f.question}</span>
                 <span className={cn("grid size-8 shrink-0 place-items-center rounded-full border border-caramel/40 text-caramel transition-all duration-300", isOpen && "rotate-45 bg-choc text-gold")}>
@@ -37,7 +37,7 @@ export function FAQ({ items }: { items: FaqEntry[] }) {
             </h3>
             <div id={panelId} role="region" aria-label={f.question} data-open={isOpen} inert={!isOpen} className="acc-panel">
               <div>
-                <p className="whitespace-pre-line px-5 pb-6 text-ink/75 sm:px-7">{f.answer}</p>
+                <p className="whitespace-pre-line px-5 pb-6 text-fg/75 sm:px-7">{f.answer}</p>
               </div>
             </div>
           </div>

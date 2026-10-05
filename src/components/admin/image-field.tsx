@@ -38,7 +38,7 @@ export function ImageField({ name, defaultValue, multiple = true, label }: { nam
       ) : (
         <input id={name} name={name} value={value} onChange={(e) => setValue(e.target.value)} className={adminInput} placeholder="/images/… or https://…" aria-label={label} />
       )}
-      <label className="inline-flex min-h-10 cursor-pointer items-center gap-2 rounded-full border border-beige bg-cream px-4 text-sm font-semibold text-choc hover:bg-beige/60">
+      <label className="inline-flex min-h-10 cursor-pointer items-center gap-2 rounded-full border border-line bg-page px-4 text-sm font-semibold text-heading hover:bg-panel2/60">
         <Upload className="size-4" aria-hidden /> {busy ? "Uploading…" : "Upload image"}
         <input type="file" accept="image/jpeg,image/png,image/webp,image/avif" multiple={multiple} className="sr-only" disabled={busy} onChange={(e) => upload(e.target.files)} />
       </label>

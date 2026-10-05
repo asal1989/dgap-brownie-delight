@@ -61,7 +61,7 @@ export function AdminFrame({ name, unread, children }: { name: string; unread: n
     </>
   );
   return (
-    <div className="min-h-dvh bg-[#f6efe6] lg:grid lg:grid-cols-[16rem_1fr]">
+    <div className="theme-light min-h-dvh bg-page text-fg lg:grid lg:grid-cols-[16rem_1fr]">
       <aside className="no-print sticky top-0 hidden h-dvh flex-col bg-espresso text-cream lg:flex">{sidebar}</aside>
       {open ? (
         <div className="fixed inset-0 z-50 lg:hidden" role="dialog" aria-modal="true" aria-label="Admin menu">
@@ -70,9 +70,9 @@ export function AdminFrame({ name, unread, children }: { name: string; unread: n
         </div>
       ) : null}
       <div className="min-w-0">
-        <header className="no-print sticky top-0 z-30 flex h-16 items-center justify-between border-b border-beige bg-white/90 px-4 backdrop-blur sm:px-6">
-          <button type="button" className="grid size-11 place-items-center rounded-full hover:bg-beige/60 lg:hidden" onClick={() => setOpen(true)} aria-label="Open admin menu"><Menu className="size-6" aria-hidden /></button>
-          <p className="text-sm text-ink/70">Signed in as <strong className="text-choc">{name}</strong></p>
+        <header className="no-print sticky top-0 z-30 flex h-16 items-center justify-between border-b border-line bg-panel/90 px-4 backdrop-blur sm:px-6">
+          <button type="button" className="grid size-11 place-items-center rounded-full hover:bg-panel2/60 lg:hidden" onClick={() => setOpen(true)} aria-label="Open admin menu"><Menu className="size-6" aria-hidden /></button>
+          <p className="text-sm text-fg/70">Signed in as <strong className="text-heading">{name}</strong></p>
         </header>
         <main id="main" className="p-4 sm:p-6 lg:p-8">{children}</main>
       </div>

@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 import { submitReview } from "@/actions/reviews";
 import { cn } from "@/lib/utils";
 
-const input = "w-full rounded-xl border border-beige bg-white px-4 py-3 text-sm outline-none focus:border-caramel";
+const input = "w-full rounded-xl border border-line bg-panel px-4 py-3 text-sm outline-none focus:border-gold";
 
 export function ReviewForm({ productId }: { productId: string }) {
   const [rating, setRating] = useState(0);
@@ -15,7 +15,7 @@ export function ReviewForm({ productId }: { productId: string }) {
 
   return (
     <form
-      className="space-y-4 rounded-3xl border border-beige bg-white p-6"
+      className="space-y-4 rounded-lg border border-line bg-panel p-6"
       onSubmit={(e) => {
         e.preventDefault();
         const form = e.currentTarget;
@@ -32,13 +32,13 @@ export function ReviewForm({ productId }: { productId: string }) {
         });
       }}
     >
-      <h3 className="font-display text-xl text-choc">Write a review</h3>
+      <h3 className="font-display text-xl text-heading">Write a review</h3>
       <fieldset>
         <legend className="mb-1 text-sm font-semibold">Your rating</legend>
         <div className="flex gap-1">
           {[1, 2, 3, 4, 5].map((n) => (
-            <button key={n} type="button" onClick={() => setRating(n)} aria-label={`${n} star${n > 1 ? "s" : ""}`} aria-pressed={rating === n} className="grid size-11 place-items-center rounded-full hover:bg-beige/60">
-              <Star className={cn("size-6", n <= rating ? "fill-gold text-gold" : "text-beige")} aria-hidden />
+            <button key={n} type="button" onClick={() => setRating(n)} aria-label={`${n} star${n > 1 ? "s" : ""}`} aria-pressed={rating === n} className="grid size-11 place-items-center rounded-full hover:bg-panel2/60">
+              <Star className={cn("size-6", n <= rating ? "fill-gold text-gold" : "text-fg/25")} aria-hidden />
             </button>
           ))}
         </div>

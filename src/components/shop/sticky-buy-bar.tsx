@@ -14,11 +14,11 @@ export function StickyBuyBar({ product, whatsappHref }: { product: CartProduct; 
   const router = useRouter();
   if (product.stock <= 0) return null;
   return (
-    <div className="no-print fixed inset-x-0 bottom-0 z-40 border-t border-beige bg-white/95 p-3 backdrop-blur lg:hidden">
+    <div className="no-print fixed inset-x-0 bottom-0 z-40 border-t border-gold/30 bg-page/95 p-3 backdrop-blur lg:hidden">
       <div className="mx-auto flex max-w-xl items-center gap-2">
         <div className="min-w-0 pr-1">
-          <p className="hidden max-w-40 truncate text-xs text-ink/70 sm:block">{product.name}</p>
-          <p className="text-xl font-bold leading-tight text-choc">{formatINR(product.price)}</p>
+          <p className="hidden max-w-40 truncate text-xs text-fg/70 sm:block">{product.name}</p>
+          <p className="text-xl font-bold leading-tight text-heading">{formatINR(product.price)}</p>
         </div>
         {whatsappHref ? (
           <a href={whatsappHref} target="_blank" rel="noopener noreferrer" aria-label="Order on WhatsApp" className="grid size-12 shrink-0 place-items-center rounded-full border-2 border-[#1f8f4e] text-[#1f8f4e]">

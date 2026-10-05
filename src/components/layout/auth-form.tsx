@@ -4,7 +4,7 @@ import { useState, useTransition } from "react";
 import { Button } from "@/components/ui/button";
 import { loginAction, registerAction } from "@/actions/auth";
 
-const input = "h-12 w-full rounded-xl border border-beige bg-white px-4 text-base outline-none focus:border-caramel focus:ring-2 focus:ring-caramel/20";
+const input = "h-12 w-full rounded-xl border border-line bg-panel px-4 text-base outline-none focus:border-gold focus:ring-2 focus:ring-caramel/20";
 
 export function AuthForm({ next }: { next: string }) {
   const [mode, setMode] = useState<"login" | "register">("login");
@@ -12,8 +12,8 @@ export function AuthForm({ next }: { next: string }) {
   const [pending, start] = useTransition();
 
   return (
-    <div className="mx-auto w-full max-w-md rounded-3xl border border-beige bg-white p-6 sm:p-8">
-      <div role="tablist" aria-label="Account" className="mb-6 grid grid-cols-2 rounded-full bg-beige/60 p-1">
+    <div className="mx-auto w-full max-w-md rounded-lg border border-line bg-panel p-6 sm:p-8">
+      <div role="tablist" aria-label="Account" className="mb-6 grid grid-cols-2 rounded-full bg-panel2/60 p-1">
         {(["login", "register"] as const).map((m) => (
           <button
             key={m}
@@ -24,7 +24,7 @@ export function AuthForm({ next }: { next: string }) {
               setMode(m);
               setError(null);
             }}
-            className={`min-h-11 rounded-full text-sm font-semibold transition ${mode === m ? "bg-choc text-cream" : "text-choc"}`}
+            className={`min-h-11 rounded-full text-sm font-semibold transition ${mode === m ? "bg-choc text-cream" : "text-heading"}`}
           >
             {m === "login" ? "Sign in" : "Create account"}
           </button>
@@ -61,7 +61,7 @@ export function AuthForm({ next }: { next: string }) {
         <Button type="submit" size="lg" className="w-full" disabled={pending}>
           {pending ? "Please wait…" : mode === "login" ? "Sign in" : "Create account"}
         </Button>
-        <p className="text-center text-xs text-ink/70">You can also check out as a guest, no account needed.</p>
+        <p className="text-center text-xs text-fg/70">You can also check out as a guest, no account needed.</p>
       </form>
     </div>
   );

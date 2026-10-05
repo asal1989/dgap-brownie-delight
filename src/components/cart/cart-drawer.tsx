@@ -75,18 +75,18 @@ export function CartDrawer() {
             role="dialog"
             aria-modal="true"
             aria-label="Shopping cart"
-            className={`absolute right-0 top-0 flex h-full w-full max-w-md flex-col bg-cream shadow-2xl transition-transform duration-[250ms] ease-out ${closing ? "translate-x-full" : "animate-slide-in"}`}
+            className={`absolute right-0 top-0 flex h-full w-full max-w-md flex-col bg-page shadow-2xl transition-transform duration-[250ms] ease-out ${closing ? "translate-x-full" : "animate-slide-in"}`}
           >
-            <div className="flex items-center justify-between border-b border-beige px-5 py-4">
-              <h2 className="font-display text-2xl text-choc">
-                Your cart <span className="text-base text-ink/70">({count})</span>
+            <div className="flex items-center justify-between border-b border-line px-5 py-4">
+              <h2 className="font-display text-2xl text-heading">
+                Your cart <span className="text-base text-fg/70">({count})</span>
               </h2>
               <button
                 type="button"
                 data-autofocus
                 onClick={actions.close}
                 aria-label="Close cart"
-                className="grid size-11 place-items-center rounded-full hover:bg-beige/70"
+                className="grid size-11 place-items-center rounded-full hover:bg-panel2/70"
               >
                 <X className="size-5" aria-hidden />
               </button>
@@ -95,8 +95,8 @@ export function CartDrawer() {
             {lines.length === 0 ? (
               <div className="flex flex-1 flex-col items-center justify-center gap-4 px-8 text-center">
                 <ShoppingBag className="size-12 text-caramel" aria-hidden />
-                <p className="font-display text-2xl text-choc">Your brownie box is feeling lonely.</p>
-                <p className="text-ink/70">Let&apos;s fix that.</p>
+                <p className="font-display text-2xl text-heading">Your brownie box is feeling lonely.</p>
+                <p className="text-fg/70">Let&apos;s fix that.</p>
                 <ButtonLink href="/shop" onClick={actions.close}>
                   Explore brownies
                 </ButtonLink>
@@ -104,7 +104,7 @@ export function CartDrawer() {
             ) : (
               <>
                 {remaining > 0 ? (
-                  <p className="bg-beige/50 px-5 py-2.5 text-center text-sm font-medium text-choc" role="status">
+                  <p className="bg-panel2/50 px-5 py-2.5 text-center text-sm font-medium text-heading" role="status">
                     You&apos;re {formatINR(remaining)} away from free delivery
                   </p>
                 ) : freeDeliveryThreshold > 0 ? (
@@ -112,41 +112,41 @@ export function CartDrawer() {
                     You&apos;ve unlocked free delivery
                   </p>
                 ) : null}
-                <ul className="flex-1 divide-y divide-beige overflow-y-auto px-5">
+                <ul className="flex-1 divide-y divide-line overflow-y-auto px-5">
                   {lines.map((l) => (
                     <li key={l.productId} className="flex gap-4 py-4">
-                      <Link href={`/shop/${l.slug}`} onClick={actions.close} className="relative size-20 shrink-0 overflow-hidden rounded-2xl bg-beige">
+                      <Link href={`/shop/${l.slug}`} onClick={actions.close} className="relative size-20 shrink-0 overflow-hidden rounded-md bg-panel2">
                         <SmartImage src={l.image} alt={l.name} fill sizes="80px" className="object-cover" />
                       </Link>
                       <div className="flex min-w-0 flex-1 flex-col">
                         <div className="flex items-start justify-between gap-2">
-                          <Link href={`/shop/${l.slug}`} onClick={actions.close} className="font-semibold leading-snug text-choc hover:underline">
+                          <Link href={`/shop/${l.slug}`} onClick={actions.close} className="font-semibold leading-snug text-heading hover:underline">
                             {l.name}
                           </Link>
                           <button
                             type="button"
                             onClick={() => actions.remove(l.productId)}
                             aria-label={`Remove ${l.name} from cart`}
-                            className="grid size-9 shrink-0 place-items-center rounded-full text-ink/70 hover:bg-beige/70 hover:text-danger"
+                            className="grid size-9 shrink-0 place-items-center rounded-full text-fg/70 hover:bg-panel2/70 hover:text-danger"
                           >
                             <Trash2 className="size-4" aria-hidden />
                           </button>
                         </div>
-                        <p className="text-sm text-ink/70">{formatINR(l.price)} each</p>
+                        <p className="text-sm text-fg/70">{formatINR(l.price)} each</p>
                         <div className="mt-auto flex items-center justify-between pt-2">
                           <QuantityStepper size="sm" value={l.quantity} min={0} label={l.name} onChange={(q) => actions.setQuantity(l.productId, q)} />
-                          <span className="font-bold text-choc">{formatINR(l.price * l.quantity)}</span>
+                          <span className="font-bold text-heading">{formatINR(l.price * l.quantity)}</span>
                         </div>
                       </div>
                     </li>
                   ))}
                 </ul>
-                <div className="space-y-3 border-t border-beige bg-white px-5 py-5">
+                <div className="space-y-3 border-t border-line bg-panel px-5 py-5">
                   <div className="flex items-center justify-between text-lg">
                     <span className="font-semibold">Subtotal</span>
-                    <span className="font-bold text-choc">{formatINR(subtotal)}</span>
+                    <span className="font-bold text-heading">{formatINR(subtotal)}</span>
                   </div>
-                  <p className="text-xs text-ink/70">Delivery and discounts are calculated at checkout.</p>
+                  <p className="text-xs text-fg/70">Delivery and discounts are calculated at checkout.</p>
                   <ButtonLink href="/checkout" size="lg" className="w-full" onClick={actions.close}>
                     Proceed to checkout
                   </ButtonLink>
