@@ -17,7 +17,7 @@ export function StickyBuyBar({ product, whatsappHref }: { product: CartProduct; 
     <div className="no-print fixed inset-x-0 bottom-0 z-40 border-t border-beige bg-white/95 p-3 backdrop-blur lg:hidden">
       <div className="mx-auto flex max-w-xl items-center gap-2">
         <div className="min-w-0 pr-1">
-          <p className="hidden max-w-40 truncate text-xs text-ink/60 sm:block">{product.name}</p>
+          <p className="hidden max-w-40 truncate text-xs text-ink/70 sm:block">{product.name}</p>
           <p className="text-xl font-bold leading-tight text-choc">{formatINR(product.price)}</p>
         </div>
         {whatsappHref ? (

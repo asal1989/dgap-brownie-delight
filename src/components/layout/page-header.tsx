@@ -20,7 +20,7 @@ export function Breadcrumbs({ items }: { items: Crumb[] }) {
     })),
   };
   return (
-    <nav aria-label="Breadcrumb" className="text-sm text-ink/60">
+    <nav aria-label="Breadcrumb" className="text-sm text-ink/70">
       <JsonLd data={ld} />
       <ol className="flex flex-wrap items-center gap-1">
         {items.map((c, i) => (

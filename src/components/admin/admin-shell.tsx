@@ -72,7 +72,7 @@ export function AdminFrame({ name, unread, children }: { name: string; unread: n
       <div className="min-w-0">
         <header className="no-print sticky top-0 z-30 flex h-16 items-center justify-between border-b border-beige bg-white/90 px-4 backdrop-blur sm:px-6">
           <button type="button" className="grid size-11 place-items-center rounded-full hover:bg-beige/60 lg:hidden" onClick={() => setOpen(true)} aria-label="Open admin menu"><Menu className="size-6" aria-hidden /></button>
-          <p className="text-sm text-ink/60">Signed in as <strong className="text-choc">{name}</strong></p>
+          <p className="text-sm text-ink/70">Signed in as <strong className="text-choc">{name}</strong></p>
         </header>
         <main id="main" className="p-4 sm:p-6 lg:p-8">{children}</main>
       </div>

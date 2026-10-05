@@ -117,7 +117,7 @@ export default async function ProductPage({ params }: { params: Params }) {
               <MessageCircle className="size-5" aria-hidden /> Order on WhatsApp
             </ButtonLink>
           ) : null}
-          {product.sku ? <p className="mt-6 text-xs text-ink/50">SKU: {product.sku}</p> : null}
+          {product.sku ? <p className="mt-6 text-xs text-ink/70">SKU: {product.sku}</p> : null}
 
           {details.length ? (
             <div className="mt-8 divide-y divide-beige rounded-3xl border border-beige bg-white">
@@ -147,7 +147,7 @@ export default async function ProductPage({ params }: { params: Params }) {
               ))}
             </ul>
           ) : (
-            <p className="rounded-3xl border border-dashed border-beige p-8 text-ink/60">No reviews yet. Be the first to share how it tasted.</p>
+            <p className="rounded-3xl border border-dashed border-beige p-8 text-ink/70">No reviews yet. Be the first to share how it tasted.</p>
           )}
           <ReviewForm productId={product.id} />
         </div>

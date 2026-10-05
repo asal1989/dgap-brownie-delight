@@ -89,6 +89,17 @@ async function main() {
     });
   }
 
+  // Placeholder illustrations (public/images/products) for sample rows that have no image yet.
+  const art: Record<string, string> = {
+    fudge: "fudge", nutella: "nutella", biscoff: "biscoff", "chocolate-chip": "chocolate-chip", nuts: "nuts", "assorted-boxes": "assorted-box",
+  };
+  for (const [slug, file] of Object.entries(art)) {
+    const categoryId = catIds.get(slug);
+    if (!categoryId) continue;
+    await prisma.category.updateMany({ where: { id: categoryId, image: null }, data: { image: `/images/products/${file}.svg` } });
+    await prisma.product.updateMany({ where: { categoryId, isSample: true, images: { isEmpty: true } }, data: { images: [`/images/products/${file}.svg`] } });
+  }
+
   // FAQs are seeded INACTIVE with empty answers: they never show until you write real answers and activate them.
   if ((await prisma.faq.count()) === 0) {
     await prisma.faq.createMany({

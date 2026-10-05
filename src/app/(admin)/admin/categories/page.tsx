@@ -40,7 +40,7 @@ export default async function AdminCategories({ searchParams }: { searchParams: 
             {categories.length === 0 ? <EmptyRow cols={4} text="No categories yet." /> : null}
             {categories.map((c) => (
               <tr key={c.id}>
-                <td className={td}><span className="font-semibold text-choc">{c.name}</span><p className="text-xs text-ink/50">/{c.slug}</p></td>
+                <td className={td}><span className="font-semibold text-choc">{c.name}</span><p className="text-xs text-ink/70">/{c.slug}</p></td>
                 <td className={td}>{c._count.products}</td>
                 <td className={td}>{c.isActive ? "Active" : "Hidden"}</td>
                 <td className={`${td} whitespace-nowrap text-right`}>

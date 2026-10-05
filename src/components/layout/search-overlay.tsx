@@ -94,11 +94,11 @@ export function SearchOverlay({ open, onClose }: { open: boolean; onClose: () =>
         </form>
         <div className="min-h-32 p-4" aria-live="polite">
           {!showResults ? (
-            <p className="py-8 text-center text-sm text-ink/60">Type at least 2 letters to search.</p>
+            <p className="py-8 text-center text-sm text-ink/70">Type at least 2 letters to search.</p>
           ) : status === "error" ? (
             <p className="py-8 text-center text-sm text-danger">Search is unavailable right now. Please try again.</p>
           ) : status === "loading" && results.length === 0 ? (
-            <p className="py-8 text-center text-sm text-ink/60">Searching…</p>
+            <p className="py-8 text-center text-sm text-ink/70">Searching…</p>
           ) : results.length === 0 ? (
             <p className="py-8 text-center text-sm text-ink/70">No brownies match &ldquo;{q}&rdquo;. Try another word.</p>
           ) : (
@@ -111,7 +111,7 @@ export function SearchOverlay({ open, onClose }: { open: boolean; onClose: () =>
                     </span>
                     <span className="min-w-0 flex-1">
                       <span className="block truncate font-semibold text-choc">{r.name}</span>
-                      <span className="text-xs text-ink/60">{r.category}</span>
+                      <span className="text-xs text-ink/70">{r.category}</span>
                     </span>
                     <span className="font-bold text-choc">{formatINR(r.price)}</span>
                   </Link>

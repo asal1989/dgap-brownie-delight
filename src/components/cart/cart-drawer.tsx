@@ -1,8 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useRef } from "react";
-import { AnimatePresence, motion } from "framer-motion";
+import { useEffect, useRef, useState } from "react";
 import { ShoppingBag, Trash2, X } from "lucide-react";
 import { SmartImage } from "@/components/ui/smart-image";
 import { ButtonLink } from "@/components/ui/button";
@@ -18,6 +17,15 @@ export function CartDrawer() {
   const { lines, open, subtotal, count, actions } = useCart();
   const { freeDeliveryThreshold } = useSiteConfig();
   const panelRef = useRef<HTMLDivElement>(null);
+  // Keep the drawer mounted briefly after closing so the exit animation can play.
+  const [mounted, setMounted] = useState(open);
+  if (open && !mounted) setMounted(true);
+  const closing = mounted && !open;
+  useEffect(() => {
+    if (open || !mounted) return;
+    const t = window.setTimeout(() => setMounted(false), 260);
+    return () => window.clearTimeout(t);
+  }, [open, mounted]);
 
   useEffect(() => {
     if (!open) return;
@@ -52,33 +60,26 @@ export function CartDrawer() {
 
   const remaining = freeDeliveryThreshold > 0 ? freeDeliveryThreshold - subtotal : 0;
 
+  if (!mounted) return null;
   return (
-    <AnimatePresence>
-      {open ? (
+    <>
+      {
         <div className="fixed inset-0 z-[60]">
-          <motion.div
-            className="absolute inset-0 bg-espresso/60 backdrop-blur-[2px]"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.2 }}
+          <div
+            className={`absolute inset-0 bg-espresso/60 backdrop-blur-[2px] transition-opacity duration-200 ${closing ? "opacity-0" : "animate-fade-in"}`}
             onClick={actions.close}
             aria-hidden
           />
-          <motion.div
+          <div
             ref={panelRef}
             role="dialog"
             aria-modal="true"
             aria-label="Shopping cart"
-            className="absolute right-0 top-0 flex h-full w-full max-w-md flex-col bg-cream shadow-2xl"
-            initial={{ x: "100%" }}
-            animate={{ x: 0 }}
-            exit={{ x: "100%" }}
-            transition={{ type: "tween", duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
+            className={`absolute right-0 top-0 flex h-full w-full max-w-md flex-col bg-cream shadow-2xl transition-transform duration-[250ms] ease-out ${closing ? "translate-x-full" : "animate-slide-in"}`}
           >
             <div className="flex items-center justify-between border-b border-beige px-5 py-4">
               <h2 className="font-display text-2xl text-choc">
-                Your cart <span className="text-base text-ink/50">({count})</span>
+                Your cart <span className="text-base text-ink/70">({count})</span>
               </h2>
               <button
                 type="button"
@@ -126,12 +127,12 @@ export function CartDrawer() {
                             type="button"
                             onClick={() => actions.remove(l.productId)}
                             aria-label={`Remove ${l.name} from cart`}
-                            className="grid size-9 shrink-0 place-items-center rounded-full text-ink/50 hover:bg-beige/70 hover:text-danger"
+                            className="grid size-9 shrink-0 place-items-center rounded-full text-ink/70 hover:bg-beige/70 hover:text-danger"
                           >
                             <Trash2 className="size-4" aria-hidden />
                           </button>
                         </div>
-                        <p className="text-sm text-ink/60">{formatINR(l.price)} each</p>
+                        <p className="text-sm text-ink/70">{formatINR(l.price)} each</p>
                         <div className="mt-auto flex items-center justify-between pt-2">
                           <QuantityStepper size="sm" value={l.quantity} min={0} label={l.name} onChange={(q) => actions.setQuantity(l.productId, q)} />
                           <span className="font-bold text-choc">{formatINR(l.price * l.quantity)}</span>
@@ -145,7 +146,7 @@ export function CartDrawer() {
                     <span className="font-semibold">Subtotal</span>
                     <span className="font-bold text-choc">{formatINR(subtotal)}</span>
                   </div>
-                  <p className="text-xs text-ink/60">Delivery and discounts are calculated at checkout.</p>
+                  <p className="text-xs text-ink/70">Delivery and discounts are calculated at checkout.</p>
                   <ButtonLink href="/checkout" size="lg" className="w-full" onClick={actions.close}>
                     Proceed to checkout
                   </ButtonLink>
@@ -158,9 +159,9 @@ export function CartDrawer() {
                 </div>
               </>
             )}
-          </motion.div>
+          </div>
         </div>
-      ) : null}
-    </AnimatePresence>
+      }
+    </>
   );
 }

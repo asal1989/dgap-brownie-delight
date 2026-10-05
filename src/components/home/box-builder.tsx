@@ -40,10 +40,13 @@ export function BoxBuilder({ products }: { products: BoxProduct[] }) {
   }
 
   function change(p: BoxProduct, delta: number) {
-    const current = picks[p.id] ?? 0;
-    const next = Math.max(0, Math.min(current + delta, p.stock));
-    if (delta > 0 && remaining <= 0) return;
-    setPicks({ ...picks, [p.id]: next });
+    // Functional update so rapid taps never read stale state.
+    setPicks((prev) => {
+      const count = Object.values(prev).reduce((n, q) => n + q, 0);
+      if (delta > 0 && count >= size) return prev;
+      const next = Math.max(0, Math.min((prev[p.id] ?? 0) + delta, p.stock));
+      return { ...prev, [p.id]: next };
+    });
   }
 
   function addBox() {
@@ -57,31 +60,43 @@ export function BoxBuilder({ products }: { products: BoxProduct[] }) {
   }
 
   return (
-    <div className="mx-auto max-w-4xl rounded-[2rem] bg-white p-5 shadow-card sm:p-8">
+    <div className="mx-auto max-w-4xl rounded-2xl border border-beige bg-white p-5 shadow-card sm:p-9">
       <ol className="mb-8 grid grid-cols-4 gap-2" aria-label="Box builder steps">
         {STEPS.map((label, i) => (
           <li key={label} aria-current={i === step ? "step" : undefined} className="text-center">
             <span
               className={cn(
                 "mx-auto grid size-9 place-items-center rounded-full text-sm font-bold transition",
-                i < step ? "bg-success text-white" : i === step ? "bg-choc text-gold" : "bg-beige text-ink/50",
+                i < step ? "bg-success text-white" : i === step ? "bg-choc text-gold" : "bg-beige text-ink/70",
               )}
             >
               {i < step ? <Check className="size-4" aria-hidden /> : i + 1}
             </span>
-            <span className={cn("mt-1.5 block text-[11px] font-semibold sm:text-xs", i === step ? "text-choc" : "text-ink/50")}>{label}</span>
+            <span className={cn("mt-1.5 block text-[11px] font-semibold sm:text-xs", i === step ? "text-choc" : "text-ink/70")}>{label}</span>
           </li>
         ))}
       </ol>
 
+      {step >= 1 ? (
+        <div className="mb-6 rounded-xl bg-cream p-4" aria-live="polite">
+          <div className="flex items-center justify-between text-sm">
+            <span className="font-semibold text-choc">{filled} of {size} chosen</span>
+            <span className="font-display text-xl font-bold text-choc">{formatINR(total)}</span>
+          </div>
+          <div className="mt-2.5 h-2 overflow-hidden rounded-full bg-beige" role="progressbar" aria-valuemin={0} aria-valuemax={size} aria-valuenow={filled} aria-label="Box fill">
+            <div className="h-full rounded-full bg-caramel transition-all duration-500" style={{ width: `${Math.min(100, (filled / size) * 100)}%` }} />
+          </div>
+        </div>
+      ) : null}
+
       {step === 0 ? (
-        <fieldset>
+        <fieldset key="s0" className="animate-fade-up">
           <legend className="font-display text-2xl text-choc">How many brownies in your box?</legend>
           <div className="mt-5 grid grid-cols-2 gap-3 sm:grid-cols-4">
             {SIZES.map((n) => (
               <label key={n} className="cursor-pointer">
                 <input type="radio" name="box-size" value={n} checked={size === n} onChange={() => chooseSize(n)} className="peer sr-only" />
-                <span className="grid min-h-24 place-items-center rounded-2xl border-2 border-beige text-center transition peer-checked:border-choc peer-checked:bg-choc peer-checked:text-cream peer-focus-visible:outline peer-focus-visible:outline-2 peer-focus-visible:outline-offset-2 peer-focus-visible:outline-caramel">
+                <span className="grid min-h-24 place-items-center rounded-xl border-2 border-beige text-center transition peer-checked:border-choc peer-checked:bg-choc peer-checked:text-cream peer-focus-visible:outline peer-focus-visible:outline-2 peer-focus-visible:outline-offset-2 peer-focus-visible:outline-caramel">
                   <span>
                     <span className="block font-display text-4xl font-bold">{n}</span>
                     <span className="text-xs font-semibold uppercase tracking-widest opacity-70">brownies</span>
@@ -94,24 +109,29 @@ export function BoxBuilder({ products }: { products: BoxProduct[] }) {
       ) : null}
 
       {step === 1 ? (
-        <div>
+        <div key="s1" className="animate-fade-up">
           <div className="flex flex-wrap items-end justify-between gap-2">
             <h3 className="font-display text-2xl text-choc">Choose your flavours</h3>
             <p className="text-sm font-semibold text-caramel" role="status">
               {remaining > 0 ? `${remaining} more to fill your box of ${size}` : `Your box of ${size} is full`}
             </p>
           </div>
-          <ul className="mt-5 grid gap-3 sm:grid-cols-2">
+          <ul className="mt-7 grid grid-cols-[minmax(0,1fr)] gap-x-3 gap-y-5 sm:grid-cols-2">
             {products.map((p) => {
               const q = picks[p.id] ?? 0;
               return (
-                <li key={p.id} className={cn("flex items-center gap-3 rounded-2xl border-2 p-2.5 transition", q > 0 ? "border-choc bg-cream" : "border-beige")}>
-                  <span className="relative size-16 shrink-0 overflow-hidden rounded-xl bg-beige">
+                <li key={p.id} className={cn("relative flex items-center gap-3 rounded-xl border-2 p-2.5 transition-all duration-200", q > 0 ? "border-choc bg-cream shadow-card" : "border-beige hover:border-caramel/50")}>
+                  {q > 0 ? (
+                    <span className="absolute -top-2.5 left-3 inline-flex items-center gap-1 rounded-full bg-choc px-2.5 py-0.5 text-[11px] font-bold text-gold">
+                      <Check className="size-3" aria-hidden /> Selected
+                    </span>
+                  ) : null}
+                  <span className="relative size-16 shrink-0 overflow-hidden rounded-lg bg-beige">
                     <SmartImage src={p.image} alt="" fill sizes="64px" className="object-cover" />
                   </span>
                   <span className="min-w-0 flex-1">
                     <span className="block truncate text-sm font-semibold text-choc">{p.name}</span>
-                    <span className="text-xs text-ink/60">{formatINR(p.price)} each</span>
+                    <span className="text-xs text-ink/70">{formatINR(p.price)} each</span>
                   </span>
                   <span className="flex items-center gap-1">
                     <button type="button" onClick={() => change(p, -1)} disabled={q === 0} aria-label={`Remove one ${p.name}`} className="grid size-10 place-items-center rounded-full hover:bg-beige disabled:opacity-30">
@@ -130,7 +150,7 @@ export function BoxBuilder({ products }: { products: BoxProduct[] }) {
       ) : null}
 
       {step >= 2 ? (
-        <div>
+        <div key={`s${step}`} className="animate-fade-up">
           <h3 className="font-display text-2xl text-choc">{step === 2 ? "Review your box" : "Ready to add"}</h3>
           <ul className="mt-5 divide-y divide-beige rounded-2xl border border-beige">
             {chosen.map((p) => (
@@ -153,7 +173,7 @@ export function BoxBuilder({ products }: { products: BoxProduct[] }) {
         <Button variant="ghost" onClick={() => setStep(Math.max(0, step - 1))} disabled={step === 0}>
           Back
         </Button>
-        <p className="hidden text-sm text-ink/60 sm:block">
+        <p className="hidden text-sm text-ink/70 sm:block">
           {filled > 0 ? `${filled}/${size} chosen · ${formatINR(total)}` : "Prices come from our live menu"}
         </p>
         {step < 3 ? (

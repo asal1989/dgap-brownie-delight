@@ -8,7 +8,7 @@ export function AField({ id, label, hint, children, className }: { id: string; l
     <div className={className}>
       <label htmlFor={id} className="mb-1.5 block text-sm font-semibold text-choc">{label}</label>
       {children}
-      {hint ? <p className="mt-1 text-xs text-ink/55">{hint}</p> : null}
+      {hint ? <p className="mt-1 text-xs text-ink/70">{hint}</p> : null}
     </div>
   );
 }

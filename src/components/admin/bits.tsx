@@ -34,12 +34,12 @@ export function StatusPill({ status }: { status: OrderStatusValue }) {
 export function DashboardCard({ label, value, hint, icon }: { label: string; value: string | number; hint?: string; icon?: ReactNode }) {
   return (
     <div className="rounded-2xl border border-beige bg-white p-5">
-      <div className="flex items-center justify-between text-sm text-ink/60">
+      <div className="flex items-center justify-between text-sm text-ink/70">
         <span>{label}</span>
         {icon}
       </div>
       <p className="mt-2 font-display text-3xl font-bold text-choc">{value}</p>
-      {hint ? <p className="mt-1 text-xs text-ink/50">{hint}</p> : null}
+      {hint ? <p className="mt-1 text-xs text-ink/70">{hint}</p> : null}
     </div>
   );
 }
@@ -51,13 +51,13 @@ export function TableWrap({ children }: { children: ReactNode }) {
     </div>
   );
 }
-export const th = "whitespace-nowrap bg-cream px-4 py-3 text-xs font-bold uppercase tracking-wider text-ink/60";
+export const th = "whitespace-nowrap bg-cream px-4 py-3 text-xs font-bold uppercase tracking-wider text-ink/70";
 export const td = "border-t border-beige px-4 py-3 align-middle";
 
 export function EmptyRow({ cols, text }: { cols: number; text: string }) {
   return (
     <tr>
-      <td colSpan={cols} className="px-4 py-12 text-center text-ink/55">{text}</td>
+      <td colSpan={cols} className="px-4 py-12 text-center text-ink/70">{text}</td>
     </tr>
   );
 }

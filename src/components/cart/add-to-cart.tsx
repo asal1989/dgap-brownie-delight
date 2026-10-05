@@ -16,10 +16,9 @@ function toLine(p: CartProduct): Omit<CartLine, "quantity"> {
   return { productId: p.productId, slug: p.slug, name: p.name, price: p.price, image: p.image };
 }
 
-/** Product-card controls: Add to cart -> quantity stepper, plus a Buy now shortcut. */
+/** Product-card controls: Add to cart, then a quantity stepper once it is in the cart. */
 export function CardCartControls({ product }: { product: CartProduct }) {
   const { lines, actions } = useCart();
-  const router = useRouter();
   const inCart = lines.find((l) => l.productId === product.productId)?.quantity ?? 0;
   const soldOut = product.stock <= 0;
 
@@ -56,16 +55,6 @@ export function CardCartControls({ product }: { product: CartProduct }) {
           Add to cart
         </Button>
       )}
-      <button
-        type="button"
-        className="min-h-10 rounded-full text-xs font-bold uppercase tracking-[0.16em] text-caramel transition hover:text-choc"
-        onClick={() => {
-          if (inCart === 0) actions.add(toLine(product));
-          router.push("/checkout");
-        }}
-      >
-        Buy now →
-      </button>
     </div>
   );
 }

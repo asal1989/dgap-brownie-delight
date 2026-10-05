@@ -77,7 +77,7 @@ export default async function AdminSettings() {
           </Panel>
 
           <Panel title="Pages & policies" className="xl:col-span-2">
-            <p className="mb-4 text-sm text-ink/60">Write these yourself. Empty policies show a neutral &ldquo;being finalised&rdquo; message instead of made-up terms.</p>
+            <p className="mb-4 text-sm text-ink/70">Write these yourself. Empty policies show a neutral &ldquo;being finalised&rdquo; message instead of made-up terms.</p>
             <div className="grid gap-4 lg:grid-cols-2">
               {area("aboutStory", "About / brand story", 6)}
               {area("policyShipping", "Shipping policy", 6)}

@@ -49,7 +49,7 @@ function Field({ id, label, error, hint, children }: { id: string; label: string
     <div>
       <label htmlFor={id} className="mb-1.5 block text-sm font-semibold text-choc">{label}</label>
       {children}
-      {hint && !error ? <p className="mt-1 text-xs text-ink/55">{hint}</p> : null}
+      {hint && !error ? <p className="mt-1 text-xs text-ink/70">{hint}</p> : null}
       {error ? <p id={`${id}-err`} className="mt-1 text-sm text-danger" role="alert">{error}</p> : null}
     </div>
   );
@@ -260,7 +260,7 @@ export function CheckoutForm({ methods, prefill, deliveryAreas, sameDay, expecte
             {submitting ? <Loader2 className="size-5 animate-spin" aria-hidden /> : <Lock className="size-4" aria-hidden />}
             {submitting ? "Placing order…" : quote ? `Place order · ${formatINR(quote.total)}` : "Place order"}
           </Button>
-          <p className="text-center text-xs text-ink/55">
+          <p className="text-center text-xs text-ink/70">
             By placing your order you agree to our <Link href="/terms" className="underline">Terms</Link> and <Link href="/refund-policy" className="underline">Refund policy</Link>.
           </p>
         </aside>

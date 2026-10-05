@@ -37,7 +37,7 @@ export default async function AdminProducts({ searchParams }: { searchParams: Pr
                   <span className="relative size-12 shrink-0 overflow-hidden rounded-lg bg-beige"><SmartImage src={p.images[0]} alt="" fill sizes="48px" className="object-cover" /></span>
                   <div>
                     <Link href={`/admin/products/${p.id}`} className="font-semibold text-choc hover:underline">{p.name}</Link>
-                    <p className="text-xs text-ink/50">{p.sku ?? "no SKU"}{p.isSample ? " · sample" : ""}</p>
+                    <p className="text-xs text-ink/70">{p.sku ?? "no SKU"}{p.isSample ? " · sample" : ""}</p>
                   </div>
                 </div>
               </td>
@@ -45,7 +45,7 @@ export default async function AdminProducts({ searchParams }: { searchParams: Pr
               <td className={td}>{formatINR(p.price)}{p.compareAtPrice ? <span className="ml-1 text-xs text-ink/40 line-through">{formatINR(p.compareAtPrice)}</span> : null}</td>
               <td className={td}><span className={p.stock === 0 ? "font-bold text-danger" : ""}>{p.stock}</span></td>
               <td className={td}>
-                <span className={p.isActive ? "text-success" : "text-ink/50"}>{p.isActive ? "Active" : "Hidden"}</span>
+                <span className={p.isActive ? "text-success" : "text-ink/70"}>{p.isActive ? "Active" : "Hidden"}</span>
                 {p.isBestSeller ? <span className="ml-2 text-xs text-caramel">★ best</span> : null}
               </td>
               <td className={`${td} whitespace-nowrap text-right`}>

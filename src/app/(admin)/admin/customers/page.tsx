@@ -27,7 +27,7 @@ export default async function AdminCustomers({ searchParams }: { searchParams: P
           {customers.map((c) => (
             <tr key={c.id}>
               <td className={`${td} font-semibold text-choc`}>{c.name}</td>
-              <td className={td}>{c.phone ?? "-"}<br /><span className="text-xs text-ink/50">{c.email ?? ""}</span></td>
+              <td className={td}>{c.phone ?? "-"}<br /><span className="text-xs text-ink/70">{c.email ?? ""}</span></td>
               <td className={td}>{c.passwordHash ? "Registered" : "Guest"}</td>
               <td className={td}>{c.orders.length}</td>
               <td className={`${td} text-right font-semibold`}>{formatINR(c.orders.reduce((n, o) => n + o.total, 0))}</td>

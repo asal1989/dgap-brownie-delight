@@ -25,7 +25,7 @@ export default async function AdminCoupons({ searchParams }: { searchParams: Pro
             {coupons.map((x) => (
               <tr key={x.id}>
                 <td className={`${td} font-mono font-semibold`}>{x.code}</td>
-                <td className={td}>{x.discountType === "PERCENTAGE" ? `${x.discountValue}%` : formatINR(x.discountValue)}{x.minimumOrder ? <span className="block text-xs text-ink/50">min {formatINR(x.minimumOrder)}</span> : null}</td>
+                <td className={td}>{x.discountType === "PERCENTAGE" ? `${x.discountValue}%` : formatINR(x.discountValue)}{x.minimumOrder ? <span className="block text-xs text-ink/70">min {formatINR(x.minimumOrder)}</span> : null}</td>
                 <td className={td}>{x.usedCount}{x.usageLimit ? ` / ${x.usageLimit}` : ""}</td>
                 <td className={td}>{x.expiresAt ? x.expiresAt.toLocaleDateString("en-IN") : "Never"}</td>
                 <td className={td}>{x.isActive ? "Active" : "Off"}</td>

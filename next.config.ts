@@ -9,6 +9,8 @@ const securityHeaders = [
 
 const nextConfig: NextConfig = {
   poweredByHeader: false,
+  // Render <title>/<meta> inside <head> for every client (no streamed metadata): better for SEO tools & crawlers.
+  htmlLimitedBots: /.*/,
   images: {
     formats: ["image/avif", "image/webp"],
     // Admins may paste image URLs from their own CDN / Instagram exports.

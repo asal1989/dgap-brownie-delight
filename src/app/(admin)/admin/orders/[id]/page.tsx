@@ -26,7 +26,7 @@ export default async function AdminOrderDetail({ params }: { params: Promise<{ i
             <ul className="divide-y divide-beige">
               {order.items.map((i) => (
                 <li key={i.id} className="flex justify-between gap-4 py-3 text-sm">
-                  <span>{i.quantity} × {i.name} <span className="text-ink/50">@ {formatINR(i.unitPrice)}</span></span>
+                  <span>{i.quantity} × {i.name} <span className="text-ink/70">@ {formatINR(i.unitPrice)}</span></span>
                   <span className="font-semibold">{formatINR(i.quantity * i.unitPrice)}</span>
                 </li>
               ))}
@@ -54,7 +54,7 @@ export default async function AdminOrderDetail({ params }: { params: Promise<{ i
           <Panel title="Status">
             <p className="mb-3"><StatusPill status={order.status} /></p>
             {locked ? (
-              <p className="text-sm text-ink/60">Cancelled orders can&apos;t be changed (stock was restored).</p>
+              <p className="text-sm text-ink/70">Cancelled orders can&apos;t be changed (stock was restored).</p>
             ) : (
               <form key={order.status} action={updateOrderStatus} className="no-print space-y-3">
                 <input type="hidden" name="id" value={order.id} />
@@ -69,14 +69,14 @@ export default async function AdminOrderDetail({ params }: { params: Promise<{ i
             <p className="text-sm font-semibold">{order.customerName}</p>
             <p className="text-sm">{order.customerPhone}</p>
             {order.customerEmail ? <p className="break-all text-sm">{order.customerEmail}</p> : null}
-            <p className="mt-2 text-xs text-ink/50">Placed {order.createdAt.toLocaleString("en-IN")}</p>
+            <p className="mt-2 text-xs text-ink/70">Placed {order.createdAt.toLocaleString("en-IN")}</p>
           </Panel>
           <Panel title="Payment">
             {order.payment ? (
               <>
                 <p className="text-sm">{order.payment.method} · <strong>{order.payment.status}</strong></p>
                 <p className="text-sm">{formatINR(order.payment.amount)}</p>
-                {order.payment.providerPaymentId ? <p className="break-all text-xs text-ink/50">Ref: {order.payment.providerPaymentId}</p> : null}
+                {order.payment.providerPaymentId ? <p className="break-all text-xs text-ink/70">Ref: {order.payment.providerPaymentId}</p> : null}
                 {order.payment.method === "COD" && order.payment.status === "PENDING" && !locked ? (
                   <form action={markCodPaid} className="no-print mt-3">
                     <input type="hidden" name="id" value={order.id} />
@@ -84,7 +84,7 @@ export default async function AdminOrderDetail({ params }: { params: Promise<{ i
                   </form>
                 ) : null}
               </>
-            ) : <p className="text-sm text-ink/60">No payment record.</p>}
+            ) : <p className="text-sm text-ink/70">No payment record.</p>}
           </Panel>
         </div>
       </div>

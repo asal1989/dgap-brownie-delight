@@ -49,10 +49,10 @@ export function Navbar({ brandName, logo }: { brandName: string; logo: string })
     <header
       className={cn(
         "no-print sticky top-0 z-50 transition-all duration-300",
-        scrolled ? "bg-cream/90 shadow-[0_1px_0_var(--beige)] backdrop-blur-md" : "bg-cream",
+        scrolled ? "bg-cream/85 shadow-[0_1px_0_var(--beige)] backdrop-blur-md" : "bg-cream",
       )}
     >
-      <div className="container-page flex h-16 items-center justify-between gap-4 lg:h-20">
+      <div className={cn("container-page flex items-center justify-between gap-4 transition-all duration-300", scrolled ? "h-14 lg:h-16" : "h-16 lg:h-20")}>
         <Logo logo={logo} brandName={brandName} />
 
         <nav aria-label="Main" className="hidden items-center gap-1 lg:flex">
@@ -87,9 +87,9 @@ export function Navbar({ brandName, logo }: { brandName: string; logo: string })
             <User className="size-6" aria-hidden />
           </Link>
           <CartButton />
-          <ButtonLink href="/shop" size="sm" className="ml-2 hidden lg:inline-flex">
-            Order now
-          </ButtonLink>
+          <span className="ml-2 hidden lg:block">
+            <ButtonLink href="/shop" size="sm">Shop now</ButtonLink>
+          </span>
           <button
             type="button"
             onClick={() => setMenuOpen(true)}
@@ -104,32 +104,32 @@ export function Navbar({ brandName, logo }: { brandName: string; logo: string })
 
       {menuOpen ? (
         <div className="fixed inset-0 z-[60] lg:hidden" role="dialog" aria-modal="true" aria-label="Menu">
-          <div className="absolute inset-0 bg-espresso/60" onClick={() => setMenuOpen(false)} aria-hidden />
-          <div className="animate-fade-up absolute inset-y-0 right-0 flex w-[88%] max-w-sm flex-col bg-espresso p-6 text-cream">
+          <div className="animate-fade-in absolute inset-0 bg-espresso/60" onClick={() => setMenuOpen(false)} aria-hidden />
+          <div className="animate-slide-in absolute inset-y-0 right-0 flex w-[88%] max-w-sm flex-col overflow-y-auto bg-espresso p-6 text-cream">
             <div className="flex items-center justify-between">
               <Logo logo={logo} brandName={brandName} tone="light" />
               <button type="button" onClick={() => setMenuOpen(false)} aria-label="Close menu" className="grid size-11 place-items-center rounded-full hover:bg-white/10">
                 <X className="size-6" aria-hidden />
               </button>
             </div>
-            <nav aria-label="Mobile" className="mt-8 flex flex-1 flex-col">
-              {LINKS.map((l) => (
+            <ButtonLink href="/shop" variant="caramel" size="lg" className="mt-7 w-full" onClick={() => setMenuOpen(false)}>
+              Shop brownies
+            </ButtonLink>
+            <nav aria-label="Mobile" className="mt-4 flex flex-1 flex-col">
+              {LINKS.filter((l) => l.label !== "Shop").map((l) => (
                 <Link
                   key={l.label}
                   href={l.href}
                   onClick={() => setMenuOpen(false)}
-                  className="border-b border-white/10 py-4 font-display text-2xl hover:text-gold"
+                  className="border-b border-white/10 py-3.5 font-display text-2xl hover:text-gold"
                 >
                   {l.label}
                 </Link>
               ))}
-              <Link href="/account" onClick={() => setMenuOpen(false)} className="border-b border-white/10 py-4 font-display text-2xl hover:text-gold">
+              <Link href="/account" onClick={() => setMenuOpen(false)} className="border-b border-white/10 py-3.5 font-display text-2xl hover:text-gold">
                 My account
               </Link>
             </nav>
-            <ButtonLink href="/shop" variant="caramel" size="lg" onClick={() => setMenuOpen(false)}>
-              Order now
-            </ButtonLink>
           </div>
         </div>
       ) : null}

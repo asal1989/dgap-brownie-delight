@@ -6,7 +6,7 @@
   --espresso: #160b08;
   --cream: #fff8f0;
   --beige: #ead8c5;
-  --caramel: #b87333;
+  --caramel: #9a5b1f;
   --gold: #c89452;
   --ink: #241815;
   --white: #ffffff;
@@ -114,3 +114,26 @@ h1, h2, h3, .font-display {
   .no-print { display: none !important; }
   body { background: white; }
 }
+
+/* Layout rhythm */
+.section { padding-block: 4.5rem; }
+@media (min-width: 1024px) { .section { padding-block: 7rem; } }
+
+.no-scrollbar { scrollbar-width: none; -ms-overflow-style: none; }
+.no-scrollbar::-webkit-scrollbar { display: none; }
+
+@keyframes slide-in-right {
+  from { transform: translateX(100%); }
+  to { transform: none; }
+}
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+.animate-slide-in { animation: slide-in-right 0.32s cubic-bezier(0.22, 1, 0.36, 1) both; }
+.animate-fade-in { animation: fade-in 0.25s ease-out both; }
+
+/* Smooth accordion height via grid rows */
+.acc-panel { display: grid; grid-template-rows: 0fr; transition: grid-template-rows 0.35s cubic-bezier(0.22, 1, 0.36, 1); }
+.acc-panel[data-open="true"] { grid-template-rows: 1fr; }
+.acc-panel > div { overflow: hidden; }

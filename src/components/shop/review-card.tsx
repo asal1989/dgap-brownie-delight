@@ -25,7 +25,7 @@ export function ReviewCard({
         </span>
         <span className="text-sm">
           <span className="block font-semibold text-choc">{name}</span>
-          <span className="text-xs text-ink/55">
+          <span className="text-xs text-ink/70">
             {productName ? `${productName}` : "Customer review"}
             {date ? ` · ${date.toLocaleDateString("en-IN", { month: "short", year: "numeric" })}` : ""}
           </span>

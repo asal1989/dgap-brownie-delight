@@ -4,7 +4,7 @@ import { cn } from "@/lib/utils";
 
 export function Logo({ logo, brandName, tone = "dark", className }: { logo?: string; brandName: string; tone?: "dark" | "light"; className?: string }) {
   return (
-    <Link href="/" aria-label={`${brandName} home`} className={cn("flex items-center gap-2.5", className)}>
+    <Link href="/" title={brandName} className={cn("flex items-center gap-2.5", className)}>
       {logo ? (
         <Image src={logo} alt="" width={40} height={40} className="size-10 rounded-full object-cover" unoptimized={logo.endsWith(".svg")} />
       ) : (

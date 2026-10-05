@@ -61,7 +61,7 @@ export function AuthForm({ next }: { next: string }) {
         <Button type="submit" size="lg" className="w-full" disabled={pending}>
           {pending ? "Please wait…" : mode === "login" ? "Sign in" : "Create account"}
         </Button>
-        <p className="text-center text-xs text-ink/55">You can also check out as a guest, no account needed.</p>
+        <p className="text-center text-xs text-ink/70">You can also check out as a guest, no account needed.</p>
       </form>
     </div>
   );

@@ -59,10 +59,10 @@ export function CartView() {
                   <Link href={`/shop/${l.slug}`} className="font-display text-lg font-semibold text-choc hover:underline">{l.name}</Link>
                   <span className="font-bold text-choc">{formatINR(l.price * l.quantity)}</span>
                 </div>
-                <p className="text-sm text-ink/60">{formatINR(l.price)} each</p>
+                <p className="text-sm text-ink/70">{formatINR(l.price)} each</p>
                 <div className="mt-auto flex items-center justify-between pt-3">
                   <QuantityStepper value={l.quantity} min={0} label={l.name} onChange={(q) => actions.setQuantity(l.productId, q)} />
-                  <button type="button" onClick={() => actions.remove(l.productId)} aria-label={`Remove ${l.name}`} className="flex min-h-11 items-center gap-1.5 rounded-full px-3 text-sm text-ink/60 hover:bg-beige/60 hover:text-danger">
+                  <button type="button" onClick={() => actions.remove(l.productId)} aria-label={`Remove ${l.name}`} className="flex min-h-11 items-center gap-1.5 rounded-full px-3 text-sm text-ink/70 hover:bg-beige/60 hover:text-danger">
                     <Trash2 className="size-4" aria-hidden /> Remove
                   </button>
                 </div>
@@ -72,7 +72,7 @@ export function CartView() {
         </ul>
         <div className="mt-4 flex justify-between">
           <Link href="/shop" className="text-sm font-semibold text-caramel hover:underline">← Continue shopping</Link>
-          <button type="button" onClick={actions.clear} className="text-sm font-semibold text-ink/60 hover:text-danger">Clear cart</button>
+          <button type="button" onClick={actions.clear} className="text-sm font-semibold text-ink/70 hover:text-danger">Clear cart</button>
         </div>
       </div>
 

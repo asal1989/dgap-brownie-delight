@@ -33,7 +33,7 @@ export default async function MyOrdersPage() {
                   <p className="font-semibold text-choc">{o.orderNumber}</p>
                   <span className="rounded-full bg-beige px-3 py-1 text-xs font-bold uppercase tracking-wider text-choc">{STATUS_LABEL[o.status]}</span>
                 </div>
-                <p className="mt-1 text-sm text-ink/60">{o.createdAt.toLocaleDateString("en-IN", { dateStyle: "medium" })} · {o.items.reduce((n, i) => n + i.quantity, 0)} items</p>
+                <p className="mt-1 text-sm text-ink/70">{o.createdAt.toLocaleDateString("en-IN", { dateStyle: "medium" })} · {o.items.reduce((n, i) => n + i.quantity, 0)} items</p>
                 <ul className="mt-3 text-sm text-ink/80">
                   {o.items.map((i) => <li key={i.id}>{i.quantity} × {i.name}</li>)}
                 </ul>

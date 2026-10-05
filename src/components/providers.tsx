@@ -1,7 +1,6 @@
 "use client";
 
 import { createContext, useContext, type ReactNode } from "react";
-import { MotionConfig } from "framer-motion";
 import type { PublicConfig } from "@/lib/config";
 
 const ConfigContext = createContext<PublicConfig>({
@@ -18,8 +17,6 @@ export function useSiteConfig(): PublicConfig {
 
 export function Providers({ config, children }: { config: PublicConfig; children: ReactNode }) {
   return (
-    <ConfigContext.Provider value={config}>
-      <MotionConfig reducedMotion="user">{children}</MotionConfig>
-    </ConfigContext.Provider>
+    <ConfigContext.Provider value={config}>{children}</ConfigContext.Provider>
   );
 }

@@ -41,7 +41,7 @@ export function PriceDisplay({ price, compareAtPrice, size = "md" }: { price: nu
       <span className={cn("font-bold text-choc", size === "lg" ? "text-3xl" : "text-lg")}>{formatINR(price)}</span>
       {pct > 0 && compareAtPrice ? (
         <>
-          <span className="text-sm text-ink/50 line-through">
+          <span className="text-sm text-ink/70 line-through">
             <span className="sr-only">Original price </span>
             {formatINR(compareAtPrice)}
           </span>

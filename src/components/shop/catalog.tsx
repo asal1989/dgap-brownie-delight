@@ -56,10 +56,11 @@ export async function Catalog({ sp, basePath, fixedCategory }: { sp: SP; basePat
         <ShopFilters categories={categories.map((c) => ({ slug: c.slug, name: c.name }))} state={state} lockedCategory={!!fixedCategory} action={basePath} />
       </aside>
       <div>
-        <p className="mb-5 text-sm text-ink/60" role="status">
+        <p className="mb-5 text-sm text-ink/70" role="status">
           {result.total === 0 ? "No products found" : `${result.total} ${result.total === 1 ? "brownie" : "brownies"}`}
           {state.q ? ` for “${state.q}”` : ""}
         </p>
+        <h2 className="sr-only">Products</h2>
         {result.products.length === 0 ? (
           <EmptyState
             title={state.q ? "No brownies match your search" : "No products here yet"}
@@ -78,7 +79,7 @@ export async function Catalog({ sp, basePath, fixedCategory }: { sp: SP; basePat
                 <ChevronLeft className="size-4" aria-hidden /> Previous
               </Link>
             ) : null}
-            <span className="px-3 text-sm text-ink/60">Page {result.page} of {result.pages}</span>
+            <span className="px-3 text-sm text-ink/70">Page {result.page} of {result.pages}</span>
             {result.page < result.pages ? (
               <Link href={hrefFor(result.page + 1)} className="inline-flex min-h-11 items-center gap-1 rounded-full bg-choc px-5 text-sm font-semibold text-cream hover:bg-espresso" rel="next">
                 Next <ChevronRight className="size-4" aria-hidden />

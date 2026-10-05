@@ -17,7 +17,7 @@ export function WhatsAppFloat() {
       href={whatsappLink(whatsappDigits, buildEnquiryMessage(brandName, "I need help choosing brownies."))}
       target="_blank"
       rel="noopener noreferrer"
-      aria-label="Chat with us on WhatsApp"
+      aria-label="Need help choosing? Chat with us on WhatsApp"
       className={cn(
         "no-print group fixed right-4 z-40 flex h-14 items-center gap-2 rounded-full bg-[#1f8f4e] px-4 text-white shadow-lift transition hover:bg-[#187a42]",
         hasStickyBar ? "bottom-24 lg:bottom-6" : "bottom-20 lg:bottom-6",
