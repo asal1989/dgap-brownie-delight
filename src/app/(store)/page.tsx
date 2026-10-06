@@ -15,6 +15,8 @@ import { FinalCta, GiftingSection, Hero, InstagramSection, SignatureSection, Tru
 import { BoxBuilder } from "@/components/home/box-builder";
 import { ProductCard } from "@/components/shop/product-card";
 import { CategoryCard } from "@/components/shop/category-card";
+import { LabelTile } from "@/components/shop/label-tile";
+import { PHOTO } from "@/components/home/sections";
 import { ReviewCard } from "@/components/shop/review-card";
 import { FAQ } from "@/components/ui/faq";
 import { ScrollRow } from "@/components/ui/scroll-row";
@@ -88,10 +90,27 @@ export default async function HomePage() {
         </section>
       ) : null}
 
+      <section className="section container-page" aria-labelledby="complete-title">
+        <Reveal>
+          <SectionHeading
+            eyebrow="Make it a moment"
+            title={<span id="complete-title">Complete The Celebration</span>}
+            subtitle="Boxes, gifts and bigger orders to go with your brownies."
+          />
+        </Reveal>
+        <div className="mt-12 lg:mt-16">
+          <ScrollRow label="more from DGAP" gridClass="lg:grid-cols-3 lg:gap-6" itemClass="w-[72%] sm:w-[31%]">
+            <LabelTile href="/shop?flag=gift" label="Gift boxes" image={PHOTO.box} sub="Ready-to-gift brownie boxes." aspect="aspect-[4/5] lg:aspect-[4/3]" sizes="(min-width: 1024px) 32vw, 72vw" />
+            <LabelTile href="/#build-box" label="Build your box" image={PHOTO.swirl} sub="Pick a size and mix your favourite flavours." aspect="aspect-[4/5] lg:aspect-[4/3]" sizes="(min-width: 1024px) 32vw, 72vw" />
+            <LabelTile href="/contact" label="Bulk & corporate" image="/images/photos/plate-stack.jpg" sub="Ask us about larger orders." aspect="aspect-[4/5] lg:aspect-[4/3]" sizes="(min-width: 1024px) 32vw, 72vw" />
+          </ScrollRow>
+        </div>
+      </section>
+
       {signature ? <SignatureSection s={s} product={signature} /> : null}
 
       {boxProducts.length ? (
-        <section className="section bg-panel2/40" aria-labelledby="box-title">
+        <section id="build-box" className="section scroll-mt-20 bg-panel2/40" aria-labelledby="box-title">
           <div className="container-page">
             <Reveal>
               <SectionHeading

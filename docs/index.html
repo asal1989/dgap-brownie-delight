@@ -78,12 +78,18 @@ a{color:inherit}
 .card .t{margin-top:auto;padding-top:1rem;font:700 .68rem Manrope;color:rgb(230 217 200/.6);letter-spacing:.06em}
 .link{display:block;text-align:center;margin-top:2rem;font:700 .74rem Manrope;letter-spacing:.2em;text-transform:uppercase;color:var(--cream);text-decoration:none}
 .panel{background:var(--panel)}
-.cat{display:flex;flex-direction:column;height:100%;background:var(--panel2);border-radius:6px;overflow:hidden;text-decoration:none;transition:.3s}
-.cat:hover{transform:translateY(-4px);box-shadow:0 22px 40px -18px rgb(0 0 0/.7)}
-.cat img{width:100%;aspect-ratio:1;object-fit:cover;display:block}
-.cat div{padding:1rem}
-.cat h3{font-size:1.2rem}
-.cat span{display:block;margin-top:.7rem;font:700 .62rem Manrope;letter-spacing:.2em;text-transform:uppercase;color:var(--gold)}
+.lt{display:flex;flex-direction:column;height:100%;text-decoration:none}
+.lt .im{position:relative;display:block;overflow:hidden;background:var(--panel2);aspect-ratio:4/5}
+.lt .im img{width:100%;height:100%;object-fit:cover;display:block;transition:transform 1s}
+.lt:hover .im img{transform:scale(1.05)}
+.lt .im:before{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgb(11 5 4/.5),transparent 55%);z-index:1}
+.lt .im:after{content:"";position:absolute;inset:.7rem;border:1px solid transparent;transition:.5s;z-index:1}
+.lt:hover .im:after{border-color:rgb(200 148 82/.6)}
+.lt .tab{position:absolute;left:0;right:0;bottom:0;z-index:2;display:flex;justify-content:center}
+.lt .tab b{max-width:92%;background:var(--gold);color:#0b0504;text-align:center;font:700 .66rem Manrope;letter-spacing:.18em;text-transform:uppercase;line-height:1.35;padding:.8rem 1.2rem;transition:.2s}
+.lt:hover .tab b{background:var(--cream)}
+.lt .sub{margin-top:.8rem;text-align:center;font-size:.88rem;color:rgb(230 217 200/.75)}
+.row.t3 .lt .im{aspect-ratio:4/5}
 .sig{position:relative;background:var(--espresso)}
 .sig .wrap{display:grid;gap:3rem;align-items:center;padding-top:4.5rem;padding-bottom:4.5rem}
 .sig h2{font-size:clamp(2.6rem,8vw,4.6rem);margin:1.4rem 0}
@@ -125,7 +131,7 @@ footer{margin-top:5rem;background:var(--espresso);color:rgb(255 248 240/.7);font
   .frame{max-width:none;padding-left:1.5rem}.frame:before{transform:translate(1.5rem,1.5rem);inset:0 0 0 1.5rem}
   .section{padding:7rem 0}
   .row{display:grid;overflow:visible;margin:0;padding:0;gap:1.5rem}
-  .row.p4{grid-template-columns:repeat(4,1fr)}.row.c6{grid-template-columns:repeat(6,1fr);gap:1.2rem}.row.g5{grid-template-columns:repeat(5,1fr);gap:1.1rem}
+  .row.t3{grid-template-columns:repeat(3,1fr)}.row.t3 .lt .im{aspect-ratio:4/3}.row.p4{grid-template-columns:repeat(4,1fr)}.row.c6{grid-template-columns:repeat(6,1fr);gap:1.2rem}.row.g5{grid-template-columns:repeat(5,1fr);gap:1.1rem}
   .row>li{flex:none}
   .sig .wrap{grid-template-columns:1fr 1.05fr;gap:6rem;padding-top:7rem;padding-bottom:7rem}
   .why{grid-template-columns:repeat(4,1fr)}
@@ -179,14 +185,23 @@ footer{margin-top:5rem;background:var(--espresso);color:rgb(255 248 240/.7);font
 <section class="section panel" aria-labelledby="c"><div class="wrap">
   <div class="head"><small>Shop by flavour</small><h2 id="c">Find Your Flavour</h2><p>From classic fudge to loaded favourites.</p></div>
   <ul class="row c6" aria-label="Brownie flavours">
-    <li style="flex-basis:44%"><a class="cat" href="#menu"><img src="plate-stack.jpg" alt="" loading="lazy" width="400" height="400"><div><h3>Fudgie</h3><span>Explore ↗</span></div></a></li>
-    <li style="flex-basis:44%"><a class="cat" href="#menu"><img src="hero-fudgie.jpg" alt="" loading="lazy" width="400" height="400"><div><h3>Double Chocolate</h3><span>Explore ↗</span></div></a></li>
-    <li style="flex-basis:44%"><a class="cat" href="#menu"><img src="fudge-stack.jpg" alt="" loading="lazy" width="400" height="400"><div><h3>Nuts</h3><span>Explore ↗</span></div></a></li>
-    <li style="flex-basis:44%"><a class="cat" href="#menu"><img src="swirl-rack.jpg" alt="" loading="lazy" width="400" height="400"><div><h3>Nutella</h3><span>Explore ↗</span></div></a></li>
-    <li style="flex-basis:44%"><a class="cat" href="#menu"><img src="golden-stack.jpg" alt="" loading="lazy" width="400" height="400"><div><h3>Biscoff</h3><span>Explore ↗</span></div></a></li>
-    <li style="flex-basis:44%"><a class="cat" href="#menu"><img src="gift-box.jpg" alt="" loading="lazy" width="400" height="400"><div><h3>Assorted</h3><span>Explore ↗</span></div></a></li>
+    <li style="flex-basis:44%"><a class="lt" href="#menu"><span class="im"><img src="plate-stack.jpg" alt="" loading="lazy" width="400" height="500"><span class="tab"><b>Fudgie</b></span></span><span class="sub">Rich, gooey and deeply chocolatey.</span></a></li>
+    <li style="flex-basis:44%"><a class="lt" href="#menu"><span class="im"><img src="hero-fudgie.jpg" alt="" loading="lazy" width="400" height="500"><span class="tab"><b>Double Chocolate</b></span></span><span class="sub">Two kinds of chocolate, one dark bite.</span></a></li>
+    <li style="flex-basis:44%"><a class="lt" href="#menu"><span class="im"><img src="fudge-stack.jpg" alt="" loading="lazy" width="400" height="500"><span class="tab"><b>Nuts</b></span></span><span class="sub">Brownies with a satisfying crunch.</span></a></li>
+    <li style="flex-basis:44%"><a class="lt" href="#menu"><span class="im"><img src="swirl-rack.jpg" alt="" loading="lazy" width="400" height="500"><span class="tab"><b>Nutella</b></span></span><span class="sub">Hazelnut-chocolate indulgence.</span></a></li>
+    <li style="flex-basis:44%"><a class="lt" href="#menu"><span class="im"><img src="golden-stack.jpg" alt="" loading="lazy" width="400" height="500"><span class="tab"><b>Biscoff</b></span></span><span class="sub">Caramelised biscuit meets brownie.</span></a></li>
+    <li style="flex-basis:44%"><a class="lt" href="#menu"><span class="im"><img src="gift-box.jpg" alt="" loading="lazy" width="400" height="500"><span class="tab"><b>Assorted Boxes</b></span></span><span class="sub">A little of everything, beautifully boxed.</span></a></li>
   </ul>
 </div></section>
+
+<section class="section wrap" aria-labelledby="cc">
+  <div class="head"><small>Make it a moment</small><h2 id="cc">Complete The Celebration</h2><p>Boxes, gifts and bigger orders to go with your brownies.</p></div>
+  <ul class="row t3" aria-label="More from DGAP">
+    <li style="flex-basis:72%"><a class="lt" href="#gifting"><span class="im"><img src="gift-box.jpg" alt="" loading="lazy" width="400" height="500"><span class="tab"><b>Gift boxes</b></span></span><span class="sub">Ready-to-gift brownie boxes.</span></a></li>
+    <li style="flex-basis:72%"><a class="lt" href="#menu"><span class="im"><img src="swirl-rack.jpg" alt="" loading="lazy" width="400" height="500"><span class="tab"><b>Build your box</b></span></span><span class="sub">Pick a size and mix your favourite flavours.</span></a></li>
+    <li style="flex-basis:72%"><a class="lt" href="#menu"><span class="im"><img src="plate-stack.jpg" alt="" loading="lazy" width="400" height="500"><span class="tab"><b>Bulk &amp; corporate</b></span></span><span class="sub">Ask us about larger orders.</span></a></li>
+  </ul>
+</section>
 
 <section class="sig" aria-labelledby="s"><div class="wrap">
   <div>
