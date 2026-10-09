@@ -1,14 +1,3 @@
 node_modules
-.next
-out
 .env
-.env.local
-.env*.local
-.pglite
-*.tsbuildinfo
-next-env.d.ts
-src/generated
-public/uploads
-npm-debug.log*
-.vercel
-.pgdata
+.env.*

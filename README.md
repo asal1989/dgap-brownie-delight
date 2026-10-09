@@ -1,29 +1,68 @@
 # DGAP Brownie Delight
 
-Premium brownie e-commerce site: Next.js 16 (App Router), React 19, TypeScript, Tailwind CSS v4, Prisma 7 + PostgreSQL, Zod, React Hook Form.
+A static, dependency-free brownie bakery website: vanilla HTML, CSS and ES modules. No build step, no backend, no database. It deploys straight to GitHub Pages from the `docs/` folder.
 
-## Features
-- Storefront: home, shop (search / filters / sort / pagination), categories, product pages, build-your-box, gifting, FAQ, policies, contact form
-- Persistent cart (localStorage) with animated drawer, server-priced checkout, coupons, delivery rules from admin settings
-- Payments behind an abstraction (`src/lib/payments`): Cash on Delivery now, Razorpay when keys are set (signature-verified, never simulated), UPI placeholder
-- WhatsApp ordering from the cart (number comes from config; nothing is hardcoded)
-- Admin (`/admin`): dashboard, products, categories, orders, customers, reviews, coupons, FAQs, messages, settings
-- Secure auth (bcrypt + signed httpOnly session cookie), route protection in `proxy.ts` plus a database role check on every admin page
+## Run locally
 
-## Setup
 ```bash
-npm install
-cp .env.example .env        # fill DATABASE_URL, AUTH_SECRET, ADMIN_EMAIL, ADMIN_PASSWORD
-npx prisma migrate deploy   # or: npm run db:migrate (dev)
-npm run db:seed             # SAMPLE data + first admin
-npm run dev
+python -m http.server 4173 --directory docs
+```
+
+Then open http://localhost:4173. (ES modules need a web server; opening `index.html` as a file will not work.)
+
+## Deploy (GitHub Pages)
+
+1. Push to GitHub.
+2. Repo **Settings → Pages → Build and deployment**: Source *Deploy from a branch*, branch `main`, folder `/docs`.
+3. The site is served at `https://asal1989.github.io/dgap-brownie-delight/`. If the URL differs, update `SITE.url` in `docs/js/config.js` and the canonical/Open Graph URLs in `docs/index.html`, `docs/about.html`, `docs/robots.txt` and `docs/sitemap.xml`.
+
+## What to edit
+
+| File | Purpose |
+|---|---|
+| `docs/js/config.js` | Business details: **WhatsApp number**, phone, email, address, hours, Instagram/Facebook, announcement bar, hero text, box sizes and prices, FAQ answers, reviews, gallery, policies |
+| `docs/js/products.js` | Products, categories, sizes, prices, labels, ingredients, allergens, availability |
+| `docs/css/styles.css` | Colour palette and design tokens (top of file) |
+| `docs/images/` | Photos (replace the temporary stock photos) |
+
+### Before launch checklist
+
+- **WhatsApp**: set `CONTACT.whatsappNumber` (digits with country code, e.g. `919876543210`). Until then, order buttons show a dialog with a copyable order message instead of opening WhatsApp. No number is hardcoded.
+- **Prices**: every `price` is `null`, so the site shows "Ask for price" and says "to be confirmed" in order messages. Set a number (rupees) on a size to turn pricing on. Totals are shown only when every line in the order has a price.
+- **Sizes**: the sizes ("Single piece", "Box of 4", "Box of 6") and box sizes (4/6/9) are placeholders. Edit them to match what you actually sell.
+- **Dietary labels, ingredients, allergens**: left empty until verified. Add them in `products.js`; a safe "ask us" note shows meanwhile. Only the walnut brownie carries a "Contains nuts" label.
+- **Eggless, delivery areas, storage**: FAQ answers do not claim anything the business has not confirmed. Replace them in `config.js`.
+- **Reviews**: `REVIEWS` is empty, so the section shows an honest "coming soon" state. Add only real customer reviews.
+- **Instagram**: set `SOCIAL.instagram` to link the gallery to the real profile.
+- **Photos**: the six images in `docs/images/` are temporary Unsplash stock (see credits below) and are reused across products. They are not photos of DGAP's own brownies, and the gift-box photo shows chocolates. Replace them with your own product photography, one per brownie.
+- **Story and About page**: replace the placeholder copy in `config.js` (`STORY`) and `docs/about.html`.
+
+## Structure
+
+```
+docs/
+  index.html, about.html, robots.txt, sitemap.xml
+  css/styles.css
+  images/              # full-size + "-sm" thumbnails
+  js/
+    config.js          # business config
+    products.js        # catalogue
+    cart.js            # localStorage cart
+    whatsapp.js        # message builder + totals
+    utils.js           # DOM helper, icons, toast
+    main.js            # page assembly, SEO structured data
+    components/        # Header, Hero/Sections (Why, Gift, Story, Testimonials, Gallery,
+                       # FAQ, Footer), ProductCard, ProductGrid, CategoryFilter,
+                       # ProductModal, CustomBoxBuilder, CartDrawer,
+                       # WhatsAppOrderButton, QuantityStepper, dialog
 ```
 
 ## Notes
-- All business details (phone, WhatsApp, address, hours, FSSAI, policies, delivery rules) are set in **Admin → Settings**. Nothing is invented; empty values are simply not shown.
-- Seeded products are flagged **sample**: replace them and upload real photos before launch.
-- Image uploads write to `public/uploads` (local disk). On serverless hosts use hosted image URLs or swap in object storage.
-- This is a dynamic, database-backed app. It cannot run on GitHub Pages (static hosting). Deploy to Vercel, Railway, Render, a VPS, etc.
 
-## Scripts
-`npm run dev` · `npm run build` · `npm run lint` · `npm run typecheck`
+- Orders are *requests*: every WhatsApp message states that DGAP will confirm availability, final charges, delivery and payment.
+- JSON-LD (`Bakery`) includes only name, URL, description, city and any contact/social values filled in `config.js`.
+- Accessibility: skip link, visible focus, focus-trapped dialogs, ARIA live updates, `prefers-reduced-motion` support.
+
+## Photo credits (temporary stock, Unsplash License)
+
+Anna Przepiorka (plate-stack), Kawê Rodrigues (golden-stack), Chaman Raj (swirl-rack), Molly Keesling (fudge-stack), Clint McKoy (gift-box). `hero-fudgie.jpg` is from the previous site.
