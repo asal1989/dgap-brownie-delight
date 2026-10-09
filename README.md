@@ -34,7 +34,7 @@ Then open http://localhost:4173. (ES modules need a web server; opening `index.h
 - **Eggless, delivery areas, storage**: FAQ answers do not claim anything the business has not confirmed. Replace them in `config.js`.
 - **Reviews**: `REVIEWS` is empty, so the section shows an honest "coming soon" state. Add only real customer reviews.
 - **Instagram**: set `SOCIAL.instagram` to link the gallery to the real profile.
-- **Photos**: the six images in `docs/images/` are temporary Unsplash stock (see credits below) and are reused across products. They are not photos of DGAP's own brownies, and the gift-box photo shows chocolates. Replace them with your own product photography, one per brownie.
+- **Photos**: the images in `docs/images/` are temporary Unsplash stock, with a different lead photo per brownie. They are not photos of DGAP's own brownies, and the gift-box photo shows chocolates. Replace them with your own product photography, one per brownie.
 - **Story and About page**: replace the placeholder copy in `config.js` (`STORY`) and `docs/about.html`.
 
 ## Structure
@@ -65,4 +65,4 @@ docs/
 
 ## Photo credits (temporary stock, Unsplash License)
 
-Anna Przepiorka (plate-stack), Kawê Rodrigues (golden-stack), Chaman Raj (swirl-rack), Molly Keesling (fudge-stack), Clint McKoy (gift-box). `hero-fudgie.jpg` is from the previous site.
+Photo sources and links: see `docs/images/CREDITS.md`. `hero-fudgie.jpg` is from the previous site.

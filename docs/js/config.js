@@ -67,11 +67,11 @@ export const WHY = [
 ];
 
 export const OCCASIONS = [
-  { title: "Birthday Gifts", text: "A box of brownies to make the day sweeter.", image: "images/plate-stack.jpg" },
-  { title: "Anniversary Gifts", text: "Something indulgent to share.", image: "images/swirl-rack.jpg" },
-  { title: "Festival Gifts", text: "Sweet gifts for festive moments.", image: "images/golden-stack.jpg" },
+  { title: "Birthday Gifts", text: "A box of brownies to make the day sweeter.", image: "images/triple-chocolate.jpg" },
+  { title: "Anniversary Gifts", text: "Something indulgent to share.", image: "images/double-chocolate.jpg" },
+  { title: "Festival Gifts", text: "Sweet gifts for festive moments.", image: "images/walnut-stack.jpg" },
   { title: "Corporate Gifting", text: "Gifts for teams and clients. Ask about larger orders.", image: "images/gift-box.jpg" },
-  { title: "Custom Brownie Boxes", text: "Pick your own flavours and box size.", image: "images/fudge-stack.jpg", href: "#build-box" },
+  { title: "Custom Brownie Boxes", text: "Pick your own flavours and box size.", image: "images/tray.jpg", href: "#build-box" },
 ];
 
 export const STORY = {
@@ -80,8 +80,8 @@ export const STORY = {
     "DGAP Brownie Delight is a Bangalore brownie bakery focused on one thing: rich, fudgy chocolate brownies made with care.",
     "Every brownie is crafted by hand, and every box is put together to be enjoyed or gifted. Add your own story here: who bakes, how it started, what makes your recipe special.",
   ],
-  image: "images/fudge-stack.jpg",
-  imageAlt: "Freshly baked brownies stacked on a board",
+  image: "images/tray.jpg",
+  imageAlt: "A tray of freshly baked walnut brownies",
 };
 
 /** Real customer reviews only. Add objects like { name: "Asha", text: "…", rating: 5, product: "Classic Fudgy Brownie" }. */
@@ -89,10 +89,10 @@ export const REVIEWS = [];
 
 /** Gallery photos. Each can link to a post once an Instagram URL is available: { src, alt, href }. */
 export const GALLERY = [
-  { src: "images/plate-stack.jpg", alt: "Stack of fudgy brownies on a plate" },
-  { src: "images/swirl-rack.jpg", alt: "Brownies with a swirled top cooling on a rack" },
-  { src: "images/golden-stack.jpg", alt: "Golden-topped brownies stacked high" },
-  { src: "images/fudge-stack.jpg", alt: "Dense, fudgy brownie squares" },
+  { src: "images/classic-fudgy.jpg", alt: "Classic fudgy brownies with crackly tops" },
+  { src: "images/triple-chocolate.jpg", alt: "Brownies with chocolate sauce pouring over" },
+  { src: "images/walnut.jpg", alt: "Chocolate brownie topped with walnut" },
+  { src: "images/ragi.jpg", alt: "Dark chocolate brownies on a green plate" },
 ];
 
 /**

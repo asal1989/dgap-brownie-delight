@@ -34,8 +34,8 @@ export const PRODUCTS = [
     description:
       "Our signature chocolate brownie with a rich, fudgy centre and a crackly top. Simple, indulgent and made for chocolate lovers.",
     images: [
-      { src: "images/plate-stack.jpg", thumb: "images/plate-stack-sm.jpg", alt: "Stack of classic fudgy chocolate brownies on a plate" },
-      { src: "images/fudge-stack.jpg", thumb: "images/fudge-stack-sm.jpg", alt: "Dense fudgy brownie squares stacked together" },
+      { src: "images/classic-fudgy.jpg", thumb: "images/classic-fudgy-sm.jpg", alt: "Freshly baked classic fudgy brownies with crackly tops on baking paper" },
+      { src: "images/plate-stack.jpg", thumb: "images/plate-stack-sm.jpg", alt: "Stack of fudgy chocolate brownies on a plate" },
     ],
     sizes: sizes(),
     labels: [],
@@ -51,8 +51,8 @@ export const PRODUCTS = [
     short: "Twice the chocolate for a deeper, richer bite.",
     description: "A brownie built for serious chocolate fans, with a double dose of chocolate in every bite.",
     images: [
-      { src: "images/hero-fudgie.jpg", thumb: "images/hero-fudgie-sm.jpg", alt: "Close-up of a rich double chocolate brownie" },
-      { src: "images/swirl-rack.jpg", thumb: "images/swirl-rack-sm.jpg", alt: "Chocolate brownies cooling on a rack" },
+      { src: "images/double-chocolate.jpg", thumb: "images/double-chocolate-sm.jpg", alt: "Chocolate brownies drizzled with chocolate" },
+      { src: "images/hero-fudgie.jpg", thumb: "images/hero-fudgie-sm.jpg", alt: "Close-up of a rich fudgy chocolate brownie" },
     ],
     sizes: sizes(),
     labels: [],
@@ -68,8 +68,8 @@ export const PRODUCTS = [
     short: "Three layers of chocolate indulgence in one brownie.",
     description: "For the ultimate chocolate craving: a triple chocolate brownie that's rich, glossy and unapologetically decadent.",
     images: [
-      { src: "images/swirl-rack.jpg", thumb: "images/swirl-rack-sm.jpg", alt: "Glossy swirled chocolate brownies" },
-      { src: "images/golden-stack.jpg", thumb: "images/golden-stack-sm.jpg", alt: "Tall stack of golden-topped brownies" },
+      { src: "images/triple-chocolate.jpg", thumb: "images/triple-chocolate-sm.jpg", alt: "Stack of brownies with chocolate sauce pouring over" },
+      { src: "images/swirl-rack.jpg", thumb: "images/swirl-rack-sm.jpg", alt: "Glossy chocolate brownies cooling on a rack" },
     ],
     sizes: sizes(),
     labels: [],
@@ -85,8 +85,8 @@ export const PRODUCTS = [
     short: "Fudgy chocolate brownie with a satisfying walnut crunch.",
     description: "Rich chocolate brownie paired with walnuts for a contrast of fudgy and crunchy. Contains nuts.",
     images: [
-      { src: "images/golden-stack.jpg", thumb: "images/golden-stack-sm.jpg", alt: "Golden-topped brownies stacked on top of each other" },
-      { src: "images/plate-stack.jpg", thumb: "images/plate-stack-sm.jpg", alt: "Brownies served on a plate" },
+      { src: "images/walnut.jpg", thumb: "images/walnut-sm.jpg", alt: "Chocolate brownie topped with a walnut half" },
+      { src: "images/walnut-stack.jpg", thumb: "images/walnut-stack-sm.jpg", alt: "Stack of brownies topped with chopped walnuts" },
     ],
     sizes: sizes(),
     labels: ["Contains nuts"],
@@ -102,8 +102,8 @@ export const PRODUCTS = [
     short: "A brownie made with ragi (finger millet) flour.",
     description: "A chocolate brownie made with ragi, for a rustic twist on a favourite treat.",
     images: [
-      { src: "images/fudge-stack.jpg", thumb: "images/fudge-stack-sm.jpg", alt: "Stack of dark, fudgy brownies" },
-      { src: "images/swirl-rack.jpg", thumb: "images/swirl-rack-sm.jpg", alt: "Brownies on a cooling rack" },
+      { src: "images/ragi.jpg", thumb: "images/ragi-sm.jpg", alt: "Two dark chocolate brownies on a green plate" },
+      { src: "images/fudge-stack.jpg", thumb: "images/fudge-stack-sm.jpg", alt: "Dense, dark brownie squares stacked together" },
     ],
     sizes: sizes(),
     labels: [],
@@ -119,8 +119,8 @@ export const PRODUCTS = [
     short: "A wholesome-style brownie made with wheat flour.",
     description: "A chocolate brownie made with wheat flour, for a slightly different bite with the same chocolate comfort.",
     images: [
-      { src: "images/plate-stack.jpg", thumb: "images/plate-stack-sm.jpg", alt: "Brownies stacked on a plate" },
-      { src: "images/hero-fudgie.jpg", thumb: "images/hero-fudgie-sm.jpg", alt: "Close-up of a fudgy chocolate brownie" },
+      { src: "images/wheat.jpg", thumb: "images/wheat-sm.jpg", alt: "Pile of freshly baked brownies on a table" },
+      { src: "images/golden-stack.jpg", thumb: "images/golden-stack-sm.jpg", alt: "Golden-topped brownies stacked high" },
     ],
     sizes: sizes(),
     labels: [],
