@@ -412,3 +412,11 @@ html, body { overflow-x: clip; }
   .nav.open .nav-link:hover { color: var(--cocoa); }
   .menu-open .menu-btn { color: var(--choc); }
 }
+.cart-badge.bump { animation: bump .45s var(--ease); }
+@keyframes bump { 40% { transform: scale(1.5); } }
+.cart-ctl { grid-column: 2; display: flex; align-items: center; gap: 14px; margin-top: 6px; }
+.cart-line .cart-ctl .qty { margin-top: 0; }
+.cart-ctl .link-btn, .bx-picks .link-btn { margin: 0; padding: 0 4px; font-size: .85rem; }
+.bx-picks { list-style: none !important; padding-left: 0 !important; }
+.bx-picks li { display: flex; justify-content: space-between; align-items: center; gap: 8px; padding: 2px 0; }
+.gift-body .link-btn { color: var(--cocoa); }

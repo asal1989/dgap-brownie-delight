@@ -85,7 +85,7 @@ export function CustomBoxBuilder() {
     const l = line(), { subtotal } = orderTotals([l]);
     summary.replaceChildren(
       h("h3", {}, "Your box"),
-      n ? h("ul", {}, l.extras.map((e) => h("li", {}, e))) : h("p", { class: "muted" }, "Nothing chosen yet. Add flavours with the + buttons."),
+      n ? h("ul", { class: "bx-picks" }, picks().map((p) => h("li", {}, `${p.qty} × ${PRODUCTS.find((x) => x.id === p.productId).name}`, h("button", { type: "button", class: "link-btn", "aria-label": `Remove ${PRODUCTS.find((x) => x.id === p.productId).name} from box`, onclick: () => { state.qty[p.productId] = 0; err.hidden = true; refresh(); } }, "Remove")))) : h("p", { class: "muted" }, "Nothing chosen yet. Add flavours with the + buttons."),
       h("p", { class: "cart-sub" }, h("span", {}, size().label), h("strong", {}, subtotal != null ? formatPrice(subtotal) : "Price to be confirmed")));
     if (n === max) err.hidden = true;
   }

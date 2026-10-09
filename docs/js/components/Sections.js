@@ -2,7 +2,7 @@ import { HERO, WHY, OCCASIONS, STORY, REVIEWS, GALLERY, FAQS, CONTACT, SOCIAL, S
 import { PRODUCTS } from "../products.js";
 import { h, icon } from "../utils.js";
 import { WhatsAppOrderButton } from "./WhatsAppOrderButton.js";
-import { buildEnquiryMessage } from "../whatsapp.js";
+import { buildEnquiryMessage, whatsappReady, whatsappUrl } from "../whatsapp.js";
 import { openDialog } from "./dialog.js";
 
 const heading = (eyebrow, title, sub, id) =>
@@ -48,7 +48,8 @@ export function GiftSection() {
           h("div", { class: "gift-body" },
             h("h3", {}, o.title),
             h("p", {}, o.text),
-            WhatsAppOrderButton({ label: "Enquire on WhatsApp", variant: "outline-light", getMessage: () => prefill(o.title) })))))));
+            WhatsAppOrderButton({ label: "Enquire on WhatsApp", variant: "outline-light", getMessage: () => prefill(o.title) }),
+            o.href ? h("a", { class: "link-btn", href: o.href }, "Build your box") : null))))));
 }
 
 export function StorySection() {
@@ -143,7 +144,7 @@ export function Footer() {
       h("nav", { "aria-label": "Footer" }, h("h3", {}, "Explore"),
         h("ul", {}, [["Shop Brownies", "index.html#shop"], ["Gift Boxes", "index.html#gifting"], ["Our Story", "about.html"], ["FAQ", "index.html#faq"], ["Contact", "index.html#contact"]]
           .map(([l, href]) => h("li", {}, h("a", { href }, l))))),
-      h("div", {}, h("h3", {}, "Ordering"), h("p", {}, "Order via WhatsApp or the cart. ", ORDER_NOTE)),
+      h("div", {}, h("h3", {}, "Ordering"), h("p", {}, "Order via WhatsApp or the cart. ", ORDER_NOTE), whatsappReady() ? h("p", {}, h("a", { href: whatsappUrl(buildEnquiryMessage("I have a question about your brownies.")), target: "_blank", rel: "noopener" }, "Chat on WhatsApp")) : null, CONTACT.phone ? h("p", {}, h("a", { href: `tel:${CONTACT.phone.replace(/[^\d+]/g, "")}` }, CONTACT.phone)) : null, CONTACT.email ? h("p", {}, h("a", { href: `mailto:${CONTACT.email}` }, CONTACT.email)) : null),
       h("div", {}, h("h3", {}, "Policies"), h("ul", {}, [policyLink("Delivery policy", POLICIES.delivery), policyLink("Privacy policy", POLICIES.privacy), policyLink("Terms", POLICIES.terms)].map((l) => h("li", {}, l))))),
     h("div", { class: "wrap foot-base" }, h("p", {}, `© ${new Date().getFullYear()} ${SITE.brand}. All rights reserved.`)));
 }

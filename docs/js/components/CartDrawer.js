@@ -59,7 +59,7 @@ export function openCart() {
             l.extras ? h("ul", { class: "extras" }, l.extras.map((e) => h("li", {}, e))) : null,
             h("span", { class: "cart-price" }, hasPrice(l.unit) ? `${formatPrice(l.unit)} × ${l.qty} = ${formatPrice(l.unit * l.qty)}` : "Price to be confirmed"),
             l.available === false ? h("span", { class: "warn" }, "Currently unavailable: we'll confirm on WhatsApp") : null),
-          q.el);
+          h("div", { class: "cart-ctl" }, q.el, h("button", { class: "link-btn", type: "button", onclick: () => setQty(l.key, 0), "aria-label": `Remove ${l.name} from cart` }, "Remove")));
       })),
       h("div", { class: "cart-foot" },
         h("p", { class: "cart-sub" }, h("span", {}, "Subtotal"), h("strong", {}, allPriced ? formatPrice(subtotal) : "To be confirmed")),

@@ -67,11 +67,11 @@ export const WHY = [
 ];
 
 export const OCCASIONS = [
-  { title: "Birthdays", text: "A box of brownies to make the day sweeter.", image: "images/plate-stack.jpg" },
-  { title: "Anniversaries", text: "Something indulgent to share.", image: "images/swirl-rack.jpg" },
-  { title: "Festivals", text: "Sweet gifts for festive moments.", image: "images/golden-stack.jpg" },
+  { title: "Birthday Gifts", text: "A box of brownies to make the day sweeter.", image: "images/plate-stack.jpg" },
+  { title: "Anniversary Gifts", text: "Something indulgent to share.", image: "images/swirl-rack.jpg" },
+  { title: "Festival Gifts", text: "Sweet gifts for festive moments.", image: "images/golden-stack.jpg" },
   { title: "Corporate Gifting", text: "Gifts for teams and clients. Ask about larger orders.", image: "images/gift-box.jpg" },
-  { title: "Special Occasions", text: "Tell us the occasion and we'll help you choose.", image: "images/fudge-stack.jpg" },
+  { title: "Custom Brownie Boxes", text: "Pick your own flavours and box size.", image: "images/fudge-stack.jpg", href: "#build-box" },
 ];
 
 export const STORY = {
@@ -106,6 +106,7 @@ export const FAQS = [
   { q: "What sizes are available?", a: "Single brownies and boxes are available. Sizes shown on each product are what we offer; ask us if you need something different." },
   { q: "How can I place an order?", a: "Add brownies to your cart or build your own box, then tap “Order on WhatsApp”. We'll confirm availability, final price, delivery and payment with you." },
   { q: "Which Bangalore areas do you deliver to?", a: "Please share your area with us on WhatsApp and we'll confirm whether we can deliver there." },
+  { q: "Do you accept bulk and custom orders?", a: "Yes, please message us on WhatsApp with what you need and the date. We'll confirm whether we can do it, along with pricing and timing." },
   { q: "How should brownies be stored?", a: "Store brownies in an airtight container, away from heat and direct sunlight. Ask us for storage advice specific to your order." },
 ];
 

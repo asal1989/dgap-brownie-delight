@@ -15,6 +15,7 @@ export function Header() {
   const sync = () => {
     const n = cartCount();
     badge.textContent = n;
+    badge.classList.remove("bump"); void badge.offsetWidth; if (n) badge.classList.add("bump");
     badge.hidden = n === 0;
     cartBtn.setAttribute("aria-label", `Open cart, ${n} item${n === 1 ? "" : "s"}`);
   };

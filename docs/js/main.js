@@ -76,3 +76,10 @@ if (page === "home") {
   route();
   addEventListener("hashchange", route);
 }
+
+// Fallback for any image that fails to load (no broken-image icons).
+const FALLBACK = "data:image/svg+xml," + encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 500"><rect width="400" height="500" fill="#f4dfd0"/><text x="200" y="260" text-anchor="middle" font-family="Georgia,serif" font-size="28" fill="#8a5240">DGAP Brownie Delight</text></svg>');
+document.addEventListener("error", (e) => {
+  const t = e.target;
+  if (t.tagName === "IMG" && t.src !== FALLBACK) t.src = FALLBACK;
+}, true);

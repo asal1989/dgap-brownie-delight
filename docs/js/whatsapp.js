@@ -22,7 +22,8 @@ export function orderTotals(lines) {
 /** Build the plain-text WhatsApp message for any set of lines. */
 export function buildOrderMessage(lines) {
   const { subtotal } = orderTotals(lines);
-  const out = [`Hi ${SITE.brand}! I'd like to request this order:`, ""];
+  const out = [`Hello ${SITE.brand}!
+I would like to order:`, ""];
   lines.forEach((l, i) => {
     out.push(`${i + 1}. ${l.name}`);
     if (l.size) out.push(`   Size: ${l.size}`);
@@ -34,6 +35,7 @@ export function buildOrderMessage(lines) {
   out.push("");
   out.push(subtotal != null ? `Subtotal: ${formatPrice(subtotal)}` : "Subtotal: to be confirmed (some prices not set yet)");
   out.push("");
+  out.push("Please confirm availability, delivery charges, and payment details.");
   out.push(ORDER_NOTE);
   return out.join("\n");
 }
