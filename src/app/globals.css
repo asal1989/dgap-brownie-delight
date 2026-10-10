@@ -39,6 +39,8 @@
     font-family: var(--font-sans);
     line-height: 1.7;
     -webkit-font-smoothing: antialiased;
+    /* Cormorant defaults to old-style figures, which make order numbers and prices hard to read. */
+    font-variant-numeric: lining-nums;
     overflow-x: clip;
   }
   h1, h2, h3, h4 {

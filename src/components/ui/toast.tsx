@@ -10,6 +10,11 @@ type ShowOptions = { tone?: "success" | "error"; href?: string; hrefLabel?: stri
 
 const ToastContext = createContext<{ show: (message: string, opts?: ShowOptions) => void } | null>(null);
 
+/** Like useToast, but returns null outside a <ToastProvider> (used by shared form components). */
+export function useOptionalToast() {
+  return useContext(ToastContext);
+}
+
 export function useToast() {
   const ctx = useContext(ToastContext);
   if (!ctx) throw new Error("useToast must be used inside <ToastProvider>");

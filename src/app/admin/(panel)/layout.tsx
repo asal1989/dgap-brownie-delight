@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { redirect } from "next/navigation";
 import { logoutAction } from "@/actions/auth";
+import { ToastProvider } from "@/components/ui/toast";
 import { AdminNav, type NavItem } from "@/components/admin/admin-nav";
 import { can, isStaff, type Permission } from "@/lib/auth/permissions";
 import { getCurrentUser } from "@/lib/auth/session";
@@ -27,6 +28,7 @@ export default async function PanelLayout({ children }: LayoutProps<"/admin">) {
   const items = NAV.filter((n) => can(user.role, n.permission));
 
   return (
+    <ToastProvider>
     <div className="lg:grid lg:grid-cols-[15rem_1fr]">
       <aside className="no-print border-b border-line bg-white px-4 py-4 lg:min-h-screen lg:border-b-0 lg:border-r lg:py-8">
         <Link href="/admin" className="mb-4 flex items-center gap-3 lg:mb-8">
@@ -51,5 +53,6 @@ export default async function PanelLayout({ children }: LayoutProps<"/admin">) {
         {children}
       </div>
     </div>
+    </ToastProvider>
   );
 }

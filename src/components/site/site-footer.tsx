@@ -72,7 +72,7 @@ export async function SiteFooter() {
           ) : (
             <p>
               Contact details will be shown here soon.{" "}
-              <Link href="/contact" className="text-gold underline-offset-4 hover:underline">Contact page</Link>
+              <Link href="/contact" className="text-gold underline underline-offset-4 hover:text-ivory">Contact page</Link>
             </p>
           )}
           <p className="mt-4 text-sm text-ivory/60">Baked and delivered in Bangalore. Delivery areas and timings are confirmed when you order.</p>

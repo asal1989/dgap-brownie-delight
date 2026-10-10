@@ -12,6 +12,13 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    // Build output, test artefacts, the local database cluster and generated code.
+    ".next-e2e/**",
+    "playwright-report/**",
+    "test-results/**",
+    "blob-report/**",
+    ".pgdata/**",
+    "src/generated/**",
   ]),
 ]);
 

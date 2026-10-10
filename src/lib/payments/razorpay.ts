@@ -6,7 +6,8 @@ import { env } from "../env";
  * All credentials come from environment variables.
  */
 
-const API = "https://api.razorpay.com/v1";
+const DEFAULT_API = "https://api.razorpay.com/v1";
+const apiBase = () => (env().RAZORPAY_API_BASE ?? DEFAULT_API).replace(/\/+$/, "");
 
 function creds() {
   const { RAZORPAY_KEY_ID: id, RAZORPAY_KEY_SECRET: secret } = env();
@@ -16,7 +17,7 @@ function creds() {
 
 async function call<T>(method: "GET" | "POST", path: string, body?: unknown): Promise<T> {
   const { id, secret } = creds();
-  const res = await fetch(`${API}${path}`, {
+  const res = await fetch(`${apiBase()}${path}`, {
     method,
     headers: {
       Authorization: `Basic ${Buffer.from(`${id}:${secret}`).toString("base64")}`,

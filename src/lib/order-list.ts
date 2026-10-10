@@ -19,8 +19,13 @@ type Raw = Record<string, string | string[] | undefined>;
 
 export function parseOrderFilters(raw: Raw): OrderListFilters {
   const first = (v: string | string[] | undefined) => (Array.isArray(v) ? v[0] : v) || undefined;
-  const parsed = orderListSchema.safeParse(Object.fromEntries(["q", "status", "payment", "from", "to", "sort", "page", "test"].map((k) => [k, first(raw[k])])));
-  return parsed.success ? parsed.data : orderListSchema.parse({});
+  // Validate field by field: one bad parameter is dropped, it does not discard the valid ones.
+  const valid: Record<string, unknown> = {};
+  for (const key of Object.keys(orderListSchema.shape) as (keyof typeof orderListSchema.shape)[]) {
+    const value = first(raw[key]);
+    if (value !== undefined && orderListSchema.shape[key].safeParse(value).success) valid[key] = value;
+  }
+  return orderListSchema.parse(valid);
 }
 
 /** IST day boundaries for date filters ("2026-10-01" means that calendar day in India). */

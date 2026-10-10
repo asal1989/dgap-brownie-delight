@@ -16,6 +16,8 @@ const schema = z.object({
   RAZORPAY_KEY_ID: optionalString,
   RAZORPAY_KEY_SECRET: optionalString,
   RAZORPAY_WEBHOOK_SECRET: optionalString,
+  /** Test-only: point Razorpay API calls at a local fake. Leave unset in every real deployment. */
+  RAZORPAY_API_BASE: optionalString,
   WHATSAPP_NUMBER: optionalString,
   RESEND_API_KEY: optionalString,
   EMAIL_FROM: optionalString,

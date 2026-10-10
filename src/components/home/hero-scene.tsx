@@ -212,7 +212,6 @@ export default function HeroScene({ reduced, onReady }: { reduced: boolean; onRe
         gl.toneMappingExposure = 1.05;
         requestAnimationFrame(onReady);
       }}
-      aria-label="Interactive 3D stack of DGAP brownies"
     >
       <ambientLight intensity={0.3} />
       <directionalLight position={[3.5, 5, 4]} intensity={2.3} color="#fff1dc" />

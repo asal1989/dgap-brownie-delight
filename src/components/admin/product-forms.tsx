@@ -103,7 +103,7 @@ export function VariantRow({ productId, variant }: { productId: string; variant:
 
 export function NewVariantForm({ productId }: { productId: string }) {
   return (
-    <ActionForm action={createVariantAction} submitLabel="Add variant" pendingLabel="Adding…" submitClass="btn btn-primary btn-sm" hidden={{ productId }}>
+    <ActionForm action={createVariantAction} submitLabel="Add variant" pendingLabel="Adding…" submitClass="btn btn-primary btn-sm" hidden={{ productId }} resetOnSuccess>
       <VariantFields creating />
     </ActionForm>
   );
@@ -126,7 +126,7 @@ export function ImageManager({ productId, images }: { productId: string; images:
           ))}
         </ul>
       )}
-      <ActionForm action={uploadImageAction} submitLabel="Upload photo" pendingLabel="Uploading…" submitClass="btn btn-primary btn-sm" hidden={{ productId }}>
+      <ActionForm action={uploadImageAction} submitLabel="Upload photo" pendingLabel="Uploading…" submitClass="btn btn-primary btn-sm" hidden={{ productId }} resetOnSuccess>
         <div className="grid gap-4 md:grid-cols-2">
           <label className="field"><span className="label">Photo (JPEG, PNG or WebP, up to 5 MB)</span><input type="file" name="file" accept="image/jpeg,image/png,image/webp" required className="input !py-2" /></label>
           <label className="field"><span className="label">Description of the photo (alt text)</span><input name="alt" className="input" required minLength={3} maxLength={160} placeholder="Stack of fudgy chocolate brownies" /></label>

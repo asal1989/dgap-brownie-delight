@@ -59,7 +59,7 @@ export function Hero3D() {
       />
       <div className={`absolute inset-0 bg-[radial-gradient(60%_55%_at_50%_45%,rgba(213,180,119,0.22),transparent_70%)] transition-opacity duration-1000 ${ready ? "opacity-100" : "opacity-0"}`} aria-hidden />
       {load && (
-        <div className={`absolute inset-0 transition-opacity duration-1000 ${ready ? "opacity-100" : "opacity-0"}`}>
+        <div aria-hidden className={`absolute inset-0 transition-opacity duration-1000 ${ready ? "opacity-100" : "opacity-0"}`}>
           <HeroScene reduced={reduced} onReady={() => setReady(true)} />
         </div>
       )}

@@ -1,0 +1,81 @@
+[WebServer] Loaded Prisma config from prisma.config.ts.
+[WebServer] 
+[WebServer] Prisma schema loaded from prisma\schema.prisma.
+(node:11352) [DEP0190] DeprecationWarning: Passing args to a child process with shell option true can lead to security vulnerabilities, as the arguments are not escaped, only concatenated.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+
+Running 30 tests using 1 worker
+
+  ok  1 [desktop] › tests\e2e\01-journey.spec.ts:25:5 › 1-3. browse products, filter, choose a variant and add to cart (6.9s)
+  ok  2 [desktop] › tests\e2e\01-journey.spec.ts:56:5 › 4-6. apply a coupon, check out, pay through Razorpay (verified server-side) and view the order (9.6s)
+  ok  3 [desktop] › tests\e2e\01-journey.spec.ts:128:5 › 7-9. admin updates the order status and the customer timeline reflects it (6.7s)
+  ok  4 [desktop] › tests\e2e\01-journey.spec.ts:159:5 › tracking requires the matching phone number (2.4s)
+  ok  5 [desktop] › tests\e2e\01-journey.spec.ts:170:5 › 10. unauthorised users cannot reach administrative pages or operations (11.3s)
+  ok  6 [desktop] › tests\e2e\01-journey.spec.ts:207:5 › custom box builder validates the composition and adds a priced box to the cart (3.5s)
+  ok  7 [desktop] › tests\e2e\02-admin.spec.ts:17:5 › dashboard shows real figures with a stated period (2.9s)
+  ok  8 [desktop] › tests\e2e\02-admin.spec.ts:27:5 › admin creates a product, prices a variant, publishes it, and it appears on the shop (6.3s)
+  ok  9 [desktop] › tests\e2e\02-admin.spec.ts:58:5 › inventory adjustments are recorded and can never go below zero (3.4s)
+  x  10 [desktop] › tests\e2e\02-admin.spec.ts:78:5 › cancelling a paid order restocks but does NOT refund; the admin then refunds explicitly (14.0s)
+  -  11 [desktop] › tests\e2e\02-admin.spec.ts:123:5 › settings save persists and is reflected on the storefront
+  -  12 [desktop] › tests\e2e\02-admin.spec.ts:139:5 › webhook endpoint rejects bad signatures and acknowledges signed events once
+  -  13 [desktop] › tests\e2e\02-admin.spec.ts:155:5 › security headers and robots rules are present
+  ok 14 [desktop] › tests\e2e\03-a11y.spec.ts:9:7 › no serious accessibility violations on / (8.4s)
+  ok 15 [desktop] › tests\e2e\03-a11y.spec.ts:9:7 › no serious accessibility violations on /shop (4.5s)
+  ok 16 [desktop] › tests\e2e\03-a11y.spec.ts:9:7 › no serious accessibility violations on /shop/fudgy (5.7s)
+  ok 17 [desktop] › tests\e2e\03-a11y.spec.ts:9:7 › no serious accessibility violations on /build-your-box (3.5s)
+  ok 18 [desktop] › tests\e2e\03-a11y.spec.ts:9:7 › no serious accessibility violations on /gift-boxes (2.6s)
+  ok 19 [desktop] › tests\e2e\03-a11y.spec.ts:9:7 › no serious accessibility violations on /about (2.7s)
+  ok 20 [desktop] › tests\e2e\03-a11y.spec.ts:9:7 › no serious accessibility violations on /contact (2.5s)
+  ok 21 [desktop] › tests\e2e\03-a11y.spec.ts:9:7 › no serious accessibility violations on /cart (2.4s)
+  ok 22 [desktop] › tests\e2e\03-a11y.spec.ts:9:7 › no serious accessibility violations on /checkout (2.9s)
+  ok 23 [desktop] › tests\e2e\03-a11y.spec.ts:9:7 › no serious accessibility violations on /track (2.8s)
+  ok 24 [desktop] › tests\e2e\03-a11y.spec.ts:9:7 › no serious accessibility violations on /account/login (3.0s)
+  ok 25 [desktop] › tests\e2e\03-a11y.spec.ts:9:7 › no serious accessibility violations on /privacy (3.0s)
+  ok 26 [desktop] › tests\e2e\03-a11y.spec.ts:18:5 › admin sign-in page is accessible (2.7s)
+  ok 27 [desktop] › tests\e2e\03-a11y.spec.ts:24:5 › the 3D hero never blocks navigation and respects reduced motion (7.7s)
+  ok 28 [mobile] › tests\e2e\04-mobile.spec.ts:7:5 › mobile: no horizontal scroll on key pages (6.8s)
+  ok 29 [mobile] › tests\e2e\04-mobile.spec.ts:15:5 › mobile: navigation menu opens, traps focus, closes with Escape and navigates (3.3s)
+  ok 30 [mobile] › tests\e2e\04-mobile.spec.ts:31:5 › mobile: filter drawer filters real products and the cart flow works on a phone (3.8s)
+
+
+  1) [desktop] › tests\e2e\02-admin.spec.ts:78:5 › cancelling a paid order restocks but does NOT refund; the admin then refunds explicitly 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByText(/Order cancelled and stock returned/)
+    Expected: visible
+    Timeout: 10000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" getByText(/Order cancelled and stock returned/) with timeout 10000ms
+      - waiting for getByText(/Order cancelled and stock returned/)
+
+
+      86 |   await page.getByTestId("cancel-confirm").check();
+      87 |   await page.getByRole("button", { name: "Cancel this order" }).click();
+    > 88 |   await expect(page.getByText(/Order cancelled and stock returned/)).toBeVisible();
+         |                                                                      ^
+      89 |
+      90 |   await page.reload();
+      91 |   await expect(page.getByTestId("admin-statuses")).toContainText("Cancelled");
+        at E:\office prjects\dgap-next\tests\e2e\02-admin.spec.ts:88:70
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results\02-admin-cancelling-a-paid-a7abc-min-then-refunds-explicitly-desktop\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results\02-admin-cancelling-a-paid-a7abc-min-then-refunds-explicitly-desktop\error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\02-admin-cancelling-a-paid-a7abc-min-then-refunds-explicitly-desktop\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\02-admin-cancelling-a-paid-a7abc-min-then-refunds-explicitly-desktop\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  1 failed
+    [desktop] › tests\e2e\02-admin.spec.ts:78:5 › cancelling a paid order restocks but does NOT refund; the admin then refunds explicitly 
+  3 did not run
+  26 passed (3.0m)

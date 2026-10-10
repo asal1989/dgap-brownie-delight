@@ -1,5 +1,6 @@
 import { expect, test, type Browser, type Page } from "@playwright/test";
 import { E2E_ADMIN, E2E_COUPON, E2E_CUSTOMER, E2E_STAFF } from "./constants";
+import { installRazorpayStub, type StubMode } from "./razorpay-stub";
 
 test.describe.configure({ mode: "serial" });
 test.setTimeout(180_000);
@@ -52,7 +53,9 @@ test("1-3. browse products, filter, choose a variant and add to cart", async ({ 
   await expect(page.getByRole("link", { name: /Cart, 1 item/ })).toBeVisible();
 });
 
-test("4-6. apply a coupon, check out, pay with the development flow and view the order", async ({ page }) => {
+test("4-6. apply a coupon, check out, pay through Razorpay (verified server-side) and view the order", async ({ page }) => {
+  let mode: StubMode = "bad-signature";
+  await installRazorpayStub(page, () => mode);
   // Re-create the cart for this fresh browser context.
   await page.goto("/shop/fudgy");
   await page.locator("label", { hasText: "500 g" }).click();
@@ -93,14 +96,25 @@ test("4-6. apply a coupon, check out, pay with the development flow and view the
   await expect(page).toHaveURL(/\/order-success\/DGAP-\d+/);
   orderNumber = page.url().split("/").pop()!.split("?")[0];
   expect(orderNumber).toMatch(/^DGAP-\d+$/);
-  // Unpaid until the server records a payment.
-  await expect(page.getByTestId("dev-payment")).toBeVisible();
+  // Unpaid until the SERVER verifies a payment. Each tampering attempt is rejected and leaves the order unpaid.
+  await expect(page.getByTestId("success-heading")).toHaveText("Almost there");
+  await expect(page.getByTestId("pay-now")).toContainText("₹590");
+
+  await page.getByTestId("pay-now").click(); // forged signature
+  await expect(page.getByText("Payment signature could not be verified.")).toBeVisible();
   await expect(page.getByTestId("success-heading")).toHaveText("Almost there");
 
-  // Payment failure is handled and can be retried.
-  await page.getByTestId("dev-pay-failure").click();
-  await expect(page.getByText("Payment didn’t go through")).toBeVisible();
-  await page.getByTestId("dev-pay-success").click();
+  mode = "tampered-amount"; // genuine signature, but the payment is for the wrong amount
+  await page.getByTestId("pay-now").click();
+  await expect(page.getByText("The payment amount did not match the order.")).toBeVisible();
+  await expect(page.getByTestId("success-heading")).toHaveText("Almost there");
+
+  mode = "failure"; // customer's bank declines
+  await page.getByTestId("pay-now").click();
+  await expect(page.getByText("Payment failed (simulated by the test)")).toBeVisible();
+
+  mode = "success"; // retry with a genuinely signed, correct payment
+  await page.getByTestId("pay-now").click();
   await expect(page.getByTestId("success-heading")).toContainText("Thank you, Asha");
 
   // 6. The customer can view and track the order.

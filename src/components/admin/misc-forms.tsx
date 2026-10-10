@@ -8,7 +8,7 @@ import { paiseToRupeesInput } from "@/lib/money";
 export function CategoryForm({ category }: { category?: { id: string; name: string; slug: string; description: string | null; sortOrder: number; isActive: boolean } }) {
   return (
     <div>
-      <ActionForm action={saveCategoryAction} submitLabel={category ? "Save" : "Create category"} pendingLabel="Saving…" submitClass="btn btn-primary btn-sm" hidden={category ? { categoryId: category.id } : undefined}>
+      <ActionForm action={saveCategoryAction} submitLabel={category ? "Save" : "Create category"} pendingLabel="Saving…" submitClass="btn btn-primary btn-sm" hidden={category ? { categoryId: category.id } : undefined} resetOnSuccess={!category}>
         <div className="grid gap-4 md:grid-cols-4">
           <label className="field"><span className="label">Name</span><input name="name" className="input" required defaultValue={category?.name} maxLength={80} data-testid="category-name" /></label>
           <label className="field"><span className="label">Slug</span><input name="slug" className="input" defaultValue={category?.slug} maxLength={80} placeholder="auto" /></label>
@@ -50,7 +50,7 @@ const istLocal = (d: Date | null) => {
 
 export function CouponForm({ coupon, products, categories }: { coupon?: CouponData; products: { id: string; name: string }[]; categories: { id: string; name: string }[] }) {
   return (
-    <ActionForm action={saveCouponAction} submitLabel={coupon ? "Save coupon" : "Create coupon"} pendingLabel="Saving…" submitClass="btn btn-primary btn-sm" hidden={coupon ? { couponId: coupon.id } : undefined}>
+    <ActionForm action={saveCouponAction} submitLabel={coupon ? "Save coupon" : "Create coupon"} pendingLabel="Saving…" submitClass="btn btn-primary btn-sm" hidden={coupon ? { couponId: coupon.id } : undefined} resetOnSuccess={!coupon}>
       <div className="grid gap-4 md:grid-cols-4">
         <label className="field"><span className="label">Code</span><input name="code" className="input uppercase" required defaultValue={coupon?.code} maxLength={30} data-testid="coupon-code" /></label>
         <label className="field"><span className="label">Type</span><select name="type" className="select" defaultValue={coupon?.type ?? "PERCENT"} data-testid="coupon-type"><option value="PERCENT">Percentage off</option><option value="FIXED">Fixed amount off</option></select></label>
