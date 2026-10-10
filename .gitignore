@@ -50,3 +50,7 @@ next-env.d.ts
 /blob-report
 /.next-e2e
 /.dev.log
+.claude/
+.agents/
+skills-lock.json
+.vercel

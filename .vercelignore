@@ -1,0 +1,13 @@
+.pgdata
+.next
+.next-e2e
+node_modules
+test-results
+playwright-report
+blob-report
+public/uploads
+.env
+.env.local
+.env.*.local
+*.log
+tests/e2e
