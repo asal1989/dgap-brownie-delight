@@ -71,7 +71,7 @@ Sign in at `https://<your-domain>/admin/login`, then **before opening the shop**
 
 ## 7. Cron
 
-`vercel.json` schedules `/api/cron/maintenance` every 15 minutes. It cancels unpaid online orders after 60 minutes (returning stock),
+`vercel.json` schedules `/api/cron/maintenance` once a day on the Hobby plan (every 15 minutes on Pro: change the schedule). It cancels unpaid online orders after 60 minutes (returning stock),
 delivers queued emails and clears expired sessions. It requires `CRON_SECRET` (Vercel sends it automatically).
 **Vercel's Hobby plan only allows daily crons**; on Hobby change the schedule to daily (`0 3 * * *`) and note that unpaid-order
 expiry and email retries will then run once a day.
