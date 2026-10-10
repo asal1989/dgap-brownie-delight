@@ -18,7 +18,7 @@ export async function requirePermission(permission: Permission): Promise<Session
   return user;
 }
 
-export type AuthResult = { ok: true; user: SessionUser } | { ok: false; error: string };
+export type AuthResult = { ok: true; user: SessionUser } | { ok: false; error: string; status: 401 | 403 };
 
 /**
  * For server actions and route handlers: returns a result instead of redirecting.
@@ -26,7 +26,7 @@ export type AuthResult = { ok: true; user: SessionUser } | { ok: false; error: s
  */
 export async function authorize(permission: Permission): Promise<AuthResult> {
   const user = await getCurrentUser();
-  if (!user || !isStaff(user.role)) return { ok: false, error: "You must be signed in as staff to do that." };
-  if (!can(user.role, permission)) return { ok: false, error: "You do not have permission to do that." };
+  if (!user) return { ok: false, error: "You must be signed in as staff to do that.", status: 401 };
+  if (!isStaff(user.role) || !can(user.role, permission)) return { ok: false, error: "You do not have permission to do that.", status: 403 };
   return { ok: true, user };
 }

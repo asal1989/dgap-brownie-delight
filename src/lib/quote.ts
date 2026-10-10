@@ -14,11 +14,14 @@ export const cartItemSchema = z.discriminatedUnion("type", [
     type: z.literal("product"),
     variantId: z.string().min(1).max(40),
     quantity: z.number().int().min(1).max(MAX_LINE_QTY),
+    /** Opaque client-side line id, echoed back so the browser can match quote lines to its cart. */
+    ref: z.string().max(300).optional(),
   }),
   z.object({
     type: z.literal("box"),
     variantId: z.string().min(1).max(40),
     quantity: z.number().int().min(1).max(MAX_BOX_QTY),
+    ref: z.string().max(300).optional(),
     selections: z
       .array(z.object({ productId: z.string().min(1).max(40), quantity: z.number().int().min(1).max(MAX_LINE_QTY) }))
       .min(1)
@@ -36,6 +39,7 @@ export type CartInput = z.infer<typeof cartSchema>;
 
 export type QuoteLine = {
   key: string;
+  ref?: string;
   type: "product" | "box";
   variantId: string;
   productId: string;
@@ -168,6 +172,7 @@ export async function quoteCart(client: DbClient, cart: CartInput, ctx: QuoteCon
     wanted.set(v.id, (wanted.get(v.id) ?? 0) + item.quantity);
     lines.push({
       key,
+      ref: item.ref,
       type: item.type,
       variantId: v.id,
       productId: v.productId,

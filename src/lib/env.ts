@@ -22,6 +22,8 @@ const schema = z.object({
   NOTIFICATIONS_DEV_LOG: optionalString,
   BLOB_READ_WRITE_TOKEN: optionalString,
   CRON_SECRET: optionalString,
+  /** HMAC key for the guest order-access cookie. Required in production. */
+  ORDER_ACCESS_SECRET: optionalString,
 });
 
 export type Env = z.infer<typeof schema>;

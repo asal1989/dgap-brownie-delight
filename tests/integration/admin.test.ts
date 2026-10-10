@@ -101,7 +101,7 @@ describe("cancellation", () => {
 });
 
 describe("refunds", () => {
-  const refund = (orderId: string, amountPaise: number, key = randomUUID()) =>
+  const refund = (orderId: string, amountPaise: number, key: string = randomUUID()) =>
     refundOrder({ orderId, amountPaise, reason: "Customer request", idempotencyKey: key, actor });
 
   it("refunds partially, then fully, tracking payment status each step", async () => {

@@ -60,7 +60,7 @@ describe("product filtering", () => {
     expect(parseShopFilters({ sort: "hack", page: "-3", min: "abc" })).toMatchObject({ sort: "featured", page: 1 });
   });
   it("builds a where clause that only ever matches active products", () => {
-    const w = buildProductWhere({ q: "wal", category: "nuts", minPaise: 10_000, maxPaise: 50_000 }) as Record<string, any>;
+    const w = buildProductWhere({ q: "wal", category: "nuts", minPaise: 10_000, maxPaise: 50_000 }) as { status: string; OR: unknown[]; category: unknown; variants: { some: { priceInPaise: unknown } } };
     expect(w.status).toBe("ACTIVE");
     expect(w.OR).toHaveLength(3);
     expect(w.category).toEqual({ slug: "nuts", isActive: true });

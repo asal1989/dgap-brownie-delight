@@ -37,6 +37,8 @@ const nextConfig: NextConfig = {
   cacheComponents: false,
   partialPrefetching: false,
   poweredByHeader: false,
+  // Lets the end-to-end test server build into its own folder (never collides with `npm run dev`).
+  distDir: process.env.NEXT_DIST_DIR || ".next",
   images: {
     formats: ["image/avif", "image/webp"],
     remotePatterns: [{ protocol: "https", hostname: "*.public.blob.vercel-storage.com" }],
