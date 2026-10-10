@@ -38,7 +38,7 @@ export function Header() {
   const header = h("header", { class: "header" },
     h("div", { class: "wrap header-row" },
       h("a", { href: "index.html#top", class: "logo", "aria-label": `${SITE.brand} home` },
-        h("span", { class: "logo-mark", "aria-hidden": "true" }, "D"),
+        h("img", { class: "logo-mark", src: "images/logo-192.png", alt: "", width: 64, height: 64, decoding: "async" }),
         h("span", { class: "logo-text" }, "DGAP ", h("em", {}, "Brownie Delight"))),
       nav,
       h("div", { class: "header-actions" },
