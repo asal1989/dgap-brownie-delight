@@ -1,6 +1,7 @@
 import { HERO, WHY, OCCASIONS, STORY, REVIEWS, GALLERY, FAQS, CONTACT, SOCIAL, SITE, POLICIES, ORDER_NOTE } from "../config.js";
-import { PRODUCTS } from "../products.js";
-import { h, icon } from "../utils.js";
+import { PRODUCTS, CATEGORIES } from "../products.js";
+import { h, icon, priceLabel } from "../utils.js";
+import { fromPrice } from "./ProductCard.js";
 import { WhatsAppOrderButton } from "./WhatsAppOrderButton.js";
 import { buildEnquiryMessage, whatsappReady, whatsappUrl } from "../whatsapp.js";
 import { openDialog } from "./dialog.js";
@@ -13,26 +14,44 @@ const heading = (eyebrow, title, sub, id) =>
 
 export function Hero() {
   return h("section", { class: "hero", id: "hero", "aria-labelledby": "hero-title" },
-    h("div", { class: "hero-bg", "aria-hidden": "true" }),
-    h("div", { class: "wrap hero-grid" },
-      h("div", { class: "hero-copy" },
-        h("p", { class: "eyebrow gold hero-in", style: "--d:0" }, "Handcrafted in ", SITE.city),
-        h("h1", { id: "hero-title", class: "hero-in", style: "--d:1" }, HERO.headline),
-        h("p", { class: "hero-sub hero-in", style: "--d:2" }, HERO.subtitle),
-        h("div", { class: "hero-cta hero-in", style: "--d:3" },
-          h("a", { href: "#shop", class: "btn btn-gold btn-lg" }, "Explore Our Brownies", icon("arrow", 18)),
-          WhatsAppOrderButton({ label: "Order on WhatsApp", variant: "outline-light", getMessage: () => buildEnquiryMessage("I'd like to order brownies.") }))),
-      h("div", { class: "hero-media hero-in", style: "--d:2" },
-        h("img", { src: HERO.image, alt: HERO.imageAlt, width: 1200, height: 1500, fetchpriority: "high" }))));
+    h("div", { class: "hero-copy" },
+      h("p", { class: "eyebrow hero-in", style: "--d:0" }, HERO.eyebrow),
+      h("h1", { id: "hero-title", class: "hero-in", style: "--d:1" }, HERO.headline),
+      h("p", { class: "hero-sub hero-in", style: "--d:2" }, HERO.subtitle),
+      h("div", { class: "hero-cta hero-in", style: "--d:3" },
+        h("a", { href: HERO.primary.href, class: "btn btn-gold btn-lg" }, HERO.primary.label),
+        h("a", { href: HERO.secondary.href, class: "btn btn-outline-light btn-lg" }, HERO.secondary.label))),
+    h("div", { class: "hero-media hero-in", style: "--d:1" },
+      h("img", { src: HERO.image, alt: HERO.imageAlt, width: 1200, height: 1500, fetchpriority: "high" })));
+}
+
+/** Signature collection: one editorial tile per configured brownie, with real sizes and prices. */
+export function Collection({ onView }) {
+  return h("section", { class: "section collection", id: "collection", "aria-labelledby": "col-title" },
+    h("div", { class: "wrap" },
+      heading("The Signature Collection", "Six Brownies, Baked by Hand", "Choose a favourite, or taste your way through all six.", "col-title"),
+      h("ul", { class: "tile-grid" }, PRODUCTS.map((p, i) => {
+        const from = fromPrice(p);
+        return h("li", { class: "tile reveal", style: `--i:${i % 3}` },
+          h("button", { type: "button", class: "tile-media", onclick: () => onView(p.id), "aria-label": `View details for ${p.name}` },
+            h("img", { src: p.images[0].src, alt: p.images[0].alt, loading: "lazy", width: 640, height: 800, decoding: "async" }),
+            !p.available ? h("span", { class: "tag tag-dark" }, "Currently unavailable") : p.bestseller ? h("span", { class: "tag" }, "Bestseller") : null),
+          h("div", { class: "tile-body" },
+            h("p", { class: "eyebrow" }, CATEGORIES.find((c) => c.id === p.category)?.label),
+            h("h3", {}, p.name),
+            h("p", { class: "tile-sizes" }, p.sizes.map((s) => s.label).join(" · ")),
+            h("p", { class: `tile-price${from == null ? " muted" : ""}` }, from == null ? priceLabel(null) : `From ${priceLabel(from)}`),
+            h("button", { type: "button", class: "more", onclick: () => onView(p.id) }, "View details", icon("arrow", 16))));
+      }))));
 }
 
 export function WhySection() {
   return h("section", { class: "section why", "aria-labelledby": "why-title" },
     h("div", { class: "wrap" },
-      heading("Why DGAP", "Why Choose Us?", "Made for people who take their chocolate seriously.", "why-title"),
+      heading("Why DGAP", "Made With Care", null, "why-title"),
       h("ul", { class: "why-grid" }, WHY.map((w, i) =>
         h("li", { class: "why-item reveal", style: `--i:${i}` },
-          h("span", { class: "why-icon" }, icon(w.icon, 28)),
+          h("span", { class: "why-icon" }, icon(w.icon, 26)),
           h("h3", {}, w.title),
           h("p", {}, w.text))))));
 }
@@ -41,7 +60,7 @@ export function GiftSection() {
   const prefill = (o) => buildEnquiryMessage(`I'd like to enquire about a brownie gift box for ${o ? o.toLowerCase() : "an occasion"}.`);
   return h("section", { class: "section gifting", id: "gifting", "aria-labelledby": "gift-title" },
     h("div", { class: "wrap" },
-      heading("Gift Boxes", "Brownie Boxes for Every Occasion", "Premium boxes, packed to be gifted.", "gift-title"),
+      heading("Luxury Gifting", "Brownie Boxes for Every Occasion", "Thoughtfully packed, ready to be gifted.", "gift-title"),
       h("ul", { class: "gift-grid" }, OCCASIONS.map((o, i) =>
         h("li", { class: "gift-card reveal", style: `--i:${i}` },
           h("img", { src: o.image, alt: "", loading: "lazy", width: 600, height: 760 }),
@@ -52,15 +71,17 @@ export function GiftSection() {
             o.href ? h("a", { class: "link-btn", href: o.href }, "Build your box") : null))))));
 }
 
+/** Deep-green signature brand section with a large photograph and the short brand story. */
 export function StorySection() {
-  return h("section", { class: "section story", id: "story", "aria-labelledby": "story-title" },
-    h("div", { class: "wrap story-grid" },
-      h("div", { class: "story-media reveal" }, h("img", { src: STORY.image, alt: STORY.imageAlt, loading: "lazy", width: 900, height: 700 })),
-      h("div", { class: "story-copy reveal" },
-        h("p", { class: "eyebrow" }, "Our Story"),
+  return h("section", { class: "signature", id: "story", "aria-labelledby": "story-title" },
+    h("div", { class: "wrap signature-grid" },
+      h("div", { class: "signature-media reveal" }, h("img", { src: STORY.image, alt: STORY.imageAlt, loading: "lazy", width: 1400, height: 935 })),
+      h("div", { class: "signature-copy reveal" },
+        h("p", { class: "eyebrow" }, STORY.eyebrow),
         h("h2", { id: "story-title" }, STORY.title),
+        h("span", { class: "rule", "aria-hidden": "true" }),
         STORY.paragraphs.map((p) => h("p", {}, p)),
-        h("a", { class: "btn btn-primary", href: "about.html" }, "Read our story", icon("arrow", 18)))));
+        h("a", { class: "btn btn-gold", href: "about.html" }, "Read our story"))));
 }
 
 export function Testimonials() {
@@ -89,7 +110,7 @@ export function GallerySection() {
       })),
       link
         ? h("p", { class: "center" }, h("a", { class: "btn btn-outline", href: link, target: "_blank", rel: "noopener" }, icon("instagram", 18), "Follow us on Instagram"))
-        : h("p", { class: "center muted" }, "Our Instagram profile link will appear here soon.")));
+        : null));
 }
 
 export function FAQSection() {
@@ -102,15 +123,6 @@ export function FAQSection() {
         h("details", { class: "faq-item reveal", style: `--i:${i}` },
           h("summary", {}, h("span", {}, f.q), icon("plus", 18)),
           h("p", {}, fill(f.a)))))));
-}
-
-export function FinalCTA() {
-  return h("section", { class: "final", "aria-labelledby": "cta-title" },
-    h("div", { class: "wrap final-in reveal" },
-      h("h2", { id: "cta-title" }, "Your Next Chocolate Craving Starts Here."),
-      h("div", { class: "hero-cta center-row" },
-        h("a", { href: "#shop", class: "btn btn-gold btn-lg" }, "Explore Brownies"),
-        WhatsAppOrderButton({ label: "Order on WhatsApp", variant: "outline-light", getMessage: () => buildEnquiryMessage("I'd like to order brownies.") }))));
 }
 
 export function ContactSection() {
@@ -145,6 +157,6 @@ export function Footer() {
         h("ul", {}, [["Shop Brownies", "index.html#shop"], ["Gift Boxes", "index.html#gifting"], ["Our Story", "about.html"], ["FAQ", "index.html#faq"], ["Contact", "index.html#contact"]]
           .map(([l, href]) => h("li", {}, h("a", { href }, l))))),
       h("div", {}, h("h3", {}, "Ordering"), h("p", {}, "Order via WhatsApp or the cart. ", ORDER_NOTE), whatsappReady() ? h("p", {}, h("a", { href: whatsappUrl(buildEnquiryMessage("I have a question about your brownies.")), target: "_blank", rel: "noopener" }, "Chat on WhatsApp")) : null, CONTACT.phone ? h("p", {}, h("a", { href: `tel:${CONTACT.phone.replace(/[^\d+]/g, "")}` }, CONTACT.phone)) : null, CONTACT.email ? h("p", {}, h("a", { href: `mailto:${CONTACT.email}` }, CONTACT.email)) : null),
-      h("div", {}, h("h3", {}, "Policies"), h("ul", {}, [policyLink("Delivery policy", POLICIES.delivery), policyLink("Privacy policy", POLICIES.privacy), policyLink("Terms", POLICIES.terms)].map((l) => h("li", {}, l))))),
+      h("div", {}, h("h3", {}, "Delivery"), h("p", {}, POLICIES.delivery), h("h3", { class: "foot-sub" }, "Policies"), h("ul", {}, [policyLink("Privacy policy", POLICIES.privacy), policyLink("Terms", POLICIES.terms)].map((l) => h("li", {}, l))))),
     h("div", { class: "wrap foot-base" }, h("p", {}, `© ${new Date().getFullYear()} ${SITE.brand}. All rights reserved.`)));
 }

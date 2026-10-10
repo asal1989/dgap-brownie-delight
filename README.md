@@ -22,7 +22,7 @@ Then open http://localhost:4173. (ES modules need a web server; opening `index.h
 |---|---|
 | `docs/js/config.js` | Business details: **WhatsApp number**, phone, email, address, hours, Instagram/Facebook, announcement bar, hero text, box sizes and prices, FAQ answers, reviews, gallery, policies |
 | `docs/js/products.js` | Products, categories, sizes, prices, labels, ingredients, allergens, availability |
-| `docs/css/styles.css` | Colour palette and design tokens (top of file) |
+| `docs/css/styles.css` | Colour palette and design tokens (top of file): forest green `#183A2C`, champagne gold `#D5B477`, ivory `#F8F2E8`, espresso `#30201B` |
 | `docs/images/` | Photos (replace the temporary stock photos) |
 
 ### Before launch checklist
@@ -36,6 +36,10 @@ Then open http://localhost:4173. (ES modules need a web server; opening `index.h
 - **Instagram**: set `SOCIAL.instagram` to link the gallery to the real profile.
 - **Photos**: the images in `docs/images/` are temporary Unsplash stock, with a different lead photo per brownie. They are not photos of DGAP's own brownies, and the gift-box photo shows chocolates. Replace them with your own product photography, one per brownie.
 - **Story and About page**: replace the placeholder copy in `config.js` (`STORY`) and `docs/about.html`.
+
+## If JavaScript fails
+
+`docs/index.html` ships a static brand header and brownie menu inside `#app`. The full site replaces it when the scripts run, so visitors with JavaScript off, an unsupported browser, or a script error still see the brand and the menu. If you add or rename a product in `products.js`, update the `.static-list` in `index.html` too.
 
 ## Structure
 

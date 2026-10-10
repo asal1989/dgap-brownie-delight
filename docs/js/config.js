@@ -39,17 +39,21 @@ export const SOCIAL = {
 
 export const NAV = [
   { label: "Home", href: "index.html#top" },
-  { label: "Shop Brownies", href: "index.html#shop" },
+  { label: "Collection", href: "index.html#collection" },
+  { label: "Shop", href: "index.html#shop" },
   { label: "Gift Boxes", href: "index.html#gifting" },
   { label: "Our Story", href: "index.html#story" },
   { label: "Contact", href: "index.html#contact" },
 ];
 
 export const HERO = {
-  headline: "A Little Bite of Chocolate Heaven.",
-  subtitle: "Rich, fudgy, irresistible brownies crafted to make every moment sweeter.",
+  eyebrow: "Artisan brownies · Bangalore",
+  headline: "Where Every Bite Feels Homemade.",
+  subtitle: "Indulgent brownies crafted to turn everyday moments into something special.",
   image: "images/hero-fudgie.jpg",
   imageAlt: "Close-up of rich, fudgy chocolate brownies",
+  primary: { label: "Discover Our Brownies", href: "#collection" },
+  secondary: { label: "Explore Gift Boxes", href: "#gifting" },
 };
 
 /** Brownie box sizes for the custom box builder. `count` = brownies per box. `price: null` = not configured. */
@@ -59,11 +63,12 @@ export const BOX_SIZES = [
   { id: "box-9", label: "Box of 9", count: 9, price: null },
 ];
 
+/** Only claims the business can stand behind: facts drawn from the catalogue and how ordering works. */
 export const WHY = [
-  { icon: "texture", title: "Rich, Fudgy Texture", text: "Baked for a dense, fudgy centre and a deep chocolate flavour." },
-  { icon: "leaf", title: "Carefully Selected Ingredients", text: "We choose our ingredients with care. Ask us for the ingredient list of any brownie." },
-  { icon: "oven", title: "Freshly Prepared Batches", text: "Brownies are prepared in batches, so confirm availability with us when you order." },
-  { icon: "gift", title: "Perfect for Gifting", text: "Brownie boxes that make birthdays, festivals and thank-yous a little sweeter." },
+  { icon: "oven", title: "Made by hand", text: "Every brownie is crafted by hand in Bangalore." },
+  { icon: "texture", title: "Six signature flavours", text: "From Classic Fudgy to Ragi and Wheat, there is a brownie for every taste." },
+  { icon: "gift", title: "Made for gifting", text: "Brownie boxes for birthdays, festivals and thank-yous, or build your own." },
+  { icon: "chat", title: "Personal ordering", text: "Order on WhatsApp. We confirm availability, delivery and payment with you." },
 ];
 
 export const OCCASIONS = [
@@ -75,10 +80,11 @@ export const OCCASIONS = [
 ];
 
 export const STORY = {
+  eyebrow: "The DGAP signature",
   title: "Baked by hand, made for sharing.",
   paragraphs: [
     "DGAP Brownie Delight is a Bangalore brownie bakery focused on one thing: rich, fudgy chocolate brownies made with care.",
-    "Every brownie is crafted by hand, and every box is put together to be enjoyed or gifted. Add your own story here: who bakes, how it started, what makes your recipe special.",
+    "Every brownie is crafted by hand, and every box is put together to be enjoyed or gifted.",
   ],
   image: "images/tray.jpg",
   imageAlt: "A tray of freshly baked walnut brownies",
@@ -93,6 +99,8 @@ export const GALLERY = [
   { src: "images/triple-chocolate.jpg", alt: "Brownies with chocolate sauce pouring over" },
   { src: "images/walnut.jpg", alt: "Chocolate brownie topped with walnut" },
   { src: "images/ragi.jpg", alt: "Dark chocolate brownies on a green plate" },
+  { src: "images/swirl-rack.jpg", alt: "Glossy chocolate brownies cooling on a rack" },
+  { src: "images/golden-stack.jpg", alt: "Golden-topped brownies stacked high" },
 ];
 
 /**

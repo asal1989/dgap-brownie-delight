@@ -6,7 +6,7 @@ import { ProductGrid } from "./components/ProductGrid.js";
 import { CategoryFilter } from "./components/CategoryFilter.js";
 import { openProduct } from "./components/ProductModal.js";
 import { CustomBoxBuilder } from "./components/CustomBoxBuilder.js";
-import { Hero, WhySection, GiftSection, StorySection, Testimonials, GallerySection, FAQSection, FinalCTA, ContactSection, Footer } from "./components/Sections.js";
+import { Hero, Collection, WhySection, GiftSection, StorySection, Testimonials, GallerySection, FAQSection, ContactSection, Footer } from "./components/Sections.js";
 
 function shopSection() {
   const counts = { all: PRODUCTS.length };
@@ -21,9 +21,8 @@ function shopSection() {
     h("div", { class: "wrap" },
       h("header", { class: "section-head reveal" },
         h("p", { class: "eyebrow" }, "Shop Brownies"),
-        h("h2", { id: "shop-title" }, "Our Bestselling Brownies"),
+        h("h2", { id: "shop-title" }, "Shop by Flavour"),
         h("p", { class: "section-sub" }, "Choose your brownie by flavour, then pick a size.")),
-      h("h3", { class: "sub-title" }, "Choose Your Brownie"),
       filter.el,
       grid.el));
 }
@@ -65,20 +64,34 @@ function route() {
 }
 
 const page = document.body.dataset.page;
-if (page === "home") {
-  $("#app").replaceChildren(Hero(), shopSection(), boxSection(), WhySection(), GiftSection(), StorySection(), Testimonials(), GallerySection(), FAQSection(), FinalCTA(), ContactSection());
-  structuredData();
+
+/** Render the app. If anything throws, keep the static menu that ships inside index.html visible. */
+function start() {
+  if (page === "home") {
+    const onView = (id) => openProduct(id);
+    $("#app").replaceChildren(Hero(), Collection({ onView }), shopSection(), StorySection(), boxSection(), GiftSection(), WhySection(), Testimonials(), GallerySection(), FAQSection(), ContactSection());
+    structuredData();
+  }
+  $("#site-header").replaceChildren(Header());
+  $("#site-footer").replaceChildren(Footer());
+  document.documentElement.classList.add("js-ready");
+  reveal();
+  if (page === "home") {
+    route();
+    addEventListener("hashchange", route);
+    // Honour a deep link such as /#shop now that the sections exist.
+    if (location.hash && !location.hash.startsWith("#product=")) document.getElementById(location.hash.slice(1))?.scrollIntoView();
+  }
 }
-$("#site-header").replaceChildren(Header());
-$("#site-footer").replaceChildren(Footer());
-reveal();
-if (page === "home") {
-  route();
-  addEventListener("hashchange", route);
+try {
+  start();
+} catch (err) {
+  console.error("DGAP Brownie Delight failed to start:", err);
+  document.documentElement.classList.add("js-failed");
 }
 
 // Fallback for any image that fails to load (no broken-image icons).
-const FALLBACK = "data:image/svg+xml," + encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 500"><rect width="400" height="500" fill="#f4dfd0"/><text x="200" y="260" text-anchor="middle" font-family="Georgia,serif" font-size="28" fill="#8a5240">DGAP Brownie Delight</text></svg>');
+const FALLBACK = "data:image/svg+xml," + encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 500"><rect width="400" height="500" fill="#F8F2E8"/><text x="200" y="260" text-anchor="middle" font-family="Georgia,serif" font-size="28" fill="#183A2C">DGAP Brownie Delight</text></svg>');
 document.addEventListener("error", (e) => {
   const t = e.target;
   if (t.tagName === "IMG" && t.src !== FALLBACK) t.src = FALLBACK;

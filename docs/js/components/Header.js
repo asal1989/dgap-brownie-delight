@@ -42,7 +42,7 @@ export function Header() {
         h("span", { class: "logo-text" }, "DGAP ", h("em", {}, "Brownie Delight"))),
       nav,
       h("div", { class: "header-actions" },
-        h("a", { href: "index.html#shop", class: "btn btn-primary btn-sm order-now" }, "Order Now"),
+        h("a", { href: "index.html#shop", class: "btn btn-gold btn-sm order-now" }, "Order Now"),
         cartBtn, toggle)));
   root.append(header);
 
@@ -61,7 +61,7 @@ export function Header() {
         if (a) a.setAttribute("aria-current", "true");
       });
     }, { rootMargin: "-45% 0px -50% 0px" });
-    ["hero", "shop", "gifting", "story", "contact"].forEach((id) => { const s = document.getElementById(id); if (s) io.observe(s); });
+    ["hero", "collection", "shop", "gifting", "story", "contact"].forEach((id) => { const s = document.getElementById(id); if (s) io.observe(s); });
   }
   return root;
 }
