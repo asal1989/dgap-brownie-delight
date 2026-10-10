@@ -10,4 +10,3 @@ public/uploads
 .env.local
 .env.*.local
 *.log
-tests/e2e
